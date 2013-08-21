@@ -1,4 +1,5 @@
 (require 'multi-web-mode)
+(require 'config_my_fundamental)
 
 
 ;; Multi-web-mode
@@ -29,7 +30,8 @@
 (add-hook
  'nxml-mode-hook
  (lambda ()
-   (local-set-key (kbd "C-c C-n") 'nxml-create-new-tag)))
+   (local-set-key (kbd "C-c C-n") 'nxml-create-new-tag)
+   (local-set-key (kbd "C-c e") 'mc/mark-sgml-tag-pair)))
 
 
 (provide 'config_my_xml)

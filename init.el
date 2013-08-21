@@ -64,6 +64,7 @@
 (add-to-list 'load-path config-my-path)
 (add-to-list 'load-path (get-config-path "3rdparty"))
 
+(require 'config_my_fundamental)
 (require 'config_my_python)
 (require 'config_my_javascript)
 (require 'config_my_xml)
