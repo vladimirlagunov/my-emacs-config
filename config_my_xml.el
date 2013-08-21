@@ -1,5 +1,6 @@
 (require 'multi-web-mode)
 (require 'config_my_fundamental)
+(require 'zencoding-mode)
 
 
 ;; Multi-web-mode
@@ -21,17 +22,14 @@
 	  (backward-kill-word 1)
 	  word)))
 
-(defun xml-create-new-tag ()
-  (interactive)
-  (let ((word (get-and-delete-current-word))
-		(snippet "<word$2>\n\t$0\n</word>"))
-	(yas/expand-snippet (replace-regexp-in-string "word" word snippet))))
-
 (add-hook
- 'nxml-mode-hook
+ 'sgml-mode-hook
  (lambda ()
-   (local-set-key (kbd "C-c C-n") 'nxml-create-new-tag)
    (local-set-key (kbd "C-c e") 'mc/mark-sgml-tag-pair)))
+
+
+;;; Zen coding
+(add-hook 'sgml-mode-hook 'zencoding-mode)
 
 
 (provide 'config_my_xml)
