@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: __import__
+# key: __import__
+# --
+__import__("$1")${1:$(let ((splitted (cdr (split-string text "[.]")))) (if splitted (mapconcat 'identity (cons "" splitted) ".") ""))}
