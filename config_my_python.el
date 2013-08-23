@@ -7,7 +7,7 @@
 
 
 ;;; включить flymake в python
-(add-hook 'python-mode-hook (lambda () (flymake-mode)))
+(add-hook 'python-mode-hook 'flymake-mode)
 
 
 ;;; pyflakes через flymake
@@ -44,6 +44,7 @@
 (autoload 'pymacs-eval "pymacs" nil t)
 (autoload 'pymacs-exec "pymacs" nil t)
 (autoload 'pymacs-load "pymacs" nil t)
+(add-hook 'python-mode-hook 'ropemacs-mode)
 
 
 ;;; Подсветка блоков

@@ -56,13 +56,16 @@
  '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 98 :width normal))))
  '(highlight-indentation-current-column-face ((t (:inherit fringe :background "DarkOliveGreen1"))))
  '(highlight-indentation-face ((t (:inherit fringe :background "gray96"))))
- '(term ((t (:stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
+ '(term ((t (:stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))) t))
 
 (setq config-my-path (file-name-directory load-file-name))
 (defun get-config-path (path) (concat config-my-path path))
 
 (add-to-list 'load-path config-my-path)
 (add-to-list 'load-path (get-config-path "3rdparty"))
+
+(require 'package)
+(package-initialize)
 
 (require 'config_my_fundamental)
 (require 'config_my_python)

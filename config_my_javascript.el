@@ -24,7 +24,11 @@
 			 '("\\.js\\'" flymake-jslint-init))
 
 
-(add-hook 'js-mode-hook (lambda () (flymake-mode)))
+(add-hook
+ 'js-mode-hook
+ (lambda ()
+   (flymake-mode)
+   (yas/minor-mode)))
 
 
 (provide 'config_my_javascript)
