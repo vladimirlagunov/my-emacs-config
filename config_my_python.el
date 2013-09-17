@@ -1,9 +1,9 @@
 (require 'python)
 (require 'pymacs)
-(require 'highlight-indentation)
 
 (require 'config_my_flymake)
 (require 'config_my_autocomplete)
+(require 'indent-guide)
 
 
 ;;; включить flymake в python
@@ -47,17 +47,21 @@
 (add-hook 'python-mode-hook 'ropemacs-mode)
 
 
-;;; Подсветка блоков
-(add-hook 'python-mode-hook
-		  (lambda ()
-			(highlight-indentation-mode)
-			(highlight-indentation-current-column-mode)))
-
-
 ;; DAFUK
 (add-hook 'comint-output-filter-functions
 		  'python-pdbtrack-comint-output-filter-function)
 
+
+;;; Линия для текущего блока
+(add-hook 'python-mode 'indent-guide-mode)
+
+
+;;; Преобразовать `a=1,\nb=2` в `"a": 1,\n"b": 2`
+(add-hook 'python-mode
+		  (lambda ()
+			(fset 'kwargs-to-dict
+				  [?\C-\M-% ?^ ?  backspace ?\\ ?\( ?  ?\\ ?\) ?* backspace backspace backspace ?* ?\\ ?\) ?\[ ?^ ?= left left left ?\\ ?\( end ?\\ ?\) left left ?+ end ?  ?* ?= ?  ?* ?\\ ?\( ?. ?* ?\\ ?\) left left ?? end ?\\ ?\( ?, ?? ?\\ ?\} backspace ?\) ?$ return ?\\ ?1 ?\" ?\\ ?2 end ?: ?\S-  ?\\ ?3 ?\\ ?4 return ?!])
+			))
 
 
 (provide 'config_my_python)
