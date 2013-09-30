@@ -19,6 +19,9 @@
 (require 'auto-highlight-symbol)
 (global-auto-highlight-symbol-mode)
 
+(require 'highlight-symbol)
+(global-set-key (kbd "M-s h .") 'highlight-symbol-at-point)
+
 ;;; Переключение между окнами с клавиатуры
 (windmove-default-keybindings)
 (setq framemove-hook-into-windmove t)
