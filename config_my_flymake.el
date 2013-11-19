@@ -1,3 +1,7 @@
+(let ((another-flymake-el
+       (concat (file-name-directory load-file-name)
+               "forked-flymake/flymake.el")))
+  (load-file another-flymake-el))
 (require 'flymake)
 
 (defun my-flymake-err-at (pos)

@@ -1,6 +1,7 @@
 (define-prefix-command 'ctl-z-map)
 (global-set-key (kbd "C-z") ctl-z-map)
 
+(require 'midnight)  ;;; Автоматически закрывает старые буферы
 (require 'transpose-frame)
 (require 'framemove)
 (require 'uniquify)  ;;; Меняет имена для буферов, если названия файлов совпадают

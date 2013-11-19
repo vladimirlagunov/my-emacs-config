@@ -79,7 +79,8 @@ class LintRunner(object):
 
         env = dict(os.environ, **self.env)
         logging.debug(' '.join(cmdline))
-        process = Popen(cmdline, stdout=PIPE, stderr=PIPE, env=env)
+        process = Popen(cmdline, stdout=PIPE, stderr=PIPE, env=env,
+                        preexec_fn=lambda: os.nice(19))
 
         for line in getattr(process, self.stream):
             self.process_output(line)
