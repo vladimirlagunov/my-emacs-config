@@ -4,7 +4,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ac-use-menu-map t)
- '(ansi-color-names-vector ["#c0c0c0" "#336c6c" "#806080" "#0f2050" "#732f2c" "#23733c" "#6c1f1c" "#232333"])
  '(auto-save-interval 60)
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "chromium-browser")
@@ -12,11 +11,10 @@
  '(bubbles-graphics-theme (quote emacs))
  '(column-number-mode t)
  '(custom-enabled-themes nil)
- '(custom-safe-themes (quote ("d8460b6d700cbde6c5d2621790aee617f917fbe958f11a66a1bc885e3d706e40" "1177fe4645eb8db34ee151ce45518e47cc4595c3e72c55dc07df03ab353ad132" "e57e7b19da7b4cd0e5512d5e9bc20d31c9cf50112c462de15a76bce0ea3c5ef5" "7a2c92b6267b84ae28a396f24dd832e29a164c1942f1f8b3fe500f1c25f8e09d" "b2d24e5bdf57ccae593d73e44b7bb4e03aa2ba7be595694f64a66b8e8d233952" "246a51f19b632c27d7071877ea99805d4f8131b0ff7acb8a607d4fd1c101e163" "446c73cdfb49f1dab4c322e51ac00a536fb0e3cb7e6809b9f4616e0858012e92" "9b6130d4d7896da7ae73652ec541a648fac70353ad3808bde69a91d5db0fedd9" "fe0a47cc3952fede574527a1c28ddf3a1af381fc1fb5843ca60d22e4c841011a" "fa189fcf5074d4964f0a53f58d17c7e360bb8f879bd968ec4a56dc36b0013d29" default)))
+ '(custom-safe-themes (quote ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "d8460b6d700cbde6c5d2621790aee617f917fbe958f11a66a1bc885e3d706e40" "1177fe4645eb8db34ee151ce45518e47cc4595c3e72c55dc07df03ab353ad132" "e57e7b19da7b4cd0e5512d5e9bc20d31c9cf50112c462de15a76bce0ea3c5ef5" "7a2c92b6267b84ae28a396f24dd832e29a164c1942f1f8b3fe500f1c25f8e09d" "b2d24e5bdf57ccae593d73e44b7bb4e03aa2ba7be595694f64a66b8e8d233952" "246a51f19b632c27d7071877ea99805d4f8131b0ff7acb8a607d4fd1c101e163" "446c73cdfb49f1dab4c322e51ac00a536fb0e3cb7e6809b9f4616e0858012e92" "9b6130d4d7896da7ae73652ec541a648fac70353ad3808bde69a91d5db0fedd9" "fe0a47cc3952fede574527a1c28ddf3a1af381fc1fb5843ca60d22e4c841011a" "fa189fcf5074d4964f0a53f58d17c7e360bb8f879bd968ec4a56dc36b0013d29" default)))
  '(desktop-save t)
  '(desktop-save-mode t)
  '(electric-pair-mode t)
- '(fci-rule-color "#c7c7c7")
  '(flymake-log-level 1)
  '(flymake-no-changes-timeout 3)
  '(frame-brackground-mode (quote dark))
@@ -84,32 +82,14 @@
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify))
- '(vc-annotate-background "white")
- '(vc-annotate-color-map (quote ((20 . "#437c7c") (40 . "#336c6c") (60 . "#205070") (80 . "#2f4070") (100 . "#1f3060") (120 . "#0f2050") (140 . "#a080a0") (160 . "#806080") (180 . "#704d70") (200 . "#603a60") (220 . "#502750") (240 . "#401440") (260 . "#6c1f1c") (280 . "#935f5c") (300 . "#834744") (320 . "#732f2c") (340 . "#6b400c") (360 . "#23733c"))))
- '(vc-annotate-very-old-color "#23733c")
  '(which-function-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 98 :width normal))))
- '(flymake-infoline ((t (:background "turquoise"))))
- '(flymake-warnline ((t (:background "gold"))))
- '(highlight-indentation-current-column-face ((t (:inherit fringe :background "DarkOliveGreen1"))) t)
- '(highlight-indentation-face ((t (:inherit fringe :background "gray96"))) t)
  '(indent-guide-face ((t (:foreground "MediumOrchid1"))) t)
- '(rainbow-delimiters-depth-1-face ((t (:foreground "#800000"))))
- '(rainbow-delimiters-depth-2-face ((t (:foreground "#00801f"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "#3f0080"))))
- '(rainbow-delimiters-depth-4-face ((t (:foreground "#806300"))))
- '(rainbow-delimiters-depth-5-face ((t (:foreground "#007e80"))))
- '(rainbow-delimiters-depth-6-face ((t (:foreground "#800063"))))
- '(rainbow-delimiters-depth-7-face ((t (:foreground "#3e8000"))))
- '(rainbow-delimiters-depth-8-face ((t (:foreground "#001d80"))))
- '(rainbow-delimiters-depth-9-face ((t (:foreground "#808080"))))
- '(rainbow-delimiters-unmatched-face ((t (:foreground "black"))))
- '(term ((t (:stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
+ '(term ((t (:stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))) t))
 
 (setq config-my-path (file-name-directory load-file-name))
 (defun get-config-path (path) (concat config-my-path path))
