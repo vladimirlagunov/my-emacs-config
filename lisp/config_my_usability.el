@@ -7,18 +7,18 @@
 (require 'uniquify)  ;;; Меняет имена для буферов, если названия файлов совпадают
 
 ;; Ставит комбинации клавиш, которые конфликтуют со стандартными
-(set-variable 'auto-highlight-symbol-mode-map
-	  (let ((map (make-sparse-keymap)))
-		(define-key map (kbd "C-z b") 'ahs-backward)
-		(define-key map (kbd "C-z f") 'ahs-forward)
-		(define-key map (kbd "C-z p") 'ahs-backward-definition)
-		(define-key map (kbd "C-z n") 'ahs-forward-definition)
-		(define-key map (kbd "C-z -") 'ahs-back-to-start)
-		(define-key map (kbd "C-z C-'") 'ahs-change-range)
-		(define-key map (kbd "C-z e") 'ahs-edit-mode)
-		map))
-(require 'auto-highlight-symbol)
-(global-auto-highlight-symbol-mode)
+;; (set-variable 'auto-highlight-symbol-mode-map
+;; 	  (let ((map (make-sparse-keymap)))
+;; 		(define-key map (kbd "C-z b") 'ahs-backward)
+;; 		(define-key map (kbd "C-z f") 'ahs-forward)
+;; 		(define-key map (kbd "C-z p") 'ahs-backward-definition)
+;; 		(define-key map (kbd "C-z n") 'ahs-forward-definition)
+;; 		(define-key map (kbd "C-z -") 'ahs-back-to-start)
+;; 		(define-key map (kbd "C-z C-'") 'ahs-change-range)
+;; 		(define-key map (kbd "C-z e") 'ahs-edit-mode)
+;; 		map))
+;; (require 'auto-highlight-symbol)
+;; (global-auto-highlight-symbol-mode)
 
 (require 'highlight-symbol)
 (global-set-key (kbd "M-s h .") 'highlight-symbol-at-point)

@@ -365,4 +365,10 @@ def main():
     sys.exit()
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except:
+        from traceback import format_exc
+        with __import__('contextlib').closing(open("/tmp/fuck.txt", "w")) as f:
+            f.write(format_exc())
+        raise
