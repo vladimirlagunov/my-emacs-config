@@ -4,6 +4,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ac-use-menu-map t)
+ '(ansi-color-names-vector
+   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(auto-save-interval 60)
  '(browse-url-browser-function (quote browse-url-firefox))
  '(browse-url-generic-program "chromium-browser")
@@ -19,12 +21,13 @@
  '(electric-indent-mode nil)
  '(electric-pair-mode t)
  '(electric-pair-open-newline-between-pairs nil)
- '(flymake-log-level 1)
- '(flymake-no-changes-timeout 3)
  '(frame-brackground-mode (quote dark))
  '(fringe-mode 10 nil (fringe))
  '(global-auto-complete-mode t)
  '(global-auto-highlight-symbol-mode t)
+ '(global-highlight-changes-mode nil)
+ '(global-hl-line-mode t)
+ '(global-hl-line-sticky-flag t)
  '(global-linum-mode f)
  '(global-rainbow-delimiters-mode t)
  '(global-semantic-decoration-mode nil)
@@ -68,6 +71,7 @@
  '(make-backup-files nil)
  '(makefile-backslash-column 48)
  '(makefile-mode-hook (quote (whitespace-mode)))
+ '(midnight-mode t nil (midnight))
  '(nxml-slash-auto-complete-flag t)
  '(package-archives
    (quote

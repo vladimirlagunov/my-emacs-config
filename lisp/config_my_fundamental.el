@@ -14,3 +14,6 @@
 
 
 (provide 'config_my_fundamental)
+
+
+(defalias 'perl-mode 'cperl-mode)
