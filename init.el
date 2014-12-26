@@ -16,11 +16,27 @@
  '(custom-safe-themes
    (quote
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "d8460b6d700cbde6c5d2621790aee617f917fbe958f11a66a1bc885e3d706e40" "1177fe4645eb8db34ee151ce45518e47cc4595c3e72c55dc07df03ab353ad132" "e57e7b19da7b4cd0e5512d5e9bc20d31c9cf50112c462de15a76bce0ea3c5ef5" "7a2c92b6267b84ae28a396f24dd832e29a164c1942f1f8b3fe500f1c25f8e09d" "b2d24e5bdf57ccae593d73e44b7bb4e03aa2ba7be595694f64a66b8e8d233952" "246a51f19b632c27d7071877ea99805d4f8131b0ff7acb8a607d4fd1c101e163" "446c73cdfb49f1dab4c322e51ac00a536fb0e3cb7e6809b9f4616e0858012e92" "9b6130d4d7896da7ae73652ec541a648fac70353ad3808bde69a91d5db0fedd9" "fe0a47cc3952fede574527a1c28ddf3a1af381fc1fb5843ca60d22e4c841011a" "fa189fcf5074d4964f0a53f58d17c7e360bb8f879bd968ec4a56dc36b0013d29" default)))
+ '(debian-changelog-full-name "Lagunov Vladimir")
+ '(debian-changelog-mailing-address "lagunov@yandex-team.ru")
  '(desktop-save t)
  '(desktop-save-mode t)
+ '(dired-dwim-target t)
+ '(ediff-autostore-merges t)
+ '(ediff-keep-variants nil)
+ '(ediff-make-buffers-readonly-at-startup nil)
+ '(ediff-no-emacs-help-in-control-buffer t)
+ '(ediff-show-clashes-only nil)
+ '(ediff-split-window-function (quote split-window-vertically))
+ '(ediff-use-long-help-message nil)
+ '(ediff-window-setup-function (quote ediff-setup-windows-plain))
  '(electric-indent-mode nil)
  '(electric-pair-mode t)
  '(electric-pair-open-newline-between-pairs nil)
+ '(flycheck-checker-error-threshold 2000)
+ '(flycheck-flake8-maximum-line-length 100)
+ '(flycheck-highlighting-mode (quote lines))
+ '(flycheck-pylintrc "/home/lagunov/.pylintrc")
+ '(flycheck-python-pylint-executable nil)
  '(frame-brackground-mode (quote dark))
  '(fringe-mode 10 nil (fringe))
  '(global-auto-complete-mode t)
@@ -94,6 +110,7 @@
  '(reb-re-syntax (quote string))
  '(rng-nxml-auto-validate-flag nil)
  '(ropemacs-guess-project t)
+ '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(scroll-bar-mode nil)
  '(semantic-mode nil)
  '(server-host nil)
@@ -112,7 +129,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(indent-guide-face ((t (:foreground "MediumOrchid1"))) t)
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Input Mono"))))
+ '(indent-guide-face ((t (:foreground "MediumOrchid1"))))
  '(term ((t (:stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))) t))
 
 (setq config-my-path (file-name-directory load-file-name))
