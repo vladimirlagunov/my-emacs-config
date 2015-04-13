@@ -17,8 +17,8 @@
 ;; 		(define-key map (kbd "C-z C-'") 'ahs-change-range)
 ;; 		(define-key map (kbd "C-z e") 'ahs-edit-mode)
 ;; 		map))
-;; (require 'auto-highlight-symbol)
-;; (global-auto-highlight-symbol-mode)
+(require 'auto-highlight-symbol)
+(global-auto-highlight-symbol-mode)
 
 (require 'highlight-symbol)
 (global-set-key (kbd "M-s h .") 'highlight-symbol-at-point)
@@ -93,6 +93,35 @@
   (newline-and-indent))
 (global-set-key (kbd "C-x C-j") 'newline-and-indent-expanded)
 
+
+;;; TODO: config_my_git.el
+(defun git (&rest args)
+  (string-trim
+   (with-output-to-string
+     (with-current-buffer standard-output
+       (apply 'call-process (append '("git" nil t nil) args))))))
+
+(defun get-github-link ()
+  (interactive)
+  (let ((remote-url (git "config" "remote.origin.url"))
+        (branch-name (git "symbolic-ref" "--short" "HEAD"))
+        (toplevel (git "rev-parse" "--show-toplevel")))
+    (string-match "^[^:]+://\\(?:[^@]+@\\)\\([^/]+\\)\\(.*\\)$" remote-url)
+    (let ((remote-domain (match-string 1 remote-url))
+          (remote-path (match-string 2 remote-url)))
+      (if (string-prefix-p "github." remote-domain)
+          (let ((github-url
+                 (concat "https://" remote-domain remote-path
+                         "/blob/" branch-name
+                         (substring (buffer-file-name) (length toplevel))
+                         "#L" (int-to-string (line-number-at-pos)))))
+            (message github-url)
+            (with-temp-buffer
+              (insert github-url)
+              (kill-ring-save (point-min) (point-max))))
+        (message (concat "Not under github repo: origin is " remote-domain))))))
+
+(global-set-key (kbd "C-z g") 'get-github-link)
 
 
 (provide 'config_my_usability)

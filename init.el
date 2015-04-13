@@ -11,6 +11,14 @@
  '(browse-url-generic-program "chromium-browser")
  '(bubbles-game-theme (quote difficult))
  '(bubbles-graphics-theme (quote emacs))
+ '(c-default-style
+   (quote
+    ((c-mode . "java")
+     (c++-mode . "java")
+     (java-mode . "java")
+     (awk-mode . "awk")
+     (other . "gnu"))))
+ '(clean-buffer-list-delay-general 2)
  '(column-number-mode t)
  '(custom-enabled-themes nil)
  '(custom-safe-themes
@@ -33,7 +41,9 @@
  '(electric-pair-mode t)
  '(electric-pair-open-newline-between-pairs nil)
  '(flycheck-checker-error-threshold 2000)
+ '(flycheck-clang-language-standard "c++11")
  '(flycheck-flake8-maximum-line-length 100)
+ '(flycheck-gcc-language-standard "gnu++13")
  '(flycheck-highlighting-mode (quote lines))
  '(flycheck-pylintrc "/home/lagunov/.pylintrc")
  '(flycheck-python-pylint-executable nil)
@@ -94,6 +104,9 @@
     (("gnu" . "http://elpa.gnu.org/packages/")
      ("marmalade" . "http://marmalade-repo.org/packages/")
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
+ '(package-selected-packages
+   (quote
+    (cmake-mode ecb zencoding-mode yasnippet yaml-mode thrift rust-mode multiple-cursors markdown-mode magit jabber indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol auto-complete)))
  '(powerline-color1 "#222912")
  '(powerline-color2 "#09150F")
  '(py-indent-offset 4 t)
@@ -122,6 +135,7 @@
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify))
+ '(vc-annotate-background nil)
  '(which-function-mode t)
  '(whitespace-line-column 9999))
 (custom-set-faces
@@ -148,8 +162,9 @@
 (require 'config_my_xml)
 ;; (require 'config_my_html)  ;; lost :(
 (require 'config_my_shell)
-(require 'config_my_jabber)
+(require 'config_my_debian)
 (require 'config_my_usability)
+(require 'config_my_cedet)
 
 (put 'erase-buffer 'disabled nil)
 (put 'downcase-region 'disabled nil)

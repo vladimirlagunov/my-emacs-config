@@ -15,6 +15,12 @@
 			(when (string-match "^\t" (buffer-string)) 
 			  (setq indent-tabs-mode t))))
 
+(add-hook 'python-mode-hook
+  (lambda()
+    (add-hook 'write-contents-functions
+      (lambda()
+        (save-excursion
+          (delete-trailing-whitespace))))))
 
 
 ;;; Интерпретатор
@@ -39,6 +45,13 @@
 ;;; Линия для текущего блока
 (add-hook 'python-mode 'indent-guide-mode)
 
+
+;;; Документация по C-h S
+(info-lookup-add-help
+ :mode 'python-mode
+ :regexp "[[:alnum:]_]+"
+ :doc-spec
+ '(("(python)Index" nil "")))
 
 ;;; Преобразовать `a=1,\nb=2` в `"a": 1,\n"b": 2`
 (add-hook 'python-mode
