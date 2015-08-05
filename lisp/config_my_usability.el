@@ -101,27 +101,50 @@
      (with-current-buffer standard-output
        (apply 'call-process (append '("git" nil t nil) args))))))
 
-(defun get-github-link ()
-  (interactive)
-  (let ((remote-url (git "config" "remote.origin.url"))
-        (branch-name (git "symbolic-ref" "--short" "HEAD"))
-        (toplevel (git "rev-parse" "--show-toplevel")))
+(defun github-url-prefix ()
+  (let ((remote-url (git "config" "remote.origin.url")))
     (string-match "^[^:]+://\\(?:[^@]+@\\)\\([^/]+\\)\\(.*\\)$" remote-url)
     (let ((remote-domain (match-string 1 remote-url))
           (remote-path (match-string 2 remote-url)))
-      (if (string-prefix-p "github." remote-domain)
-          (let ((github-url
-                 (concat "https://" remote-domain remote-path
-                         "/blob/" branch-name
-                         (substring (buffer-file-name) (length toplevel))
-                         "#L" (int-to-string (line-number-at-pos)))))
-            (message github-url)
-            (with-temp-buffer
-              (insert github-url)
-              (kill-ring-save (point-min) (point-max))))
-        (message (concat "Not under github repo: origin is " remote-domain))))))
+      (cond ((string-prefix-p "github." remote-domain)
+             (concat "https://" remote-domain remote-path))
+            (t (error (concat "Not under github repo: origin is '" remote-domain "'")))))))
+
+(defun get-github-link ()
+  (interactive)
+  (let* ((github-url-start (github-url-prefix))
+         (branch-name (git "symbolic-ref" "--short" "HEAD"))
+         (toplevel (git "rev-parse" "--show-toplevel"))
+         (github-url
+          (concat github-url-start
+                  "/blob/" branch-name
+                  (substring (buffer-file-name) (length toplevel))
+                  "#L" (int-to-string (line-number-at-pos)))))
+    (message github-url)
+    (with-temp-buffer
+      (insert github-url)
+      (kill-ring-save (point-min) (point-max)))))
 
 (global-set-key (kbd "C-z g") 'get-github-link)
 
+(defun get-github-commit-link ()
+  (interactive)
+  (let* ((github-url-start (github-url-prefix))
+         (line-str (int-to-string (line-number-at-pos)))
+         (commit-hash (substring
+                       (git "blame" "-b"
+                            (concat "-L" line-str "," line-str)
+                            "-l" "-s" (buffer-file-name))
+                       0 40))
+         (github-url
+          (concat github-url-start
+                  "/commit/" commit-hash
+                  "#diff-" "-UNKNOWNHASH-" "R" line-str)))
+    (message github-url)
+    (with-temp-buffer
+      (insert github-url)
+      (kill-ring-save (point-min) (point-max)))))
+
+(global-set-key (kbd "C-z G") 'get-github-commit-link)
 
 (provide 'config_my_usability)

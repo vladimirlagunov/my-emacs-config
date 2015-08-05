@@ -7,7 +7,7 @@
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(auto-save-interval 60)
- '(browse-url-browser-function (quote browse-url-firefox))
+ '(browse-url-browser-function (quote browse-url-default-browser))
  '(browse-url-generic-program "chromium-browser")
  '(bubbles-game-theme (quote difficult))
  '(bubbles-graphics-theme (quote emacs))
@@ -29,6 +29,10 @@
  '(desktop-save t)
  '(desktop-save-mode t)
  '(dired-dwim-target t)
+ '(display-buffer-alist
+   (quote
+    (("" display-buffer-reuse-window
+      (reusable-frames . visible)))))
  '(ediff-autostore-merges t)
  '(ediff-keep-variants nil)
  '(ediff-make-buffers-readonly-at-startup nil)
@@ -45,7 +49,7 @@
  '(flycheck-flake8-maximum-line-length 100)
  '(flycheck-gcc-language-standard "gnu++13")
  '(flycheck-highlighting-mode (quote lines))
- '(flycheck-pylintrc "/home/lagunov/.pylintrc")
+ '(flycheck-pylintrc nil)
  '(flycheck-python-pylint-executable nil)
  '(frame-brackground-mode (quote dark))
  '(fringe-mode 10 nil (fringe))
@@ -106,7 +110,7 @@
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
  '(package-selected-packages
    (quote
-    (cmake-mode ecb zencoding-mode yasnippet yaml-mode thrift rust-mode multiple-cursors markdown-mode magit jabber indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol auto-complete)))
+    (spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet yaml-mode thrift rust-mode multiple-cursors markdown-mode magit jabber indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol auto-complete)))
  '(powerline-color1 "#222912")
  '(powerline-color2 "#09150F")
  '(py-indent-offset 4 t)
@@ -143,9 +147,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Input Mono"))))
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Input Mono"))))
+ '(border ((t nil)))
  '(indent-guide-face ((t (:foreground "MediumOrchid1"))))
- '(term ((t (:stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))) t))
+ '(mode-line-buffer-id ((t (:weight bold))))
+ '(term ((t (:stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
 
 (setq config-my-path (file-name-directory load-file-name))
 (defun get-config-path (path) (concat config-my-path path))
