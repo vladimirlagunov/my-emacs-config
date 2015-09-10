@@ -1,11 +1,8 @@
-(require 'package)
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
 (package-initialize)
-
-(setq config-my-path (file-name-directory load-file-name))
-(defun get-config-path (path) (concat config-my-path path))
-
-(add-to-list 'load-path (get-config-path "lisp"))
-(add-to-list 'load-path (get-config-path "3rdparty"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -193,6 +190,12 @@
  '(sml/prefix ((t (:inherit sml/global :background "grey" :foreground "black"))))
  '(term ((t (:stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(vc-state-base-face ((t nil))))
+
+(setq config-my-path (file-name-directory load-file-name))
+(defun get-config-path (path) (concat config-my-path path))
+
+(add-to-list 'load-path (get-config-path "lisp"))
+(add-to-list 'load-path (get-config-path "3rdparty"))
 
 (require 'config_my_fundamental)
 (require 'config_my_python)
