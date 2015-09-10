@@ -147,4 +147,39 @@
 
 (global-set-key (kbd "C-z G") 'get-github-commit-link)
 
+
+(when (functionp 'magit-dispatch-popup)
+  (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup))
+
+
+;; (setq
+;;  mode-line-format
+;;  '(
+;;   "%e"
+
+;;   (:propertize
+;;    (""
+;;     mode-line-front-space
+;;     mode-line-mule-info
+;;     mode-line-client
+;;     mode-line-modified
+;;     mode-line-remote
+;;     mode-line-frame-identification)
+;;    face ((t (:background "grey60"))))
+
+;;   (:propertize
+;;    "▶►"
+;;    face (:foreground "grey60"))
+  
+;;   mode-line-buffer-identification
+;;   "   "
+;;   mode-line-position
+;;   (vc-mode vc-mode)
+;;   "  "
+;;   mode-line-modes
+;;   mode-line-misc-info
+;;   mode-line-end-spaces
+;;   ))
+
+
 (provide 'config_my_usability)

@@ -1,5 +1,7 @@
 (require 'python)
 (require 'pymacs)
+(require 'jedi)
+(require 'sphinx-doc)
 
 (require 'config_my_flycheck)
 (require 'config_my_autocomplete)
@@ -42,8 +44,13 @@
 		  'python-pdbtrack-comint-output-filter-function)
 
 
-;;; Линия для текущего блока
-(add-hook 'python-mode 'indent-guide-mode)
+;;; Автокомплит с jedi
+(add-hook 'python-mode-hook 'jedi:setup)
+
+
+;;; Докстринги
+;;; https://github.com/naiquevin/sphinx-doc.el
+(add-hook 'python-mode-hook (lambda () (sphinx-doc-mode t)))
 
 
 ;;; Документация по C-h S
@@ -120,5 +127,34 @@ Argument OUTPUT is a string with the output from the comint process."
           (setq python-pdbtrack-tracked-buffer nil
                 python-pdbtrack-buffers-to-kill nil)))))
   output)
+
+
+(defun flycheck-pylint-ignore-messages ()
+  (interactive)
+  (let* ((point-at-start (point))
+         (errors (flycheck-overlay-errors-at point-at-start))
+         (error-ids (mapcar #'flycheck-error-id errors))
+         (error-names 
+          (mapcar (lambda (str)
+                    (when (= (string-to-char str) ?:)
+                      (substring (car (split-string str " ")) 1)))
+                  (process-lines "pylint" "--help-msg" (string-join error-ids ","))))
+         (comment 
+          (concat 
+           "  # pylint: disable=" 
+           (string-join 
+            (sort (-filter (lambda (x) (not (null x))) error-names) 'string<)
+            ","))))
+    (progn 
+      (goto-char point-at-start)
+      (move-end-of-line 1)
+      (insert comment)
+      (goto-char point-at-start)
+      )))
+
+(add-hook 'python-mode-hook
+		  (lambda ()
+			(local-set-key (kbd "C-c ! -") #'flycheck-pylint-ignore-messages)))
+
 
 (provide 'config_my_python)
