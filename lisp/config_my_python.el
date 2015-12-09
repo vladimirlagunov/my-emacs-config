@@ -157,4 +157,8 @@ Argument OUTPUT is a string with the output from the comint process."
 			(local-set-key (kbd "C-c ! -") #'flycheck-pylint-ignore-messages)))
 
 
+;;; which-function-mode глючит в cython
+(add-hook 'cython-mode-hook (lambda () (which-function-mode -1)))
+(add-hook 'cython-mode-hook (lambda () (ggtags-mode 1)))
+
 (provide 'config_my_python)

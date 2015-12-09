@@ -57,7 +57,6 @@ e.g. `HelloWorldString'."
 ;;; Для документации по C-h S. Нужно ставить конфиги для отдельных языков.
 (require 'info-look)
 
-(provide 'config_my_fundamental)
-
-
 (defalias 'perl-mode 'cperl-mode)
+
+(provide 'config_my_fundamental)

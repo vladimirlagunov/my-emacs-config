@@ -6,6 +6,9 @@
 (require 'framemove)
 (require 'uniquify)  ;;; Меняет имена для буферов, если названия файлов совпадают
 
+(require 'magit)
+(require 'magit-gh-pulls)
+
 ;; Ставит комбинации клавиш, которые конфликтуют со стандартными
 ;; (set-variable 'auto-highlight-symbol-mode-map
 ;; 	  (let ((map (make-sparse-keymap)))
@@ -148,8 +151,8 @@
 (global-set-key (kbd "C-z G") 'get-github-commit-link)
 
 
-(when (functionp 'magit-dispatch-popup)
-  (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup))
+(global-set-key (kbd "s-g") 'magit-status)
+(add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
 
 
 ;; (setq
