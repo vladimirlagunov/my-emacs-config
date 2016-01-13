@@ -1,0 +1,22 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: fifopdb
+# key: fifopdb
+# expand-env: ((yas-indent-line 'fixed))
+# --
+def fifo_pdb():
+    import atexit, os, pdb, sys
+    fifo_filename_stdin = '/tmp/pdb-' + str(os.getpid()) + '.stdin'
+    fifo_filename_stdout = '/tmp/pdb-' + str(os.getpid()) + '.stdout'
+    sys.stderr.write('***** Launched pdb at pipe ' + fifo_filename_stdout + ' *****\n')
+    os.mkfifo(fifo_filename_stdin)
+    os.mkfifo(fifo_filename_stdout)
+    pdb_stdin = open(fifo_filename_stdin, 'r')
+    pdb_stdout = open(fifo_filename_stdout, 'w')
+    @atexit.register
+    def _():
+        os.remove(fifo_filename_stdin)
+        os.remove(fifo_filename_stdout)
+        pdb_stdin.close()
+        pdb_stdout.close()
+    pdb.Pdb(stdin=pdb_stdin, stdout=pdb_stdout).set_trace(sys._getframe().f_back)
+fifo_pdb()

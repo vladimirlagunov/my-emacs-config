@@ -1,0 +1,19 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: __init__
+# key: __init__
+# --
+def __init__(self$1):
+    ${1:$(
+      let* ((separator (concat "\n" (-reduce #'concat (-repeat (current-column) " "))))
+            (raw-attrs (cdr (split-string yas/text ",")))
+            (splitted-raw (mapcar #'string-trim raw-attrs))
+            (splitted-without-defaults (mapcar (lambda (s) (car (split-string s "="))) splitted-raw))
+            (splitted (-filter (lambda (attr) 
+                                 (let ((c (string-to-char attr)))
+                                   (and (/= c ?*) (/= c 0))))
+                               splitted-without-defaults)))
+       (if (not (null splitted))
+                (mapconcat
+                    (lambda (attr) (concat "self." attr " = " attr))
+                    splitted separator)))`}
+    $0
