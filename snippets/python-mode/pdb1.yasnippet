@@ -2,8 +2,15 @@
 # name: pdb1
 # key: pdb1
 # --
-(lambda pdb: (
-      setattr(pdb, 'is_skipped_module',
-              lambda name: not name.startswith('${1:project}.')),
-      pdb.set_trace())
-)(__import__('pdb').Pdb(skip=['']))
+(lambda pdb, whitelist_re_all: (
+    setattr(
+        pdb, 'is_skipped_module', lambda name: (
+            not all(__import__('re').match(r, name) is not None
+                    for r in whitelist_re_all))),
+    pdb.set_trace())
+)(
+    __import__('pdb').Pdb(skip=['']),
+    whitelist_re_all=[
+        r'^$0.*$',
+    ],
+)
