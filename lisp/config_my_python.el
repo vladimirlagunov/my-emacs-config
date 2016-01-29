@@ -14,7 +14,7 @@
 ;;; Если в файле есть табы - переключить на табы вместо пробелов
 (add-hook 'python-mode-hook
 		  (lambda ()
-			(when (string-match "^\t" (buffer-string)) 
+			(when (string-match "^\t" (buffer-string))
 			  (setq indent-tabs-mode t))))
 
 (add-hook 'python-mode-hook
@@ -106,6 +106,14 @@ Argument OUTPUT is a string with the output from the comint process."
                                                            ))
                  (tracked-buffer-line-pos))
             (with-current-buffer tracked-buffer
+              ;;; Ещё один патч. Ставит read-only-mode на буфер с
+              ;;; python-исходником, в который переключились.
+              (let ((initially-buffer-read-only buffer-read-only))
+                (unwind-protect
+                    (progn
+                      (make-local-variable 'buffer-read-only)
+                      (setq buffer-read-only)
+
               (set (make-local-variable 'overlay-arrow-string) "=>")
               (set (make-local-variable 'overlay-arrow-position) (make-marker))
               (setq tracked-buffer-line-pos (progn
@@ -116,6 +124,10 @@ Argument OUTPUT is a string with the output from the comint process."
                 (set-window-point
                  tracked-buffer-window tracked-buffer-line-pos))
               (set-marker overlay-arrow-position tracked-buffer-line-pos))
+
+                  (setq buffer-read-only initially-buffer-read-only)))
+
+              )
             (pop-to-buffer tracked-buffer)
             (switch-to-buffer-other-window shell-buffer))
         (when python-pdbtrack-tracked-buffer
@@ -134,18 +146,18 @@ Argument OUTPUT is a string with the output from the comint process."
   (let* ((point-at-start (point))
          (errors (flycheck-overlay-errors-at point-at-start))
          (error-ids (mapcar #'flycheck-error-id errors))
-         (error-names 
+         (error-names
           (mapcar (lambda (str)
                     (when (= (string-to-char str) ?:)
                       (substring (car (split-string str " ")) 1)))
                   (process-lines "pylint" "--help-msg" (string-join error-ids ","))))
-         (comment 
-          (concat 
-           "  # pylint: disable=" 
-           (string-join 
+         (comment
+          (concat
+           "  # pylint: disable="
+           (string-join
             (sort (-filter (lambda (x) (not (null x))) error-names) 'string<)
             ","))))
-    (progn 
+    (progn
       (goto-char point-at-start)
       (move-end-of-line 1)
       (insert comment)

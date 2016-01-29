@@ -12,6 +12,7 @@
         forward-sexp
         gud-tooltip-mouse-motion
         handle-switch-frame
+        insert-register
         isearch-forward-regexp
         keyboard-escape-quit
         kill-region

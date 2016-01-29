@@ -123,6 +123,7 @@
  '(ls-lisp-use-insert-directory-program nil)
  '(ls-lisp-use-localized-time-format t)
  '(ls-lisp-verbosity (quote (uid)))
+ '(magit-diff-section-arguments (quote ("--no-ext-diff")))
  '(magit-repo-dirs-depth 6)
  '(main-line-color1 "#222912")
  '(main-line-color2 "#09150F")
