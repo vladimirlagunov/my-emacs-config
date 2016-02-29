@@ -9,6 +9,8 @@
 (require 'magit)
 (require 'magit-gh-pulls)
 
+(require 'goto-last-change)
+
 ;; Ставит комбинации клавиш, которые конфликтуют со стандартными
 ;; (set-variable 'auto-highlight-symbol-mode-map
 ;; 	  (let ((map (make-sparse-keymap)))
@@ -153,6 +155,8 @@
 
 (global-set-key (kbd "s-g") 'magit-status)
 (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+
+(global-set-key (kbd "C-x C-\\") 'goto-last-change)
 
 
 ;; (setq

@@ -5,7 +5,6 @@
 
 (require 'config_my_flycheck)
 (require 'config_my_autocomplete)
-(require 'indent-guide)
 
 
 ;;; По умолчанию - отступ в 4 пробела
@@ -155,7 +154,7 @@ Argument OUTPUT is a string with the output from the comint process."
           (concat
            "  # pylint: disable="
            (string-join
-            (sort (-filter (lambda (x) (not (null x))) error-names) 'string<)
+            (delete-dups (sort (-filter (lambda (x) (not (null x))) error-names) 'string<))
             ","))))
     (progn
       (goto-char point-at-start)

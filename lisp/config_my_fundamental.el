@@ -1,5 +1,6 @@
 (require 'multiple-cursors)
 (require 'expand-region)
+(require 'yafolding)
 
 
 ;;; Multiline Mode
@@ -52,6 +53,11 @@ e.g. `HelloWorldString'."
                        t nil))
       (widen))))
 (global-set-key (kbd "C-x _") 'toggle-camel-case-at-point)
+
+
+;;; Сворачивание кода https://github.com/zenozeng/yafolding.el
+(add-hook 'prog-mode-hook (lambda () (yafolding-mode t)))
+(add-hook 'yaml-mode-hook (lambda () (yafolding-mode t)))
 
 
 ;;; Для документации по C-h S. Нужно ставить конфиги для отдельных языков.

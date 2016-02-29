@@ -12,6 +12,7 @@
         forward-sexp
         gud-tooltip-mouse-motion
         handle-switch-frame
+        indent-new-comment-line
         insert-register
         isearch-forward-regexp
         keyboard-escape-quit
