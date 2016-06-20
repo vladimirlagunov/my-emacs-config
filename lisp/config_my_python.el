@@ -1,10 +1,10 @@
 (require 'python)
 (require 'pymacs)
-(require 'jedi)
 (require 'sphinx-doc)
+(require 'ggtags)
 
 (require 'config_my_flycheck)
-(require 'config_my_autocomplete)
+(require 'config_my_company)
 
 
 ;;; По умолчанию - отступ в 4 пробела
@@ -22,6 +22,8 @@
       (lambda()
         (save-excursion
           (delete-trailing-whitespace))))))
+
+(add-hook 'python-mode-hook (lambda () (ggtags-mode 1)))
 
 
 ;;; Интерпретатор
@@ -41,10 +43,6 @@
 ;; DAFUK
 (add-hook 'comint-output-filter-functions
 		  'python-pdbtrack-comint-output-filter-function)
-
-
-;;; Автокомплит с jedi
-(add-hook 'python-mode-hook 'jedi:setup)
 
 
 ;;; Докстринги
@@ -171,5 +169,65 @@ Argument OUTPUT is a string with the output from the comint process."
 ;;; which-function-mode глючит в cython
 (add-hook 'cython-mode-hook (lambda () (which-function-mode -1)))
 (add-hook 'cython-mode-hook (lambda () (ggtags-mode 1)))
+
+
+;;; В .dir-locals.el устанавливается переменная вида
+;;; (my-python-version . "2.7")
+(defun python-version-hook-fn ()
+  (when (eq major-mode 'python-mode)
+    (let* ((python-version (if (boundp 'my-python-version) my-python-version "2.7"))
+           (python-command (concat "python" python-version)))
+      (progn
+        (make-local-variable 'jedi:environment-root)
+        (setq jedi:environment-root python-command)
+        (make-local-variable 'python-environment-virtualenv)
+        (setq python-environment-virtualenv
+              (list "virtualenv" "--no-site-packages" "--quiet"
+                    "--python" python-command)))))) 
+
+(add-hook 'hack-local-variables-hook 'python-version-hook-fn)
+
+
+;; ;;; M-q будет разваливать скобки для длинных выражений
+;; (defun -python-fill-paren-explode (&optional justify)
+;;   (save-restriction
+;;     (let ((pos-start (progn 
+;;                        (while (python-syntax-context 'paren)
+;;                          (goto-char (1- (point-marker))))
+;;                        (point-marker))))
+;;       (when (not (python-syntax-context 'paren))
+;;         (end-of-line)
+;;         (when (not (python-syntax-context 'paren))
+;;           (skip-syntax-backward "^)")))
+;;       (while (and (python-syntax-context 'paren)
+;;                   (not (eobp)))
+;;         (goto-char (1+ (point-marker))))
+;;       (let ((paragraph-start "\f\\|[ \t]*$")
+;;             (paragraph-separate ",")
+;;             (fill-paragraph-function))
+;;         (cond ((> (current-column) 79)
+;;                (progn
+;;                  (narrow-to-region
+;;                   (1+ pos-start)
+;;                   (1- (point-marker)))
+;;                  (goto-char 0)
+;;                  (newline)
+;;                  (end-of-line)
+;;                  (newline)
+;;                  (narrow-to-region 1 (1- (point-marker)))
+;;                  (fill-paragraph justify)))
+;;               (t (progn
+;;                    (narrow-to-region pos-start (point-marker))
+;;                    (goto-char pos-start)
+;;                    (fill-paragraph justify)))))
+;;       (goto-char 0)
+;;       (while (not (eobp))
+;;         (forward-line 1)
+;;         (python-indent-line)
+;;         (goto-char (line-end-position)))))
+;;   t)
+;; (advice-add 'python-fill-paren :override #'-python-fill-paren-explode)
+
+(require 'company-jedi)
 
 (provide 'config_my_python)

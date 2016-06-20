@@ -11,6 +11,12 @@
  ;; If there is more than one, they won't work right.
  '(ac-quick-help-prefer-pos-tip t)
  '(ac-use-menu-map t)
+ '(ahs-modes
+   (quote
+    (actionscript-mode apache-mode bat-generic-mode c++-mode c-mode csharp-mode css-mode cython-mode dos-mode emacs-lisp-mode html-mode ini-generic-mode java-mode javascript-mode js-mode lisp-interaction-mode lua-mode latex-mode makefile-mode makefile-gmake-mode markdown-mode moccur-edit-mode nxml-mode nxhtml-mode outline-mode perl-mode cperl-mode php-mode python-mode rc-generic-mode reg-generic-mode ruby-mode sgml-mode sh-mode squirrel-mode text-mode tcl-mode visual-basic-mode)))
+ '(ahs-plugin-bod-modes
+   (quote
+    (emacs-lisp-mode lisp-interaction-mode c++-mode c-mode python-mode)))
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
@@ -21,16 +27,32 @@
  '(browse-url-generic-program "chromium-browser")
  '(bubbles-game-theme (quote difficult))
  '(bubbles-graphics-theme (quote emacs))
+ '(c++-mode-hook (quote (my-c-common-hook er/add-cc-mode-expansions)))
+ '(c-basic-offset 4)
  '(c-default-style
    (quote
-    ((c-mode . "java")
-     (c++-mode . "java")
+    ((c-mode . "awk")
+     (c++-mode . "awk")
      (java-mode . "java")
      (awk-mode . "awk")
      (other . "gnu"))))
+ '(c-offsets-alist nil)
  '(clean-buffer-list-delay-general 2)
  '(column-number-mode t)
  '(comint-prompt-read-only nil)
+ '(company-auto-complete nil)
+ '(company-backends
+   (quote
+    (company-jedi company-nxml company-css company-semantic company-clang company-cmake company-capf company-files
+                  (company-dabbrev-code company-gtags company-etags company-keywords)
+                  company-dabbrev)))
+ '(company-dabbrev-time-limit 0.3)
+ '(company-idle-delay 0.25)
+ '(company-minimum-prefix-length 2)
+ '(company-selection-wrap-around t)
+ '(company-show-numbers t)
+ '(company-tooltip-flip-when-above nil)
+ '(company-tooltip-offset-display (quote lines))
  '(cperl-mode-hook
    (quote
     (er/add-cperl-mode-expansions
@@ -63,23 +85,26 @@
  '(electric-indent-mode nil)
  '(electric-pair-mode t)
  '(electric-pair-open-newline-between-pairs nil)
+ '(enable-remote-dir-locals nil)
  '(flycheck-checker-error-threshold 2000)
  '(flycheck-clang-args (quote ("--std=c++14")))
  '(flycheck-flake8-maximum-line-length 100)
  '(flycheck-gcc-language-standard "gnu++13")
  '(flycheck-highlighting-mode (quote lines))
+ '(flycheck-idle-change-delay 1.0)
  '(flycheck-pylintrc nil)
  '(flycheck-python-pylint-executable nil)
  '(frame-brackground-mode (quote dark))
  '(fringe-mode 10 nil (fringe))
  '(ggtags-global-abbreviate-filename 60)
+ '(ggtags-global-window-height 12)
  '(gh-profile-alist
    (quote
     (("yandex-github" :url "https://api.github.yandex-team.ru" :remote-regexp "^\\(?:git@github\\.yandex\\-team\\.ru:\\|\\(?:git\\|https?\\|ssh\\)://.*@?github\\.yandex\\-team\\.ru/\\)\\([^/]+\\)/\\([^/]+\\)\\(?:\\.git\\)?")
      ("github" :url "https://api.github.com" :remote-regexp "^\\(?:git@github\\.com:\\|\\(?:git\\|https?\\|ssh\\)://.*@?github\\.com/\\)\\(.*\\)/\\(.*\\)\\(?:\\.git\\)?"))))
  '(gh-profile-default-profile "yandex-github")
- '(global-auto-complete-mode t)
  '(global-auto-highlight-symbol-mode t)
+ '(global-company-mode nil)
  '(global-highlight-changes-mode nil)
  '(global-hl-line-mode t)
  '(global-hl-line-sticky-flag t)
@@ -123,6 +148,7 @@
  '(ls-lisp-use-insert-directory-program nil)
  '(ls-lisp-use-localized-time-format t)
  '(ls-lisp-verbosity (quote (uid)))
+ '(magit-diff-refine-hunk (quote all))
  '(magit-diff-section-arguments (quote ("--no-ext-diff")))
  '(magit-fetch-arguments (quote ("--prune")))
  '(magit-log-arguments (quote ("--graph" "--decorate" "-n256")))
@@ -132,6 +158,7 @@
  '(make-backup-files nil)
  '(makefile-backslash-column 48)
  '(makefile-mode-hook (quote (whitespace-mode)))
+ '(menu-bar-mode nil)
  '(midnight-mode t nil (midnight))
  '(minimap-dedicated-window t)
  '(minimap-mode t)
@@ -150,10 +177,14 @@
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
  '(package-selected-packages
    (quote
-    (ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi auto-complete spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit jabber indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
+    (ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit jabber indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
  '(powerline-color1 "#222912")
  '(powerline-color2 "#09150F")
  '(py-indent-offset 4 t)
+ '(python-environment-default-root-name "python27")
+ '(python-environment-virtualenv
+   (quote
+    ("virtualenv" "--system-site-packages" "--quiet" "--python" "python2.7")))
  '(python-fill-docstring-style (quote django))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "#800000"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "#00801f"))))
@@ -172,15 +203,20 @@
  '(reb-re-syntax (quote string))
  '(rng-nxml-auto-validate-flag nil)
  '(ropemacs-guess-project t)
- '(safe-local-variable-values (quote ((encoding . utf-8))))
+ '(safe-local-variable-values
+   (quote
+    ((encoding . utf-8)
+     (my-python-version . "2.7")
+     (my-python-version . "3.4")
+     (my-python-version . "3.5"))))
  '(scroll-bar-mode nil)
+ '(search-exit-option t)
  '(semantic-mode nil)
  '(server-host nil)
  '(server-mode t)
  '(server-use-tcp nil)
  '(show-paren-mode t)
  '(show-trailing-whitespace nil)
- '(size-indication-mode nil)
  '(sml/theme (quote powerline))
  '(sql-mysql-program "mysql")
  '(tab-width 4)
@@ -188,6 +224,8 @@
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify))
  '(vc-annotate-background nil)
+ '(warning-suppress-log-types (quote ((undo discard-info))))
+ '(warning-suppress-types (quote ((\(undo\ discard-info\)))))
  '(wdired-allow-to-change-permissions t)
  '(wdired-keep-marker-rename t)
  '(wdired-use-dired-vertical-movement t)
@@ -200,9 +238,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Input Mono"))))
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "FBI " :family "Input Mono"))))
  '(Info-quoted ((t (:weight ultra-light))))
  '(border ((t nil)))
+ '(company-scrollbar-bg ((t (:background "lavender"))))
+ '(company-scrollbar-fg ((t (:background "steel blue"))))
+ '(company-template-field ((t (:background "lavender" :foreground "black"))))
+ '(company-tooltip ((t (:background "lavender" :foreground "black"))))
+ '(company-tooltip-annotation ((t (:foreground "steel blue"))))
+ '(company-tooltip-common ((t (:foreground "steel blue"))))
  '(cperl-nonoverridable-face ((t (:foreground "chartreuse4"))))
  '(gamegrid-face-*Tetris* ((t (:height 90 :family "Input Mono"))) t)
  '(indent-guide-face ((t (:foreground "MediumOrchid1"))))

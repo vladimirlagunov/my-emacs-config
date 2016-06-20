@@ -4,14 +4,22 @@
 (setq mc/cmds-to-run-for-all
       '(
         backward-sexp
+        c-electric-colon
+        c-electric-delete-forward
+        c-electric-lt-gt
+        c-electric-paren
+        c-electric-semi&comma
+        c-electric-slash
         delete-indentation
         down-list
         electric-newline-and-maybe-indent
         electric-pair-delete-pair
         exit-recursive-edit
+        fill-paragraph
         forward-sexp
         gud-tooltip-mouse-motion
         handle-switch-frame
+        indent-for-tab-command
         indent-new-comment-line
         insert-register
         isearch-forward-regexp
@@ -20,7 +28,12 @@
         markdown-exdent-or-delete
         newline-and-indent-expanded
         org-self-insert-command
+        python-indent-shift-left
+        python-indent-shift-right
         python-nav-forward-block
+        query-replace
+        query-replace-regexp
+        sh-assignment
         toggle-camel-case-at-point
         toggle-input-method
         yaml-electric-backspace

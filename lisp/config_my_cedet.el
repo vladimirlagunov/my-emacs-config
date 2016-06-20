@@ -2,7 +2,7 @@
 (require 'semantic/bovine/gcc)
 (require 'cedet)
 (require 'cedet-files)
-(require 'auto-complete)
+(require 'company)
 
 (add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode)
 (add-to-list 'semantic-default-submodes 'global-semantic-mru-bookmark-mode)
@@ -13,8 +13,7 @@
 
 (defun my/cedet-hook ()
   (local-set-key "\C-cj" 'semantic-ia-fast-jump)
-  (local-set-key "\C-cd" 'semantic-ia-show-doc)
-  (add-to-list 'ac-sources 'ac-source-semantic))
+  (local-set-key "\C-cd" 'semantic-ia-show-doc))
 
 
 ;;; C-c j - перейти к описанию, M-, - вернуться обратно.

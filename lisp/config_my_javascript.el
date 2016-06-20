@@ -1,4 +1,4 @@
-(require 'config_my_autocomplete)
+(require 'config_my_company)
 (require 'config_my_flycheck)
 
 

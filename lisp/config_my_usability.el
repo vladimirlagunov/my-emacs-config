@@ -104,7 +104,13 @@
   (string-trim
    (with-output-to-string
      (with-current-buffer standard-output
-       (apply 'call-process (append '("git" nil t nil) args))))))
+       (let ((return-code
+              (apply 'call-process (append '("git" nil t nil) args))))
+         (if (not (eq 0 return-code))
+             (error (string-join (list "Command git" (string-join args " ")
+                                       "exited with code" (int-to-string return-code)
+                                       ":" (buffer-string))
+                                 " "))))))))
 
 (defun github-url-prefix ()
   (let ((remote-url (git "config" "remote.origin.url")))
@@ -118,11 +124,13 @@
 (defun get-github-link ()
   (interactive)
   (let* ((github-url-start (github-url-prefix))
-         (branch-name (git "symbolic-ref" "--short" "HEAD"))
+         (ref-name (condition-case ex
+                       (git "symbolic-ref" "--short" "HEAD")
+                     ('error (git "rev-parse" "HEAD"))))
          (toplevel (git "rev-parse" "--show-toplevel"))
          (github-url
           (concat github-url-start
-                  "/blob/" branch-name
+                  "/blob/" ref-name
                   (substring (buffer-file-name) (length toplevel))
                   "#L" (int-to-string (line-number-at-pos)))))
     (message github-url)
@@ -157,6 +165,18 @@
 (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
 
 (global-set-key (kbd "C-x C-\\") 'goto-last-change)
+
+
+(require 'with-editor)
+(define-key (current-global-map)
+  [remap async-shell-command] 'with-editor-async-shell-command)
+(define-key (current-global-map)
+  [remap shell-command] 'with-editor-shell-command)
+(add-hook 'shell-mode-hook  'with-editor-export-editor)
+(add-hook 'term-mode-hook   'with-editor-export-editor)
+(add-hook 'eshell-mode-hook 'with-editor-export-editor)
+
+
 
 
 ;; (setq
