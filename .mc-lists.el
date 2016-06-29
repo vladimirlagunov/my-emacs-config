@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         backward-sexp
+        c-electric-brace
         c-electric-colon
         c-electric-delete-forward
         c-electric-lt-gt
@@ -44,6 +45,8 @@
 
 (setq mc/cmds-to-run-once
       '(
+        describe-key
         mouse-drag-mode-line
         mouse-minor-mode-menu
+        where-is
         ))

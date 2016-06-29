@@ -87,6 +87,9 @@
  '(electric-pair-open-newline-between-pairs nil)
  '(enable-remote-dir-locals nil)
  '(flycheck-checker-error-threshold 2000)
+ '(flycheck-checkers
+   (quote
+    (ada-gnat asciidoc c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint d-dmd emacs-lisp emacs-lisp-checkdoc erlang eruby-erubis fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy jade javascript-eslint javascript-jshint javascript-gjslint javascript-jscs javascript-standard json-jsonlint json-python-json less lua-luacheck lua perl-my perl-perlcritic php php-phpmd php-phpcs processing puppet-parser puppet-lint python-flake8 python-pylint python-pycompile r-lintr racket rpm-rpmlint markdown-mdl rst-sphinx rst ruby-rubocop ruby-rubylint ruby ruby-jruby rust-cargo rust sass scala scala-scalastyle scss-lint scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim sql-sqlint tex-chktex tex-lacheck texinfo typescript-tslint verilog-verilator xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby)))
  '(flycheck-clang-args (quote ("--std=c++14")))
  '(flycheck-flake8-maximum-line-length 100)
  '(flycheck-gcc-language-standard "gnu++13")
@@ -148,6 +151,7 @@
  '(ls-lisp-use-insert-directory-program nil)
  '(ls-lisp-use-localized-time-format t)
  '(ls-lisp-verbosity (quote (uid)))
+ '(magit-blame-heading-format "%-20a %C   %s")
  '(magit-diff-refine-hunk (quote all))
  '(magit-diff-section-arguments (quote ("--no-ext-diff")))
  '(magit-fetch-arguments (quote ("--prune")))
@@ -178,6 +182,8 @@
  '(package-selected-packages
    (quote
     (ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit jabber indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
+ '(perl-indent-continued-arguments 4)
+ '(perl-indent-parens-as-block t)
  '(powerline-color1 "#222912")
  '(powerline-color2 "#09150F")
  '(py-indent-offset 4 t)
@@ -205,10 +211,12 @@
  '(ropemacs-guess-project t)
  '(safe-local-variable-values
    (quote
-    ((encoding . utf-8)
+    ((my-flycheck-perl-autoinclude t)
+     (encoding . utf-8)
      (my-python-version . "2.7")
      (my-python-version . "3.4")
-     (my-python-version . "3.5"))))
+     (my-python-version . "3.5")
+     (my-flycheck-perl-autoinclude . t))))
  '(scroll-bar-mode nil)
  '(search-exit-option t)
  '(semantic-mode nil)
@@ -271,6 +279,7 @@
 (add-to-list 'load-path (get-config-path "lisp"))
 (add-to-list 'load-path (get-config-path "3rdparty"))
 
+(require 'config_my_elisp)
 (require 'config_my_fundamental)
 (require 'config_my_python)
 (require 'config_my_c)
@@ -282,6 +291,7 @@
 (require 'config_my_usability)
 (require 'config_my_sql)
 (require 'config_my_go)
+(require 'config_my_perl)
 ;; (require 'config_my_go)
 ;; (require 'config_my_cedet)
 
