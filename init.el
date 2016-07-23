@@ -27,7 +27,7 @@
  '(browse-url-generic-program "chromium-browser")
  '(bubbles-game-theme (quote difficult))
  '(bubbles-graphics-theme (quote emacs))
- '(c++-mode-hook (quote (my-c-common-hook er/add-cc-mode-expansions)))
+ '(c++-mode-hook (quote (my-c-common-hook er/add-cc-mode-expansions)) t)
  '(c-basic-offset 4)
  '(c-default-style
    (quote
@@ -130,22 +130,6 @@
    (quote
     ("yellow" "DeepPink" "cyan" "MediumPurple1" "SpringGreen1" "DarkOrange" "HotPink1" "RoyalBlue1" "OliveDrab" "lime green" "gold3" "MediumOrchid1" "OliveDrab1")))
  '(indent-tabs-mode nil)
- '(jabber-account-list (quote (("werehuman@jabber.ru" (:connection-type . ssl)))))
- '(jabber-alert-info-message-hooks
-   (quote
-    (jabber-info-echo jabber-info-display jabber-info-notify-send)))
- '(jabber-auto-reconnect t)
- '(jabber-autoaway-method (quote jabber-xprintidle-get-idle-time))
- '(jabber-autoaway-priority 0)
- '(jabber-autoaway-verbose nil)
- '(jabber-chat-fill-long-lines nil)
- '(jabber-history-enabled t)
- '(jabber-muc-autojoin nil)
- '(jabber-muc-completion-delimiter ", ")
- '(jabber-post-connect-hooks
-   (quote
-    (jabber-send-current-presence jabber-muc-autojoin jabber-whitespace-ping-start jabber-vcard-avatars-find-current jabber-autoaway-start)))
- '(jabber-xprintidle-program nil)
  '(jedi:complete-on-dot t)
  '(jedi:tooltip-method (quote (popup)))
  '(linum-format " %6d ")
@@ -184,7 +168,7 @@
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
  '(package-selected-packages
    (quote
-    (ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit jabber indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
+    (ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
  '(perl-indent-continued-arguments 4)
  '(perl-indent-parens-as-block t)
  '(powerline-color1 "#222912")
@@ -252,7 +236,7 @@
  '(wdired-use-interactive-rename t)
  '(which-function-mode t)
  '(whitespace-line-column 9999)
- '(yas-snippet-dirs '("~/.emacs.d/snippets" yas-installed-snippets-dir)))
+ '(yas-snippet-dirs (quote ("~/.emacs.d/snippets" yas-installed-snippets-dir))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
