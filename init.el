@@ -53,6 +53,8 @@
  '(company-show-numbers t)
  '(company-tooltip-flip-when-above nil)
  '(company-tooltip-offset-display (quote lines))
+ '(compilation-environment nil)
+ '(compilation-skip-threshold 0)
  '(cperl-mode-hook
    (quote
     (er/add-cperl-mode-expansions
@@ -101,6 +103,7 @@
  '(fringe-mode 10 nil (fringe))
  '(ggtags-global-abbreviate-filename 60)
  '(ggtags-global-window-height 12)
+ '(ggtags-process-environment nil)
  '(gh-profile-alist
    (quote
     (("yandex-github" :url "https://api.github.yandex-team.ru" :remote-regexp "^\\(?:git@github\\.yandex\\-team\\.ru:\\|\\(?:git\\|https?\\|ssh\\)://.*@?github\\.yandex\\-team\\.ru/\\)\\([^/]+\\)/\\([^/]+\\)\\(?:\\.git\\)?")
@@ -230,6 +233,15 @@
  '(tab-width 4)
  '(tetris-buffer-width 30)
  '(tool-bar-mode nil)
+ '(tramp-connection-properties nil)
+ '(tramp-remote-path
+   (quote
+    (tramp-own-remote-path tramp-default-remote-path "/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin" "/local/bin" "/local/freeware/bin" "/local/gnu/bin" "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin" "/opt/bin" "/opt/sbin" "/opt/local/bin")))
+ '(tramp-remote-process-environment
+   (quote
+    ("TMOUT=0" "LC_CTYPE=''" "TERM=dumb" "EMACS=t" "INSIDE_EMACS='24.5.1,tramp:2.2.11-24.5'" "CDPATH=" "HISTORY=" "MAIL=" "MAILCHECK=" "MAILPATH=" "PAGER=cat" "autocorrect=" "correct=")))
+ '(tramp-ssh-controlmaster-options
+   "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify))
  '(vc-annotate-background nil)
  '(warning-suppress-log-types (quote ((undo discard-info))))

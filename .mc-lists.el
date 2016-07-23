@@ -11,6 +11,7 @@
         c-electric-paren
         c-electric-semi&comma
         c-electric-slash
+        c-electric-star
         delete-indentation
         down-list
         electric-newline-and-maybe-indent
@@ -29,6 +30,7 @@
         markdown-exdent-or-delete
         newline-and-indent-expanded
         org-self-insert-command
+        picture-self-insert
         python-indent-shift-left
         python-indent-shift-right
         python-nav-forward-block
@@ -48,5 +50,6 @@
         describe-key
         mouse-drag-mode-line
         mouse-minor-mode-menu
+        scroll-right
         where-is
         ))
