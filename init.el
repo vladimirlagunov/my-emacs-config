@@ -282,14 +282,13 @@
 
 (require 'config_my_elisp)
 (require 'config_my_fundamental)
+(require 'config_my_usability)
 (require 'config_my_python)
 (require 'config_my_c)
 (require 'config_my_javascript)
 (require 'config_my_xml)
-;; (require 'config_my_html)  ;; lost :(
 (require 'config_my_shell)
 (require 'config_my_debian)
-(require 'config_my_usability)
 (require 'config_my_sql)
 (require 'config_my_go)
 (require 'config_my_perl)
