@@ -1,4 +1,5 @@
-(require 'company)
+(require 'use-package)
+(use-package company)
 (require 'config_my_yasnippet)
 
 

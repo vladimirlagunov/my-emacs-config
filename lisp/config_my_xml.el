@@ -1,9 +1,11 @@
-(require 'multi-web-mode)
+(require 'use-package)
+
 (require 'config_my_fundamental)
+(use-package multi-web-mode)
 
 (setq zencoding-mode-keymap (make-sparse-keymap))
 (define-key zencoding-mode-keymap (kbd "<C-return>") 'zencoding-expand-line)
-(require 'zencoding-mode)
+(use-package zencoding-mode)
 
 
 ;; Multi-web-mode
