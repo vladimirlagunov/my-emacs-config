@@ -1,7 +1,9 @@
+(require 'use-package)
+
 (require 'python)
 (require 'pymacs)
-(require 'sphinx-doc)
-(require 'ggtags)
+(use-package sphinx-doc)
+(use-package ggtags)
 
 (require 'config_my_flycheck)
 (require 'config_my_company)
@@ -228,6 +230,6 @@ Argument OUTPUT is a string with the output from the comint process."
 ;;   t)
 ;; (advice-add 'python-fill-paren :override #'-python-fill-paren-explode)
 
-(require 'company-jedi)
+(use-package company-jedi)
 
 (provide 'config_my_python)

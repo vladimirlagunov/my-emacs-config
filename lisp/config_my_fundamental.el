@@ -1,6 +1,7 @@
-(require 'multiple-cursors)
-(require 'expand-region)
-(require 'yafolding)
+(require 'use-package)
+(use-package multiple-cursors)
+(use-package expand-region)
+(use-package yafolding)
 
 
 ;;; Multiline Mode

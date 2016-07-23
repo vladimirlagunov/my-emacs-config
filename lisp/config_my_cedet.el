@@ -1,8 +1,9 @@
+(require 'use-package)
 (require 'semantic/bovine/c)
 (require 'semantic/bovine/gcc)
 (require 'cedet)
 (require 'cedet-files)
-(require 'company)
+(use-package company)
 
 (add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode)
 (add-to-list 'semantic-default-submodes 'global-semantic-mru-bookmark-mode)

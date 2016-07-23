@@ -1,4 +1,5 @@
-(require 'yasnippet)
+(require 'use-package)
+(use-package yasnippet)
 
 (setq yas/root-directory (get-config-path "snippets"))
 (yas/load-directory (get-config-path "snippets"))

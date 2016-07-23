@@ -1,15 +1,17 @@
+(require 'use-package)
+
 (define-prefix-command 'ctl-z-map)
 (global-set-key (kbd "C-z") ctl-z-map)
 
 (require 'midnight)  ;;; Автоматически закрывает старые буферы
-(require 'transpose-frame)
-(require 'framemove)
+(use-package transpose-frame)
+(use-package framemove)
 (require 'uniquify)  ;;; Меняет имена для буферов, если названия файлов совпадают
 
-(require 'magit)
-(require 'magit-gh-pulls)
+(use-package magit)
+(use-package magit-gh-pulls)
 
-(require 'goto-last-change)
+(use-package goto-last-change)
 
 ;; Ставит комбинации клавиш, которые конфликтуют со стандартными
 ;; (set-variable 'auto-highlight-symbol-mode-map
@@ -22,10 +24,10 @@
 ;; 		(define-key map (kbd "C-z C-'") 'ahs-change-range)
 ;; 		(define-key map (kbd "C-z e") 'ahs-edit-mode)
 ;; 		map))
-(require 'auto-highlight-symbol)
+(use-package auto-highlight-symbol)
 (global-auto-highlight-symbol-mode)
 
-(require 'highlight-symbol)
+(use-package highlight-symbol)
 (global-set-key (kbd "M-s h .") 'highlight-symbol-at-point)
 
 ;;; Переключение между окнами с клавиатуры
@@ -167,7 +169,7 @@
 (global-set-key (kbd "C-x C-\\") 'goto-last-change)
 
 
-(require 'with-editor)
+(use-package with-editor)
 (define-key (current-global-map)
   [remap async-shell-command] 'with-editor-async-shell-command)
 (define-key (current-global-map)

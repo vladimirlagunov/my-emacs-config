@@ -1,4 +1,5 @@
-(require 'ggtags)
+(require 'use-package)
+(use-package ggtags)
 
 
 (defun my-c-common-hook ()
@@ -15,9 +16,9 @@
 
 ;;; http://dehun.bitbucket.org/articles/28_jun_2014-cppman+emacs.%20Offline%20c++%20STL%20and%20boost%20documentation.html
 ;; boost documentation
-(require 'anything)
+(use-package anything)
 (require 'anything-config)
-(require 'w3m)
+(use-package w3m)
 
 (defvar boost-documentation-directory
   "/usr/share/doc/libboost1.58-doc/"

@@ -252,7 +252,7 @@
  '(wdired-use-interactive-rename t)
  '(which-function-mode t)
  '(whitespace-line-column 9999)
- '(yas-snippet-dirs (quote ("~/.emacs.d/snippets")) nil (yasnippet)))
+ '(yas-snippet-dirs '("~/.emacs.d/snippets" yas-installed-snippets-dir)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -285,6 +285,11 @@
  '(term ((t (:stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(vc-state-base-face ((t nil))))
 
+
+(require 'bind-key (expand-file-name "~/.emacs.d/use-package/bind-key.el"))
+(require 'use-package (expand-file-name "~/.emacs.d/use-package/use-package.el"))
+(setq use-package-always-ensure t)
+
 (setq config-my-path (file-name-directory load-file-name))
 (defun get-config-path (path) (concat config-my-path path))
 
@@ -304,7 +309,7 @@
 (require 'config_my_sql)
 (require 'config_my_go)
 (require 'config_my_perl)
-;; (require 'config_my_go)
+(require 'config_my_go)
 ;; (require 'config_my_cedet)
 
 (put 'erase-buffer 'disabled nil)
