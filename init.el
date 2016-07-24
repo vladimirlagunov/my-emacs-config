@@ -27,7 +27,7 @@
  '(browse-url-generic-program "chromium-browser")
  '(bubbles-game-theme (quote difficult))
  '(bubbles-graphics-theme (quote emacs))
- '(c++-mode-hook (quote (my-c-common-hook er/add-cc-mode-expansions)) t)
+ '(c++-mode-hook (quote (my-c-common-hook er/add-cc-mode-expansions)))
  '(c-basic-offset 4)
  '(c-default-style
    (quote
@@ -126,6 +126,23 @@
  '(grep-find-command (quote ("find . -type f -exec zgrep -nH -e  {} +" . 34)))
  '(gud-tooltip-mode t)
  '(haml-indent-offset 4)
+ '(helm-M-x-fuzzy-match t)
+ '(helm-autoresize-min-height 5)
+ '(helm-autoresize-mode t)
+ '(helm-buffer-max-length 40)
+ '(helm-buffers-end-truncated-string "…")
+ '(helm-display-header-line t)
+ '(helm-echo-input-in-header-line t)
+ '(helm-external-programs-associations nil)
+ '(helm-ff-file-compressed-list (quote ("gz" "bz2" "zip" "7z" "xz")))
+ '(helm-ff-guess-ffap-filenames t)
+ '(helm-full-frame nil)
+ '(helm-gtags-auto-update t)
+ '(helm-gtags-direct-helm-completing t)
+ '(helm-gtags-prefix-key "nil")
+ '(helm-mode t)
+ '(helm-mode-fuzzy-match t)
+ '(helm-raise-command "wmctrl -xa %s")
  '(highlight-symbol-colors
    (quote
     ("yellow" "DeepPink" "cyan" "MediumPurple1" "SpringGreen1" "DarkOrange" "HotPink1" "RoyalBlue1" "OliveDrab" "lime green" "gold3" "MediumOrchid1" "OliveDrab1")))
@@ -236,7 +253,7 @@
  '(wdired-use-interactive-rename t)
  '(which-function-mode t)
  '(whitespace-line-column 9999)
- '(yas-snippet-dirs (quote ("~/.emacs.d/snippets" yas-installed-snippets-dir))))
+ '(yas-snippet-dirs (quote ("~/.emacs.d/snippets" yas-installed-snippets-dir)) nil (yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -253,6 +270,7 @@
  '(company-tooltip-common ((t (:foreground "steel blue"))))
  '(cperl-nonoverridable-face ((t (:foreground "chartreuse4"))))
  '(gamegrid-face-*Tetris* ((t (:height 90 :family "Input Mono"))) t)
+ '(helm-source-header ((t (:background "#abd7f0" :foreground "black" :weight bold :height 1.1 :family "Sans Serif"))))
  '(indent-guide-face ((t (:foreground "MediumOrchid1"))))
  '(mode-line-buffer-id ((t (:weight bold))))
  '(powerline-active1 ((t (:inherit sml/global))))
@@ -282,6 +300,8 @@
 
 (require 'config_my_elisp)
 (require 'config_my_fundamental)
+(require 'config_my_helm)
+(require 'config_my_powerline)
 (require 'config_my_usability)
 (require 'config_my_python)
 (require 'config_my_c)
