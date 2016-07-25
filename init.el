@@ -17,6 +17,14 @@
  '(ahs-plugin-bod-modes
    (quote
     (emacs-lisp-mode lisp-interaction-mode c++-mode c-mode python-mode)))
+ '(airline-shortened-directory-length 20)
+ '(airline-utf-glyph-branch 57504)
+ '(airline-utf-glyph-linenumber 57505)
+ '(airline-utf-glyph-readonly 57506)
+ '(airline-utf-glyph-separator-left 57520)
+ '(airline-utf-glyph-separator-right 57522)
+ '(airline-utf-glyph-subseparator-left 57521)
+ '(airline-utf-glyph-subseparator-right 57523)
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
@@ -190,6 +198,9 @@
  '(perl-indent-parens-as-block t)
  '(powerline-color1 "#222912")
  '(powerline-color2 "#09150F")
+ '(powerline-gui-use-vcs-glyph t)
+ '(powerline-height nil)
+ '(powerline-text-scale-factor nil)
  '(py-indent-offset 4 t)
  '(python-environment-default-root-name "python27")
  '(python-environment-virtualenv
@@ -272,11 +283,8 @@
  '(gamegrid-face-*Tetris* ((t (:height 90 :family "Input Mono"))) t)
  '(helm-source-header ((t (:background "#abd7f0" :foreground "black" :weight bold :height 1.1 :family "Sans Serif"))))
  '(indent-guide-face ((t (:foreground "MediumOrchid1"))))
- '(mode-line-buffer-id ((t (:weight bold))))
  '(powerline-active1 ((t (:inherit sml/global))))
  '(powerline-active2 ((t (:inherit sml/global))))
- '(powerline-inactive1 ((t (:inherit mode-line-inactive))))
- '(powerline-inactive2 ((t (:inherit mode-line-inactive))))
  '(sml/client ((t (:inherit sml/prefix :background "grey"))))
  '(sml/col-number ((t (:inherit sml/global :background "grey"))))
  '(sml/discharging ((t (:inherit sml/global :background "grey" :foreground "black"))))

@@ -9,7 +9,7 @@
 (require 'uniquify)  ;;; Меняет имена для буферов, если названия файлов совпадают
 
 (use-package magit)
-(use-package magit-gh-pulls)
+;; (use-package magit-gh-pulls)
 
 (use-package goto-last-change)
 
