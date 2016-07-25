@@ -300,7 +300,7 @@
 
 (require 'config_my_elisp)
 (require 'config_my_fundamental)
-(require 'config_my_helm)
+;; (require 'config_my_helm)
 (require 'config_my_powerline)
 (require 'config_my_usability)
 (require 'config_my_python)

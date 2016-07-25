@@ -1,3 +1,4 @@
+(require 'use-package)
 (use-package helm)
 (require 'helm-config)
 
@@ -29,12 +30,23 @@
       helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
       helm-ff-file-name-history-use-recentf t)
 
-(use-package helm-gtags)
-(add-hook 'python-mode-hook 'helm-gtags-mode)
-(add-hook 'c-mode-hook 'helm-gtags-mode)
-(add-hook 'c++-mode-hook 'helm-gtags-mode)
-(add-hook 'perl-mode-hook 'helm-gtags-mode)
-(add-hook 'cython-mode-hook 'helm-gtags-mode)
+(when (require 'ggtags nil t)
+  (eval-and-compile
+    (use-package helm-gtags)
+    (add-hook 'python-mode-hook 'helm-gtags-mode)
+    (add-hook 'c-mode-hook 'helm-gtags-mode)
+    (add-hook 'c++-mode-hook 'helm-gtags-mode)
+    (add-hook 'perl-mode-hook 'helm-gtags-mode)
+    (add-hook 'cython-mode-hook 'helm-gtags-mode)
+
+    (progn
+      (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
+      (define-key helm-gtags-mode-map (kbd "M-]") 'helm-gtags-find-rtag)
+      (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
+      (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
+      (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+      (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+      (define-key helm-gtags-mode-map (kbd "M-*") 'helm-gtags-pop-stack))))
 
 (use-package projectile)
 (use-package helm-projectile)
