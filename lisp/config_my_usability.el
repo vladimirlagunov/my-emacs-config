@@ -171,7 +171,6 @@
 
 
 (global-set-key (kbd "s-g") 'magit-status)
-(add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
 
 (global-set-key (kbd "C-x C-\\") 'goto-last-change)
 

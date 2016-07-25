@@ -4,15 +4,15 @@
 (deftheme airline-lagunov
   "based on hybridline theme")
 
-(let ((normal-outer-foreground  "#ffffff") (normal-outer-background  "#282a2e")
+(let ((normal-outer-foreground  "#ffffff") (normal-outer-background  "#484a4e")
       (normal-inner-foreground  "#c5c8c6") (normal-inner-background  "#373b41")
-      (normal-center-foreground "#282a2e") (normal-center-background "#c5c8c6")
+      (normal-center-foreground "#484a4e") (normal-center-background "#c5c8c6")
 
       (insert-outer-foreground  "#ffffff") (insert-outer-background  "#005f87")
       (insert-inner-foreground  "#c5c8c6") (insert-inner-background  "#0087af")
       (insert-center-foreground "#005f5f") (insert-center-background "#8abeb7")
 
-      (visual-outer-foreground  "#ffffff") (visual-outer-background  "#282a2e")
+      (visual-outer-foreground  "#ffffff") (visual-outer-background  "#484a4e")
       (visual-inner-foreground  "#c5c8c6") (visual-inner-background  "#373b41")
       (visual-center-foreground "#000000") (visual-center-background "#de935f")
 

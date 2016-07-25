@@ -281,7 +281,8 @@
  '(wdired-use-dired-vertical-movement t)
  '(wdired-use-interactive-rename t)
  '(which-function-mode t)
- '(whitespace-line-column 9999))
+ '(whitespace-line-column 9999)
+ '(yas-snippet-dirs (quote ("~/.emacs.d/snippets" yas-installed-snippets-dir))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
