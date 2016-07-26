@@ -77,4 +77,7 @@ See URL `https://www.perl.org'."
   :modes (perl-mode cperl-mode)
   :next-checkers (perl-perlcritic))
 
+;; (defalias 'perl-mode 'cperl-mode)  ;; cperl-mode жутко тормозной
+
+
 (provide 'config_my_perl)
