@@ -263,8 +263,7 @@
  '(wdired-use-dired-vertical-movement t)
  '(wdired-use-interactive-rename t)
  '(which-function-mode t)
- '(whitespace-line-column 9999)
- '(yas-snippet-dirs (quote ("~/.emacs.d/snippets" yas-installed-snippets-dir)) nil (yasnippet)))
+ '(whitespace-line-column 9999))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -281,7 +280,6 @@
  '(company-tooltip-common ((t (:foreground "steel blue"))))
  '(cperl-nonoverridable-face ((t (:foreground "chartreuse4"))))
  '(gamegrid-face-*Tetris* ((t (:height 90 :family "Input Mono"))) t)
- '(helm-source-header ((t (:background "#abd7f0" :foreground "black" :weight bold :height 1.1 :family "Sans Serif"))))
  '(indent-guide-face ((t (:foreground "MediumOrchid1"))))
  '(powerline-active1 ((t (:inherit sml/global))))
  '(powerline-active2 ((t (:inherit sml/global))))
