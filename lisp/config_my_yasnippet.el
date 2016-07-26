@@ -15,3 +15,6 @@
  (lambda (mode-hook)
    (add-hook mode-hook (lambda () (yas/minor-mode t))))
  '(prog-mode-hook debian-control-mode-hook))
+
+
+(provide 'config_my_yasnippet)

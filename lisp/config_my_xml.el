@@ -35,3 +35,6 @@
 
 ;;; Zen coding
 (add-hook 'sgml-mode-hook 'zencoding-mode)
+
+
+(provide 'config_my_xml)

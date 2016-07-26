@@ -4,3 +4,5 @@
                       (lambda()
                         (save-excursion
                           (delete-trailing-whitespace))))))
+
+(provide 'config_my_bash)

@@ -185,7 +185,7 @@ Argument OUTPUT is a string with the output from the comint process."
         (make-local-variable 'python-environment-virtualenv)
         (setq python-environment-virtualenv
               (list "virtualenv" "--no-site-packages" "--quiet"
-                    "--python" python-command))))))
+                    "--python" python-command)))))) 
 
 (add-hook 'hack-local-variables-hook 'python-version-hook-fn)
 
@@ -193,7 +193,7 @@ Argument OUTPUT is a string with the output from the comint process."
 ;; ;;; M-q будет разваливать скобки для длинных выражений
 ;; (defun -python-fill-paren-explode (&optional justify)
 ;;   (save-restriction
-;;     (let ((pos-start (progn
+;;     (let ((pos-start (progn 
 ;;                        (while (python-syntax-context 'paren)
 ;;                          (goto-char (1- (point-marker))))
 ;;                        (point-marker))))
@@ -231,3 +231,5 @@ Argument OUTPUT is a string with the output from the comint process."
 ;; (advice-add 'python-fill-paren :override #'-python-fill-paren-explode)
 
 (use-package company-jedi)
+
+(provide 'config_my_python)

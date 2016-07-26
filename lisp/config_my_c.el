@@ -30,3 +30,5 @@
           (cons (car splitted-result) (cons "--through" (cdr splitted-result)))))
     (mapconcat #'identity patched-result " ")))
 (advice-add 'ggtags-global-build-command :around #'-ggtags-through)
+
+(provide 'config_my_c)

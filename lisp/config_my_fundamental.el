@@ -67,3 +67,5 @@ e.g. `HelloWorldString'."
 (require 'info-look)
 
 (defalias 'perl-mode 'cperl-mode)
+
+(provide 'config_my_fundamental)
