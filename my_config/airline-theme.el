@@ -1,7 +1,7 @@
 
 ;;; Code:
 
-(deftheme airline-lagunov
+(deftheme airline-my
   "based on hybridline theme")
 
 (let ((normal-outer-foreground  "#ffffff") (normal-outer-background  "#282a2e")
@@ -22,7 +22,7 @@
       (inactive1-foreground "#1c1c1c") (inactive1-background "#d8d8d8")
       (inactive2-foreground "#262626") (inactive2-background "#d0d0d0"))
 
-  (airline-themes-set-deftheme 'airline-lagunov)
+  (airline-themes-set-deftheme 'airline-my)
 
   (when airline-cursor-colors
     (progn
@@ -242,5 +242,5 @@
   (-my-airline-themes-set-eshell-prompt))
 (-my-airline-themes-set-modeline)
 
-(provide-theme 'airline-lagunov)
-;;; airline-lagunov-theme.el ends here
+(provide-theme 'airline-my)
+;;; airline-my-theme.el ends here

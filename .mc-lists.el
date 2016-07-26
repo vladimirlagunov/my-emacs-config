@@ -39,6 +39,7 @@
         sh-assignment
         toggle-camel-case-at-point
         toggle-input-method
+        wdired-finish-edit
         yaml-electric-backspace
         yaml-electric-dash-and-dot
         yank-rectangle

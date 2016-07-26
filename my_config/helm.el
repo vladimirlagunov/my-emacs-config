@@ -52,5 +52,3 @@
 (use-package helm-projectile)
 
 (helm-mode 1)
-
-(provide 'config_my_helm)

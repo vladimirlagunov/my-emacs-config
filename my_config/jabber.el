@@ -25,6 +25,3 @@
              text)))
 
 (add-hook 'jabber-alert-message-hooks 'libnotify-jabber-notify)
-
-
-(provide 'config_my_jabber)

@@ -199,7 +199,7 @@
 ;;   (:propertize
 ;;    "▶►"
 ;;    face (:foreground "grey60"))
-  
+
 ;;   mode-line-buffer-identification
 ;;   "   "
 ;;   mode-line-position
@@ -209,6 +209,3 @@
 ;;   mode-line-misc-info
 ;;   mode-line-end-spaces
 ;;   ))
-
-
-(provide 'config_my_usability)

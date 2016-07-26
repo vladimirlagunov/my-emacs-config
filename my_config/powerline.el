@@ -31,7 +31,7 @@
 ;; (require 'airline-understated-theme)
 ;; (require 'airline-wombat-theme)
 
-(require 'airline-lagunov-theme)
+(load-file "airline-theme.el")
 
 (when (require 'dim)
   (dim-minor-names
@@ -45,6 +45,3 @@
      (ropemacs-mode "➿")
      (sphinx-doc-mode "")
      (auto-highlight-symbol-mode "⛭"))))
-
-
-(provide 'config_my_powerline)

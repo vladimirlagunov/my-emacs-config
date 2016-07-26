@@ -12,7 +12,7 @@
 ;; 	(list (get-config-path "bin/jshint") (list local-file))))
 
 ;; (add-to-list
-;;  'flymake-err-line-patterns 
+;;  'flymake-err-line-patterns
 ;;  '("^\\(.*?\\): line \\([0-9]+\\), col \\([0-9]+\\), \\(.*\\)$" ; regexp
 ;;    1 ; file-idx
 ;;    2 ; line-idx
@@ -29,6 +29,3 @@
 ;;  (lambda ()
 ;;    (flymake-mode)
 ;;    (yas/minor-mode)))
-
-
-(provide 'config_my_javascript)

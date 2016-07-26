@@ -76,5 +76,3 @@ See URL `https://www.perl.org'."
           (or "." (and ", " (zero-or-more not-newline))) line-end))
   :modes (perl-mode cperl-mode)
   :next-checkers (perl-perlcritic))
-
-(provide 'config_my_perl)

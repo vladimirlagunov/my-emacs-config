@@ -18,5 +18,3 @@
         (car edebug-history))))
     (setq edebug-history (cdr edebug-history))
     (message "Done")))
-
-(provide 'config_my_elisp)

@@ -37,6 +37,3 @@
 
 
 (add-hook 'prog-mode-hook (lambda () (company-mode t)))
-
-
-(provide 'config_my_company)
