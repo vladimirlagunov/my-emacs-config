@@ -304,7 +304,6 @@
 (defun get-config-path (path) (concat config-my-path path))
 
 (add-to-list 'load-path (get-config-path "lisp"))
-(add-to-list 'load-path (get-config-path "3rdparty"))
 
 (require 'config_my_elisp)
 (require 'config_my_fundamental)
