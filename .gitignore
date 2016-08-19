@@ -1,3 +1,5 @@
+/local.el
+
 .#*
 .yas-compiled-snippets.el
 *.elc

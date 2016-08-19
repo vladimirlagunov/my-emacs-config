@@ -1,6 +1,7 @@
 (require 'use-package)
 
 (require 'python)
+(load-file (expand-file-name "~/.emacs.d/pymacs/pymacs.el"))
 (require 'pymacs)
 (use-package sphinx-doc)
 (use-package ggtags)
