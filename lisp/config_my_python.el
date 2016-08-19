@@ -4,6 +4,7 @@
 (require 'pymacs)
 (use-package sphinx-doc)
 (use-package ggtags)
+(use-package cython-mode)
 
 (require 'config_my_flycheck)
 (require 'config_my_company)

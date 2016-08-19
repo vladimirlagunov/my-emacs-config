@@ -4,6 +4,8 @@
 (setq mc/cmds-to-run-for-all
       '(
         backward-sexp
+        beginning-of-buffer
+        browse-kill-ring
         c-electric-brace
         c-electric-colon
         c-electric-delete-forward
@@ -23,6 +25,7 @@
         handle-switch-frame
         indent-for-tab-command
         indent-new-comment-line
+        indent-rigidly
         insert-register
         isearch-forward-regexp
         keyboard-escape-quit
@@ -36,8 +39,10 @@
         python-nav-forward-block
         query-replace
         query-replace-regexp
+        realgud:cmd-step
         sh-assignment
         toggle-camel-case-at-point
+        toggle-frame-fullscreen
         toggle-input-method
         yaml-electric-backspace
         yaml-electric-dash-and-dot

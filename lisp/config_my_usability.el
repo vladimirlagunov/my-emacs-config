@@ -64,7 +64,9 @@
 (global-set-key (kbd "C-M-S-<backspace>") 'erase-buffer)
 
 
+(use-package browse-kill-ring)
 (global-set-key (kbd "C-z k") 'browse-kill-ring)
+(global-set-key (kbd "C-x C-y") 'browse-kill-ring)
 
 
 ;; Transpose frame (как в нормальном оконном менеджере)
@@ -76,9 +78,13 @@
 
 ;;; Переход на окно справа/слева
 (global-set-key (kbd "C-x <C-up>") 'windmove-up)
+(global-set-key (kbd "C-; C-p") 'windmove-up)
 (global-set-key (kbd "C-x <C-down>") 'windmove-down)
+(global-set-key (kbd "C-; C-n") 'windmove-down)
 (global-set-key (kbd "C-x <C-left>") 'windmove-left)
+(global-set-key (kbd "C-; C-b") 'windmove-left)
 (global-set-key (kbd "C-x <C-right>") 'windmove-right)
+(global-set-key (kbd "C-; C-f") 'windmove-right)
 
 
 (defun revert-all-buffers ()
@@ -209,6 +215,29 @@
 ;;   mode-line-misc-info
 ;;   mode-line-end-spaces
 ;;   ))
+
+
+(use-package engine-mode)
+(defengine yandex "https://yandex.ru/search/?text=%s" :keybinding "y")
+
+
+(use-package ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(define-key global-map (kbd "C-.") 'ace-jump-mode)
+;; Почему-то переменные из ace-jump-mode не настраиваются через customize-variable
+(setq ace-jump-mode-submode-list
+      '(ace-jump-char-mode    ;; C-. 
+        ace-jump-word-mode  ;; C-u C-.
+        ace-jump-line-mode))  ;; C-u C-u C-.
+(setq ace-jump-mode-scope 'visible)
+(setq ace-jump-mode-enable-mark-sync t)
+;; Только маленькие ascii
+(setq ace-jump-mode-move-keys
+      (loop for i from ?a to ?z collect i))
+
+
+(use-package expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
 
 
 (provide 'config_my_usability)

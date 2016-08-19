@@ -35,7 +35,7 @@
  '(browse-url-generic-program "chromium-browser")
  '(bubbles-game-theme (quote difficult))
  '(bubbles-graphics-theme (quote emacs))
- '(c++-mode-hook (quote (my-c-common-hook er/add-cc-mode-expansions)))
+ '(c++-mode-hook (quote (my-c-common-hook er/add-cc-mode-expansions)) t)
  '(c-basic-offset 4)
  '(c-default-style
    (quote
@@ -96,6 +96,10 @@
  '(electric-pair-mode t)
  '(electric-pair-open-newline-between-pairs nil)
  '(enable-remote-dir-locals nil)
+ '(engine-mode t)
+ '(fill-nobreak-predicate
+   (quote
+    (fill-single-word-nobreak-p fill-single-char-nobreak-p)))
  '(flycheck-checker-error-threshold 2000)
  '(flycheck-checkers
    (quote
@@ -121,7 +125,7 @@
  '(global-company-mode nil)
  '(global-highlight-changes-mode nil)
  '(global-hl-line-mode t)
- '(global-hl-line-sticky-flag t)
+ '(global-hl-line-sticky-flag nil)
  '(global-rainbow-delimiters-mode t)
  '(global-semantic-decoration-mode nil)
  '(global-semantic-highlight-func-mode nil)
@@ -154,9 +158,11 @@
  '(highlight-symbol-colors
    (quote
     ("yellow" "DeepPink" "cyan" "MediumPurple1" "SpringGreen1" "DarkOrange" "HotPink1" "RoyalBlue1" "OliveDrab" "lime green" "gold3" "MediumOrchid1" "OliveDrab1")))
+ '(hl-line-sticky-flag nil)
  '(indent-tabs-mode nil)
  '(jedi:complete-on-dot t)
  '(jedi:tooltip-method (quote (popup)))
+ '(line-move-visual t)
  '(linum-format " %6d ")
  '(ls-lisp-emulation nil)
  '(ls-lisp-format-time-list (quote ("%Y-%m-%d %H:%M:%S" "%Y-%m-%d %H:%M:%S")))
@@ -235,6 +241,7 @@
  '(scroll-bar-mode nil)
  '(search-exit-option t)
  '(semantic-mode nil)
+ '(sentence-end-double-space nil)
  '(server-host nil)
  '(server-mode t)
  '(server-use-tcp nil)
@@ -271,6 +278,7 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "FBI " :family "Input Mono"))))
  '(Info-quoted ((t (:weight ultra-light))))
+ '(ace-jump-face-foreground ((t (:background "black" :foreground "yellow" :underline nil))))
  '(border ((t nil)))
  '(company-scrollbar-bg ((t (:background "lavender"))))
  '(company-scrollbar-fg ((t (:background "steel blue"))))
@@ -279,7 +287,9 @@
  '(company-tooltip-annotation ((t (:foreground "steel blue"))))
  '(company-tooltip-common ((t (:foreground "steel blue"))))
  '(cperl-nonoverridable-face ((t (:foreground "chartreuse4"))))
+ '(fancy-narrow-blocked-face ((t (:background "white smoke" :foreground "Grey70"))))
  '(gamegrid-face-*Tetris* ((t (:height 90 :family "Input Mono"))) t)
+ '(hl-line ((t (:background "honeydew"))))
  '(indent-guide-face ((t (:foreground "MediumOrchid1"))))
  '(powerline-active1 ((t (:inherit sml/global))))
  '(powerline-active2 ((t (:inherit sml/global))))
@@ -319,6 +329,10 @@
 (require 'config_my_perl)
 (require 'config_my_go)
 ;; (require 'config_my_cedet)
+
+(let ((local-file (expand-file-name "~/.emacs.d/local.el")))
+  (when (file-exists-p local-file)
+    (load-file local-file)))
 
 (put 'erase-buffer 'disabled nil)
 (put 'downcase-region 'disabled nil)
