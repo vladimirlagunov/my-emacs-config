@@ -3,4 +3,4 @@
 	url = https://github.com/jwiegley/use-package.git
 [submodule "pymacs"]
 	path = pymacs
-	url = https://github.com/pinard/Pymacs.git
+	url = https://github.com/werehuman/Pymacs.git
