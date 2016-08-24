@@ -31,11 +31,12 @@
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(auto-save-default nil)
  '(auto-save-interval 60)
+ '(aw-scope (quote visible))
  '(browse-url-browser-function (quote browse-url-default-browser))
  '(browse-url-generic-program "chromium-browser")
  '(bubbles-game-theme (quote difficult))
  '(bubbles-graphics-theme (quote emacs))
- '(c++-mode-hook (quote (my-c-common-hook er/add-cc-mode-expansions)) t)
+ '(c++-mode-hook (quote (my-c-common-hook er/add-cc-mode-expansions)))
  '(c-basic-offset 4)
  '(c-default-style
    (quote
@@ -159,6 +160,9 @@
    (quote
     ("yellow" "DeepPink" "cyan" "MediumPurple1" "SpringGreen1" "DarkOrange" "HotPink1" "RoyalBlue1" "OliveDrab" "lime green" "gold3" "MediumOrchid1" "OliveDrab1")))
  '(hl-line-sticky-flag nil)
+ '(ido-default-buffer-method (quote selected-window))
+ '(ido-default-file-method (quote selected-window))
+ '(ido-enable-flex-matching t)
  '(indent-tabs-mode nil)
  '(jedi:complete-on-dot t)
  '(jedi:tooltip-method (quote (popup)))
@@ -199,7 +203,7 @@
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
  '(package-selected-packages
    (quote
-    (ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
+    (arduino-mode company-arduino ace-window ace-mc ace-jump-buffer ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
  '(perl-indent-continued-arguments 4)
  '(perl-indent-parens-as-block t)
  '(powerline-color1 "#222912")
@@ -276,9 +280,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "FBI " :family "Input Mono"))))
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "FBI" :family "Input Mono"))))
  '(Info-quoted ((t (:weight ultra-light))))
  '(ace-jump-face-foreground ((t (:background "black" :foreground "yellow" :underline nil))))
+ '(aw-background-face ((t (:distant-foreground "gray90" :foreground "gray90"))))
+ '(aw-leading-char-face ((t (:background "red" :foreground "white" :weight bold))))
  '(border ((t nil)))
  '(company-scrollbar-bg ((t (:background "lavender"))))
  '(company-scrollbar-fg ((t (:background "steel blue"))))
@@ -329,6 +335,7 @@
 (require 'config_my_perl)
 (require 'config_my_go)
 ;; (require 'config_my_cedet)
+(require 'config_my_arduino)
 
 (let ((local-file (expand-file-name "~/.emacs.d/local.el")))
   (when (file-exists-p local-file)
@@ -339,3 +346,4 @@
 (put 'narrow-to-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'magit-clean 'disabled nil)
+(put 'scroll-left 'disabled nil)

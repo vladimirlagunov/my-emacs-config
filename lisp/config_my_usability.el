@@ -1,4 +1,5 @@
 (require 'use-package)
+(require 'config_my_ido)
 
 (define-prefix-command 'ctl-z-map)
 (global-set-key (kbd "C-z") ctl-z-map)
@@ -236,8 +237,25 @@
       (loop for i from ?a to ?z collect i))
 
 
+(use-package ace-window)
+(define-key global-map (kbd "C-x C-.") 'ace-window)
+
+
 (use-package expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 
+(defun raise-all-frames ()
+  (interactive)
+  (let ((init-frame (window-frame)))
+    (loop for f in-ref (frames-on-display-list) do (raise-frame f))
+    (select-frame init-frame)
+    (raise-frame init-frame)))
+(define-key global-map (kbd "C-z r") 'raise-all-frames)
+
+
 (provide 'config_my_usability)
+
+
+
+
