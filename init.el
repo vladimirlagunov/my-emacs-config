@@ -13,7 +13,7 @@
  '(ac-use-menu-map t)
  '(ahs-modes
    (quote
-    (actionscript-mode apache-mode bat-generic-mode c++-mode c-mode csharp-mode css-mode cython-mode dos-mode emacs-lisp-mode html-mode ini-generic-mode java-mode javascript-mode js-mode lisp-interaction-mode lua-mode latex-mode makefile-mode makefile-gmake-mode markdown-mode moccur-edit-mode nxml-mode nxhtml-mode outline-mode perl-mode cperl-mode php-mode python-mode rc-generic-mode reg-generic-mode ruby-mode sgml-mode sh-mode squirrel-mode text-mode tcl-mode visual-basic-mode)))
+    (arduino-mode actionscript-mode apache-mode bat-generic-mode c++-mode c-mode csharp-mode css-mode cython-mode dos-mode emacs-lisp-mode html-mode ini-generic-mode java-mode javascript-mode js-mode lisp-interaction-mode lua-mode latex-mode makefile-mode makefile-gmake-mode markdown-mode moccur-edit-mode nxml-mode nxhtml-mode outline-mode perl-mode cperl-mode php-mode python-mode rc-generic-mode reg-generic-mode ruby-mode sgml-mode sh-mode squirrel-mode text-mode tcl-mode visual-basic-mode)))
  '(ahs-plugin-bod-modes
    (quote
     (emacs-lisp-mode lisp-interaction-mode c++-mode c-mode python-mode)))
@@ -58,6 +58,8 @@
  '(company-dabbrev-time-limit 0.3)
  '(company-idle-delay 0.25)
  '(company-minimum-prefix-length 2)
+ '(company-quickhelp-max-lines 10)
+ '(company-quickhelp-mode t)
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
  '(company-tooltip-flip-when-above nil)
@@ -211,6 +213,18 @@
  '(powerline-gui-use-vcs-glyph t)
  '(powerline-height nil)
  '(powerline-text-scale-factor nil)
+ '(projectile-globally-ignored-directories
+   (quote
+    (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" ".ropeproject" ".stack-work")))
+ '(projectile-keymap-prefix "")
+ '(projectile-mode-line
+   (quote
+    (:eval
+     (if
+         (file-remote-p default-directory)
+         " Projectile"
+       (format " ⊆%s"
+               (projectile-project-name))))))
  '(py-indent-offset 4 t)
  '(python-environment-default-root-name "python27")
  '(python-environment-virtualenv
@@ -259,7 +273,7 @@
  '(tramp-connection-properties nil)
  '(tramp-remote-path
    (quote
-    (tramp-own-remote-path tramp-default-remote-path "/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin" "/local/bin" "/local/freeware/bin" "/local/gnu/bin" "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin" "/opt/bin" "/opt/sbin" "/opt/local/bin")))
+    (tramp-default-remote-path tramp-own-remote-path "/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin" "/local/bin" "/local/freeware/bin" "/local/gnu/bin" "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin" "/opt/bin" "/opt/sbin" "/opt/local/bin")))
  '(tramp-remote-process-environment
    (quote
     ("TMOUT=0" "LC_CTYPE=''" "TERM=dumb" "EMACS=t" "INSIDE_EMACS='24.5.1,tramp:2.2.11-24.5'" "CDPATH=" "HISTORY=" "MAIL=" "MAILCHECK=" "MAILPATH=" "PAGER=cat" "autocorrect=" "correct=")))
@@ -280,7 +294,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "FBI" :family "Input Mono"))))
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight semi-light :height 113 :width condensed :foundry "XFT" :family "Input Mono Narrow"))))
  '(Info-quoted ((t (:weight ultra-light))))
  '(ace-jump-face-foreground ((t (:background "black" :foreground "yellow" :underline nil))))
  '(aw-background-face ((t (:distant-foreground "gray90" :foreground "gray90"))))
@@ -324,6 +338,7 @@
 ;; (require 'config_my_helm)
 (require 'config_my_powerline)
 (require 'config_my_usability)
+(require 'config_my_projectile)
 (require 'config_my_python)
 (require 'config_my_c)
 (require 'config_my_javascript)
@@ -336,6 +351,7 @@
 (require 'config_my_go)
 ;; (require 'config_my_cedet)
 (require 'config_my_arduino)
+(require 'config_my_modes)
 
 (let ((local-file (expand-file-name "~/.emacs.d/local.el")))
   (when (file-exists-p local-file)

@@ -1,5 +1,6 @@
 (require 'use-package)
 (use-package company)
+(use-package company-quickhelp)
 (require 'config_my_yasnippet)
 
 

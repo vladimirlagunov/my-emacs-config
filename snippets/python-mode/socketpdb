@@ -1,0 +1,22 @@
+# key: socketpdb
+# name: socketpdb
+# expand-env: ((yas-indent-line (quote fixed)))# key: socketpdb
+# name: socketpdb
+# expand-env: ((yas-indent-line (quote fixed)))
+# --
+def socket_pdb():
+    # nc -U /tmp/pdb.sock
+    sock_path = '/tmp/pdb.sock'
+    import atexit, os, pdb, sys, socket
+    servsock = socket.socket(socket.AF_UNIX)
+    servsock.bind(sock_path)
+    servsock.listen(1)
+    @atexit.register
+    def _():
+        servsock.shutdown(socket.SHUT_RDWR)
+        servsock.close()
+        os.unlink(sock_path)
+    sock = servsock.accept()[0]
+    stream = sock.makefile()
+    pdb.Pdb(stdin=stream, stdout=stream).set_trace(sys._getframe().f_back)
+socket_pdb()

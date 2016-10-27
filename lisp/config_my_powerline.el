@@ -33,18 +33,22 @@
 
 (require 'airline-lagunov-theme)
 
-(when (require 'dim)
-  (dim-minor-names
-   '((auto-revert-mode "")
-     (flycheck-mode "")
-     (helm-mode " ♚")
-     (company-mode " C")
-     (ggtags-mode " G")
-     (helm-gtags-mode "")
-     (abbrev-mode " D")
-     (ropemacs-mode "➿")
-     (sphinx-doc-mode "")
-     (auto-highlight-symbol-mode "⛭"))))
+(dim-minor-names
+ '((projectile-mode (:eval
+                     (if (file-remote-p default-directory)
+                         ""
+                       (format " ⊆%s" (projectile-project-name)))))
+   (auto-revert-mode "")
+   (flycheck-mode "")
+   (helm-mode " ♚")
+   (company-mode " C")
+   (ggtags-mode " G")
+   (helm-gtags-mode "")
+   (abbrev-mode " D")
+   (ropemacs-mode "➿")
+   (sphinx-doc-mode "")
+   (smerge-mode "⟗")
+   (auto-highlight-symbol-mode "")))
 
 
 (provide 'config_my_powerline)
