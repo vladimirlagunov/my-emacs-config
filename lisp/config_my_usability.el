@@ -254,8 +254,12 @@
 (define-key global-map (kbd "C-z r") 'raise-all-frames)
 
 
+; Костыль для vc-annotate и svn+ssh
+(setenv "SVN_SSH" (expand-file-name "../../emacs-svn-ssh-kludge" (expand-file-name load-file-name)))
+
+; Костыль для глючного find-dired, которая пытается что-то сделать
+; с процессом find уже после того, как он завершился.
+(setq find-program (expand-file-name "../../find-kludge" (expand-file-name load-file-name)))
+
+
 (provide 'config_my_usability)
-
-
-
-

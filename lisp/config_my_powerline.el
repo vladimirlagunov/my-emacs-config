@@ -33,13 +33,31 @@
 
 (require 'airline-lagunov-theme)
 
+(defun my-flycheck-mode-line-status-text (&optional status)
+  (let ((param-tuple
+         (pcase (or status flycheck-last-status-change)
+           (`not-checked '("" . nil))
+           (`no-checker '("-" . nil))
+           (`running '("⌛" . nil))
+           (`errored '("!" . 'compilation-error-face))
+           (`finished
+            (let-alist (flycheck-count-errors flycheck-current-errors)
+              (cond
+               ((not (null .error)) '("☹" . 'compilation-mode-line-fail))
+               ((not (null .warning)) '("☹" . 'warning))
+               (t '("☺" . 'compilation-mode-line-exit))))))))
+    (let ((text (car param-tuple)) (face (cdr param-tuple)))
+      (when (not (null face))
+        (put-text-property 0 (length text)'face face text))
+      text)))
+
 (dim-minor-names
  '((projectile-mode (:eval
                      (if (file-remote-p default-directory)
                          ""
                        (format " ⊆%s" (projectile-project-name)))))
    (auto-revert-mode "")
-   (flycheck-mode "")
+   (flycheck-mode (:eval (my-flycheck-mode-line-status-text)))
    (helm-mode " ♚")
    (company-mode " C")
    (ggtags-mode " G")

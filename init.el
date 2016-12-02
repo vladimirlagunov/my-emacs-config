@@ -49,21 +49,6 @@
  '(clean-buffer-list-delay-general 2)
  '(column-number-mode t)
  '(comint-prompt-read-only nil)
- '(company-auto-complete nil)
- '(company-backends
-   (quote
-    (company-jedi company-nxml company-css company-semantic company-clang company-cmake company-capf company-files
-                  (company-dabbrev-code company-gtags company-etags company-keywords)
-                  company-dabbrev)))
- '(company-dabbrev-time-limit 0.3)
- '(company-idle-delay 0.25)
- '(company-minimum-prefix-length 2)
- '(company-quickhelp-max-lines 10)
- '(company-quickhelp-mode t)
- '(company-selection-wrap-around t)
- '(company-show-numbers t)
- '(company-tooltip-flip-when-above nil)
- '(company-tooltip-offset-display (quote lines))
  '(compilation-environment nil)
  '(compilation-skip-threshold 0)
  '(cperl-mode-hook
@@ -87,6 +72,7 @@
     (("" display-buffer-reuse-window
       (reusable-frames . visible)))))
  '(doc-view-continuous t)
+ '(dynamic-completion-mode t)
  '(ediff-autostore-merges t)
  '(ediff-keep-variants nil)
  '(ediff-make-buffers-readonly-at-startup nil)
@@ -107,7 +93,8 @@
  '(flycheck-checkers
    (quote
     (ada-gnat asciidoc c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint d-dmd emacs-lisp emacs-lisp-checkdoc erlang eruby-erubis fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy jade javascript-eslint javascript-jshint javascript-gjslint javascript-jscs javascript-standard json-jsonlint json-python-json less lua-luacheck lua perl-my perl-perlcritic php php-phpmd php-phpcs processing puppet-parser puppet-lint python-flake8 python-pylint python-pycompile r-lintr racket rpm-rpmlint markdown-mdl rst-sphinx rst ruby-rubocop ruby-rubylint ruby ruby-jruby rust-cargo rust sass scala scala-scalastyle scss-lint scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim sql-sqlint tex-chktex tex-lacheck texinfo typescript-tslint verilog-verilator xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby)))
- '(flycheck-clang-args (quote ("--std=c++14")))
+ '(flycheck-clang-args (quote nil))
+ '(flycheck-clang-pedantic t)
  '(flycheck-flake8-maximum-line-length 100)
  '(flycheck-gcc-language-standard "gnu++13")
  '(flycheck-highlighting-mode (quote lines))
@@ -119,6 +106,7 @@
  '(ggtags-global-abbreviate-filename 60)
  '(ggtags-global-window-height 12)
  '(ggtags-process-environment nil)
+ '(ggtags-sort-by-nearness t)
  '(gh-profile-alist
    (quote
     (("yandex-github" :url "https://api.github.yandex-team.ru" :remote-regexp "^\\(?:git@github\\.yandex\\-team\\.ru:\\|\\(?:git\\|https?\\|ssh\\)://.*@?github\\.yandex\\-team\\.ru/\\)\\([^/]+\\)/\\([^/]+\\)\\(?:\\.git\\)?")
@@ -139,6 +127,9 @@
  '(global-semanticdb-minor-mode nil)
  '(grep-command "zgrep -nH -e ")
  '(grep-find-command (quote ("find . -type f -exec zgrep -nH -e  {} +" . 34)))
+ '(grep-find-ignored-files
+   (quote
+    (".#*" "*.o" "*~" "*.bin" "*.lbin" "*.so" "*.a" "*.ln" "*.blg" "*.bbl" "*.elc" "*.lof" "*.glo" "*.idx" "*.lot" "*.fmt" "*.tfm" "*.class" "*.fas" "*.lib" "*.mem" "*.x86f" "*.sparcf" "*.dfsl" "*.pfsl" "*.d64fsl" "*.p64fsl" "*.lx64fsl" "*.lx32fsl" "*.dx64fsl" "*.dx32fsl" "*.fx64fsl" "*.fx32fsl" "*.sx64fsl" "*.sx32fsl" "*.wx64fsl" "*.wx32fsl" "*.fasl" "*.ufsl" "*.fsl" "*.dxl" "*.lo" "*.la" "*.gmo" "*.mo" "*.toc" "*.aux" "*.cp" "*.fn" "*.ky" "*.pg" "*.tp" "*.vr" "*.cps" "*.fns" "*.kys" "*.pgs" "*.tps" "*.vrs" "*.pyc" "*.pyo" "*.min.js" "*.min.css")))
  '(gud-tooltip-mode t)
  '(haml-indent-offset 4)
  '(helm-M-x-fuzzy-match t)
@@ -176,6 +167,9 @@
  '(ls-lisp-use-localized-time-format t)
  '(ls-lisp-verbosity (quote (uid)))
  '(magit-blame-heading-format "%-20a %C   %s")
+ '(magit-diff-arguments
+   (quote
+    ("--no-ext-diff" "--stat" "--diff-algorithm=histogram")))
  '(magit-diff-refine-hunk (quote all))
  '(magit-diff-section-arguments (quote ("--no-ext-diff")))
  '(magit-fetch-arguments (quote ("--prune")))
@@ -250,7 +244,6 @@
  '(ropemacs-guess-project t)
  '(safe-local-variable-values
    (quote
-    ((my-flycheck-perl-autoinclude t)
      (encoding . utf-8)
      (my-python-version . "2.7")
      (my-python-version . "3.4")

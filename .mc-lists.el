@@ -21,6 +21,7 @@
         downcase-region
         electric-newline-and-maybe-indent
         electric-pair-delete-pair
+        end-of-buffer
         exit-recursive-edit
         fill-paragraph
         forward-sexp
@@ -38,7 +39,9 @@
         markdown-exdent-or-delete
         newline-and-indent-expanded
         next-error
+        org-delete-char
         org-self-insert-command
+        org-shiftright
         picture-self-insert
         pop-global-mark
         python-indent-shift-left
@@ -64,6 +67,7 @@
         mouse-drag-mode-line
         mouse-minor-mode-menu
         scroll-right
+        tags-loop-continue
         text-scale-adjust
         where-is
         ))

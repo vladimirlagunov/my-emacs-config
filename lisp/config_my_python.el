@@ -3,8 +3,8 @@
 (require 'python)
 (load-file (expand-file-name "~/.emacs.d/pymacs/pymacs.el"))
 (require 'pymacs)
+(require 'config_my_ggtags)
 (use-package sphinx-doc)
-(use-package ggtags)
 (use-package cython-mode)
 
 (require 'config_my_flycheck)

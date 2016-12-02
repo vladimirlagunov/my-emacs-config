@@ -1,4 +1,5 @@
 (require 'perl-mode)
+(require 'config_my_ggtags)
 
 
 (defconst my-flycheck-perl-autoinclude-fname "my-flycheck-perl-autoinclude.txt")

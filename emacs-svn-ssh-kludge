@@ -1,0 +1,5 @@
+#!/bin/bash
+# vc-annotate может показать не весь файл в случае svn+ssh
+# http://comments.gmane.org/gmane.emacs.bugs/43114
+exec 2> >(exec cat >&2 2>/dev/null)
+exec /usr/bin/ssh "$@"
