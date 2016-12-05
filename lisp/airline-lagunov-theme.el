@@ -17,10 +17,15 @@
       (visual-center-foreground "#000000") (visual-center-background "#de935f")
 
       (replace-outer-foreground "#000000") (replace-outer-background "#cc6666")
+      (replace-inner-foreground "#00ff00") (replace-inner-background "#0000ff")
+      (replace-center-foreground "#aaff00") (replace-center-background "#cc00ff")
       (emacs-outer-foreground   "#d7d7ff") (emacs-outer-background   "#5f00af")
+      (emacs-inner-foreground "#00ffaa") (emacs-inner-background "#00aaff")
+      (emacs-center-foreground "#aaffaa") (emacs-center-background "#ccaaff")
 
       (inactive1-foreground "#1c1c1c") (inactive1-background "#d8d8d8")
-      (inactive2-foreground "#262626") (inactive2-background "#d0d0d0"))
+      (inactive2-foreground "#262626") (inactive2-background "#d0d0d0")
+      (inactive3-foreground "#26ff26") (inactive3-background "#d0ffd0"))
 
   (airline-themes-set-deftheme 'airline-lagunov)
 
