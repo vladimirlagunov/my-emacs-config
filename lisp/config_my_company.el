@@ -42,7 +42,6 @@
      company-css
      company-semantic
      company-cmake
-     company-capf
      company-files
      (company-c-headers
       company-irony

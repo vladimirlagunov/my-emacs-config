@@ -259,7 +259,7 @@
 
 ; Костыль для глючного find-dired, которая пытается что-то сделать
 ; с процессом find уже после того, как он завершился.
-(setq find-program (expand-file-name "../../find-kludge" (expand-file-name load-file-name)))
+(setq find-program "sleep 0.2 && find")
 
 
 (provide 'config_my_usability)

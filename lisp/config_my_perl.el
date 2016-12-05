@@ -81,4 +81,7 @@ See URL `https://www.perl.org'."
 ;; (defalias 'perl-mode 'cperl-mode)  ;; cperl-mode жутко тормозной
 
 
+(add-to-list 'auto-mode-alist '("\\.psgi\\'" . perl-mode))
+
+
 (provide 'config_my_perl)

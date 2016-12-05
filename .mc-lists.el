@@ -15,6 +15,8 @@
         c-electric-slash
         c-electric-star
         c-indent-line-or-region
+        completion-separator-self-insert-autofilling
+        completion-separator-self-insert-command
         delete-indentation
         delete-rectangle
         down-list
