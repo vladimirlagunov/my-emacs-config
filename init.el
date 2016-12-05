@@ -244,11 +244,11 @@
  '(ropemacs-guess-project t)
  '(safe-local-variable-values
    (quote
-     (encoding . utf-8)
-     (my-python-version . "2.7")
-     (my-python-version . "3.4")
-     (my-python-version . "3.5")
-     (my-flycheck-perl-autoinclude . t))))
+    (encoding . utf-8)
+    (my-python-version . "2.7")
+    (my-python-version . "3.4")
+    (my-python-version . "3.5")
+    (my-flycheck-perl-autoinclude . t)))
  '(scroll-bar-mode nil)
  '(search-exit-option t)
  '(semantic-mode nil)
