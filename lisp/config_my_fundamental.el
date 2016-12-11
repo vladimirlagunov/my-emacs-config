@@ -2,6 +2,7 @@
 (use-package multiple-cursors)
 (use-package expand-region)
 (use-package yafolding)
+(use-package dtrt-indent)
 
 
 ;;; Multiline Mode

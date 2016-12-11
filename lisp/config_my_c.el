@@ -28,4 +28,24 @@
  "/usr/include/c++/" 'c++-std-directory)
 
 
+;;; Патчинг ggtags для того, чтобы он всегда искал в /usr/include
+(defun -ggtags-through (original-fn cmd &rest args)
+  (let* ((original-result (apply original-fn cmd args))
+         (splitted-result (split-string original-result " "))
+         (patched-result
+          (cons (car splitted-result) (cons "--through" (cdr splitted-result)))))
+    (mapconcat #'identity patched-result " ")))
+(advice-add 'ggtags-global-build-command :around #'-ggtags-through)
+
+
+(require 'config_my_company)
+(use-package company-c-headers)
+(add-to-list 'company-backends 'company-c-headers)
+
+
+(use-package irony)
+(add-hook 'c++-mode-hook 'irony-mode)
+
+
+
 (provide 'config_my_c)

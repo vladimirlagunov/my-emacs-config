@@ -13,7 +13,7 @@
  '(ac-use-menu-map t)
  '(ahs-modes
    (quote
-    (arduino-mode actionscript-mode apache-mode bat-generic-mode c++-mode c-mode csharp-mode css-mode cython-mode dos-mode emacs-lisp-mode html-mode ini-generic-mode java-mode javascript-mode js-mode lisp-interaction-mode lua-mode latex-mode makefile-mode makefile-gmake-mode markdown-mode moccur-edit-mode nxml-mode nxhtml-mode outline-mode perl-mode cperl-mode php-mode python-mode rc-generic-mode reg-generic-mode ruby-mode sgml-mode sh-mode squirrel-mode text-mode tcl-mode visual-basic-mode)))
+    (actionscript-mode apache-mode arduino-mode bat-generic-mode c++-mode c-mode csharp-mode css-mode cython-mode dos-mode emacs-lisp-mode html-mode ini-generic-mode java-mode javascript-mode js-mode lisp-interaction-mode lua-mode latex-mode makefile-mode makefile-gmake-mode markdown-mode moccur-edit-mode nxml-mode nxhtml-mode outline-mode perl-mode cperl-mode php-mode python-mode rc-generic-mode reg-generic-mode ruby-mode sgml-mode sh-mode squirrel-mode text-mode tcl-mode visual-basic-mode)))
  '(ahs-plugin-bod-modes
    (quote
     (emacs-lisp-mode lisp-interaction-mode c++-mode c-mode python-mode)))
@@ -73,6 +73,9 @@
       (reusable-frames . visible)))))
  '(doc-view-continuous t)
  '(dynamic-completion-mode t)
+ '(dtrt-indent-active-mode-line-info "↛")
+ '(dtrt-indent-mode t nil (dtrt-indent))
+ '(dtrt-indent-require-confirmation-flag t)
  '(ediff-autostore-merges t)
  '(ediff-keep-variants nil)
  '(ediff-make-buffers-readonly-at-startup nil)
@@ -157,6 +160,7 @@
  '(ido-default-file-method (quote selected-window))
  '(ido-enable-flex-matching t)
  '(indent-tabs-mode nil)
+ '(irony-lighter "⚗")
  '(jedi:complete-on-dot t)
  '(jedi:tooltip-method (quote (popup)))
  '(line-move-visual t)
@@ -199,7 +203,7 @@
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
  '(package-selected-packages
    (quote
-    (arduino-mode company-arduino ace-window ace-mc ace-jump-buffer ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
+    (list-unicode-display dtrt-indent google-c-style arduino-mode company-arduino ace-window ace-mc ace-jump-buffer ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
  '(perl-indent-continued-arguments 4)
  '(perl-indent-parens-as-block t)
  '(powerline-color1 "#222912")
