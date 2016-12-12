@@ -36,34 +36,6 @@
 ;; (add-hook 'company-mode-hook 'tab-indent-or-complete-autoload)
 ;; (add-hook 'yas-minor-mode-hook 'tab-indent-or-complete-autoload)
 
-(custom-set-variables
- '(company-backends
-   '(company-nxml
-     company-css
-     company-semantic
-     company-cmake
-     company-files
-     (company-c-headers
-      company-irony
-      company-jedi
-      company-gtags
-      company-etags
-      company-keywords
-      company-clang
-      company-dabbrev-code)
-     company-dabbrev))
- '(company-auto-complete nil)
- '(company-dabbrev-time-limit 0.3)
- '(company-idle-delay 0.25)
- '(company-irony-ignore-case t)
- '(company-minimum-prefix-length 2)
- '(company-quickhelp-max-lines 10)
- '(company-quickhelp-mode t)
- '(company-selection-wrap-around t)
- '(company-show-numbers t)
- '(company-tooltip-flip-when-above nil)
- '(company-tooltip-offset-display (quote lines)))
-
 
 (add-hook 'prog-mode-hook (lambda () (company-mode t)))
 

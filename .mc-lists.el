@@ -15,6 +15,7 @@
         c-electric-slash
         c-electric-star
         c-indent-line-or-region
+        completion-kill-region
         completion-separator-self-insert-autofilling
         completion-separator-self-insert-command
         delete-indentation
@@ -41,7 +42,10 @@
         markdown-exdent-or-delete
         newline-and-indent-expanded
         next-error
+        org-beginning-of-line
+        org-cycle
         org-delete-char
+        org-end-of-line
         org-self-insert-command
         org-shiftright
         picture-self-insert

@@ -260,5 +260,11 @@
 ; с процессом find уже после того, как он завершился.
 (setq find-program "sleep 0.2 && find")
 
+; Часто grep'аются минифицированные js-файлы. В grep-mode не нужен line-move-visual
+(add-hook 'grep-mode-hook
+          (lambda ()
+            (make-local-variable 'line-move-visual)
+            (setq line-move-visual nil)))
+
 
 (provide 'config_my_usability)
