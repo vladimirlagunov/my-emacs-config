@@ -49,6 +49,22 @@
  '(clean-buffer-list-delay-general 2)
  '(column-number-mode t)
  '(comint-prompt-read-only nil)
+ '(company-auto-complete nil)
+ '(company-backends
+   (quote
+    (company-nxml company-css company-semantic company-cmake company-files
+                  (company-c-headers company-irony company-jedi company-gtags company-etags company-keywords company-clang company-dabbrev-code)
+                  company-dabbrev)))
+ '(company-dabbrev-time-limit 0.3)
+ '(company-idle-delay 0.25)
+ '(company-irony-ignore-case t)
+ '(company-minimum-prefix-length 2)
+ '(company-quickhelp-max-lines 10)
+ '(company-quickhelp-mode t)
+ '(company-selection-wrap-around t)
+ '(company-show-numbers t)
+ '(company-tooltip-flip-when-above nil)
+ '(company-tooltip-offset-display (quote lines))
  '(compilation-environment nil)
  '(compilation-skip-threshold 0)
  '(cperl-mode-hook
@@ -73,9 +89,6 @@
       (reusable-frames . visible)))))
  '(doc-view-continuous t)
  '(dynamic-completion-mode t)
- '(dtrt-indent-active-mode-line-info "↛")
- '(dtrt-indent-mode t nil (dtrt-indent))
- '(dtrt-indent-require-confirmation-flag t)
  '(ediff-autostore-merges t)
  '(ediff-keep-variants nil)
  '(ediff-make-buffers-readonly-at-startup nil)
@@ -203,7 +216,7 @@
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
  '(package-selected-packages
    (quote
-    (list-unicode-display dtrt-indent google-c-style arduino-mode company-arduino ace-window ace-mc ace-jump-buffer ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
+    (list-unicode-display google-c-style arduino-mode company-arduino ace-window ace-mc ace-jump-buffer ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
  '(perl-indent-continued-arguments 4)
  '(perl-indent-parens-as-block t)
  '(powerline-color1 "#222912")
@@ -275,7 +288,7 @@
    (quote
     ("TMOUT=0" "LC_CTYPE=''" "TERM=dumb" "EMACS=t" "INSIDE_EMACS='24.5.1,tramp:2.2.11-24.5'" "CDPATH=" "HISTORY=" "MAIL=" "MAILCHECK=" "MAILPATH=" "PAGER=cat" "autocorrect=" "correct=")))
  '(tramp-ssh-controlmaster-options
-   "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+   "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no" t)
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify))
  '(vc-annotate-background nil)
  '(warning-suppress-log-types (quote ((undo discard-info))))
