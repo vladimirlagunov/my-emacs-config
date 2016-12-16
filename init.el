@@ -49,22 +49,12 @@
  '(clean-buffer-list-delay-general 2)
  '(column-number-mode t)
  '(comint-prompt-read-only nil)
- '(company-backends
-   '(company-nxml
-     company-css
-     company-semantic
-     company-cmake
-     company-files
-     (company-c-headers
-      company-irony
-      company-jedi
-      company-gtags
-      company-etags
-      company-keywords
-      company-clang
-      company-dabbrev-code)
-     company-dabbrev))
  '(company-auto-complete nil)
+ '(company-backends
+   (quote
+    (company-nxml company-css company-semantic company-cmake company-files
+                  (company-c-headers company-irony company-jedi company-gtags company-etags company-keywords company-clang company-dabbrev-code)
+                  company-dabbrev)))
  '(company-dabbrev-time-limit 0.3)
  '(company-idle-delay 0.25)
  '(company-irony-ignore-case t)
@@ -271,12 +261,8 @@
  '(rng-nxml-auto-validate-flag nil)
  '(ropemacs-guess-project t)
  '(safe-local-variable-values
-   (append safe-local-variable-values
-           (quote
-            ((ggtags-libpath "/home/lagunov/src/opensource/esp-open-sdk/ESP8266_NONOS_SDK_V2.0.0_16_08_10/" "/home/lagunov/src/my/esp8266/esp-open-sdk/ESP8266_RTOS_SDK/")
-             (ggtags-libpath "/home/lagunov/src/my/esp8266/esp-open-sdk/ESP8266_RTOS_SDK/")
-             (ggtags-libpath "/home/lagunov/src/opensource/esp-open-sdk")
-             (my-flycheck-perl-autoinclude t)))))
+   (quote
+    ((encoding . utf-8)
  '(scroll-bar-mode nil)
  '(search-exit-option t)
  '(semantic-mode nil)
@@ -299,7 +285,7 @@
    (quote
     ("TMOUT=0" "LC_CTYPE=''" "TERM=dumb" "EMACS=t" "INSIDE_EMACS='24.5.1,tramp:2.2.11-24.5'" "CDPATH=" "HISTORY=" "MAIL=" "MAILCHECK=" "MAILPATH=" "PAGER=cat" "autocorrect=" "correct=")))
  '(tramp-ssh-controlmaster-options
-   "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no" t)
+   "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify))
  '(vc-annotate-background nil)
  '(warning-suppress-log-types (quote ((undo discard-info))))

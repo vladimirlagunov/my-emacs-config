@@ -69,6 +69,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+        ace-window
         describe-key
         mouse-drag-mode-line
         mouse-minor-mode-menu

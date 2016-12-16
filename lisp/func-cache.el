@@ -10,15 +10,11 @@
 (defvar func-cache--root-hash
   (make-hash-table :test 'equal))
 
-(defvar func-cache--timeouts
-  (make-hash-table))
 
-
-(defun func-cache--advice-around (real-fn &rest args)
+(defun func-cache--advice-around (fn-timeout real-fn &rest args)
   (cl-check-type args list)
   (let* ((cache-key (cons real-fn args))
          (cached-result-lst (gethash cache-key func-cache--root-hash))
-         (fn-timeout (gethash real-fn func-cache--timeouts -1))
          (now (func-cache--unix-time)))
     (if (eq fn-timeout -1)
         (error (format "Timeout for %S not defined" real-fn)))
@@ -39,9 +35,9 @@
       (error (format "%S is not a function" fn)))
   (if (not (or (and (numberp timeout) (< 0 timeout)) (null timeout)))
       (error (format "%S is not a positive number or nil")))
-  (puthash fn timeout func-cache--timeouts)
-  (advice-add fn :around 'func-cache--advice-around)
-  fn)
+  (advice-add fn :around
+              (lambda (fn &rest args)
+                (apply 'func-cache--advice-around timeout fn args))))
 
 
 (defvar func-cache--test-fn1-calls '())

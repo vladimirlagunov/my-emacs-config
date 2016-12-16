@@ -31,6 +31,30 @@
 ;; (require 'airline-understated-theme)
 ;; (require 'airline-wombat-theme)
 
+
+;; Тормозной airline по умолчанию дёргает `git symbolic-ref --short
+;; HEAD` на каждое изменение буфера.
+(defvar -airline-get-vc--cache
+  (make-hash-table :weakness 'key)
+  "buffer -> (result . cached-until)")
+
+(defcustom -airline-get-vc--timeout 3.0 "foobar" :type 'float)
+
+(defun -airline-get-vc--around (old-fn &rest args)
+  (let* ((time (current-time))
+         (unixtime (+ (lsh (car time) 16) (cadr time)))
+         (cache-key (current-buffer))
+         (cache-cell (gethash cache-key -airline-get-vc--cache))
+         (result (car cache-cell))
+         (cached-until (cdr cache-cell)))
+    (when (or (null cached-until) (< cached-until unixtime))
+      (setq result (apply old-fn args))
+      (puthash cache-key (cons result (+ unixtime -airline-get-vc--timeout))
+               -airline-get-vc--cache))
+    result))
+(advice-add 'airline-get-vc :around '-airline-get-vc--around)
+
+
 (require 'airline-lagunov-theme)
 
 (defun my-flycheck-mode-line-status-text (&optional status)
