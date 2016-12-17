@@ -232,4 +232,6 @@ Argument OUTPUT is a string with the output from the comint process."
 
 (use-package company-jedi)
 
+(require 'python-switch-quotes)
+
 (provide 'config_my_python)

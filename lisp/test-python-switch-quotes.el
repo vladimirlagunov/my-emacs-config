@@ -1,14 +1,14 @@
-;;; emacs -Q -batch -l ert -l python-cycle-quotes.el -l test-python-cycle-quotes.el -f ert-run-tests-batch-and-exit
+;;; emacs -Q -batch -l ert -l python-switch-quotes.el -l test-python-switch-quotes.el -f ert-run-tests-batch-and-exit
 
-(require 'python-cycle-quotes)
+(require 'python-switch-quotes)
 
-(defun cycle-it (py-string)
+(defun switch-it (py-string)
   (with-temp-buffer
     (setq python-indent-guess-indent-offset nil)
     (python-mode)
     (insert py-string)
     (goto-char (/ (buffer-end 1) 2))
-    (python-cycle-quotes)
+    (python-switch-quotes)
     (buffer-string)))
 
 (defun python-approves (py-string py-string1)
@@ -32,22 +32,9 @@
    nil
    `(let ((py-string) (py-string1) (py-string2))
       (setq py-string ,fixture)
-      (setq py-string1 (cycle-it py-string))
+      (setq py-string1 (switch-it py-string))
       (should (python-approves py-string py-string1))
-      (setq py-string2 (cycle-it py-string1))
-      (should (python-approves py-string1 py-string2))
-      ,(when reversible
-         `(should (equal py-string py-string2))))))
-
-
-(defmacro test-one-fixture (fixture reversible)
-  (remove
-   nil
-   `(let ((py-string) (py-string1) (py-string2))
-      (setq py-string ,fixture)
-      (setq py-string1 (cycle-it py-string))
-      (should (python-approves py-string py-string1))
-      (setq py-string2 (cycle-it py-string1))
+      (setq py-string2 (switch-it py-string1))
       (should (python-approves py-string1 py-string2))
       ,(when reversible
          `(should (equal py-string py-string2))))))
@@ -57,6 +44,8 @@
   ;;; simple strings
   (test-one-fixture "'hello world'" t)
   (test-one-fixture "\"hello world\"" t)  
+
+  (test-one-fixture "'hello \\u0022 \\u0027 world\\n'" t)
 
   (test-one-fixture "'\\'hello world'" t)
   (test-one-fixture "'hello world\\''" t)

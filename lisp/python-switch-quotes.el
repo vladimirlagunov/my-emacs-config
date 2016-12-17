@@ -1,5 +1,14 @@
-(defun python-cycle-quotes--simple (string-start string-end old-quote new-quote)
-  ;;; "hello world" => 'hello world'
+;;; python-switch-quotes --- convert apostrophe quoted string to quoted and vice versa
+;;; Commentary:
+;;;   Converts strings like 'this' to strings like "this".
+;;;   Supports raw strings, docstrings and strings with escaped quotes.
+;;;
+;;;   Assigns key C-c ' to convert string at point.
+;;; Code:
+(require 'python)
+
+(defun python-switch-quotes--simple (string-start string-end old-quote new-quote)
+  "Private: \"hello world\" => 'hello world'."
   (goto-char (1- string-end))
   (save-excursion
     (delete-char 1)
@@ -21,8 +30,8 @@
       (goto-char return-back))))
 
 
-(defun python-cycle-quotes--raw-simple (string-start string-end old-quote new-quote)
-  ;;; r"hello world" => r'hello world'
+(defun python-switch-quotes--raw-simple (string-start string-end new-quote)
+  "Private: r\"hello world\" => r'hello world'"
   (goto-char (1- string-end))
   (delete-char 1)
   (insert new-quote)
@@ -31,8 +40,8 @@
   (insert new-quote))
 
 
-(defun python-cycle-quotes--docstring (string-start string-end old-quote new-quote)
-  ;;; """hello world""" => '''hello world'''
+(defun python-switch-quotes--docstring (string-start string-end old-quote new-quote)
+  "Private: \"\"\"hello world\"\"\" => '''hello world'''."
   (goto-char string-start)
   (delete-char 3)
   (insert new-quote new-quote new-quote)
@@ -62,8 +71,8 @@
         (save-excursion (insert ?\\))))))
 
 
-(defun python-cycle-quotes--raw-docstring (string-start string-end old-quote new-quote)
-  ;;; r"hello world" => r'hello world'
+(defun python-switch-quotes--raw-docstring (string-start string-end new-quote)
+  "Private: r\"hello world\" => r'hello world'."
   (goto-char (- string-end 3))
   (delete-char 3)
   (insert new-quote new-quote new-quote)
@@ -72,12 +81,14 @@
   (insert new-quote new-quote new-quote))
 
 
-(defun python-cycle-quotes (&optional pos)
+(defun python-switch-quotes (&optional pos)
+  "Convert apostrophe quoted string to quoted and vice versa.
+POS - point inside of string, using current position if omitted."
   (interactive)
   (save-excursion
     (goto-char (or pos (point)))
     (let ((string-start (python-syntax-context 'string)))
-      (when string-start
+      (if (not string-start) (error "Not a python string")
         (let* ((string-end (scan-sexps string-start 1))
                (old-quote (char-after string-start))
                (new-quote (if (equal old-quote ?\") ?' ?\"))
@@ -86,13 +97,15 @@
                                     (string old-quote old-quote old-quote))))
           (cond
             ((and is-raw is-docstring)
-             (python-cycle-quotes--raw-docstring string-start string-end old-quote new-quote))
+             (python-switch-quotes--raw-docstring string-start string-end new-quote))
             (is-docstring
-             (python-cycle-quotes--docstring string-start string-end old-quote new-quote))
+             (python-switch-quotes--docstring string-start string-end old-quote new-quote))
             (is-raw
-             (python-cycle-quotes--raw-simple string-start string-end old-quote new-quote))
+             (python-switch-quotes--raw-simple string-start string-end new-quote))
             (t
-             (python-cycle-quotes--simple string-start string-end old-quote new-quote))))))))
-        
+             (python-switch-quotes--simple string-start string-end old-quote new-quote))))))))
 
-(provide 'python-cycle-quotes)
+(define-key python-mode-map (kbd "C-c '") 'python-switch-quotes)
+
+(provide 'python-switch-quotes)
+;;; python-switch-quotes ends here
