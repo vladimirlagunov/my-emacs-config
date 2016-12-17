@@ -79,11 +79,58 @@
 
   ;;; simple raw strings
   (test-one-fixture "r'hello world'" t)
-  (test-one-fixture "r\"hello world\"" t)
+  (test-one-fixture "R\"hello world\"" t)
 
-  (test-one-fixture "r'\\'hello world'" t)
-  (test-one-fixture "r'hello world\\''" t)
-  (test-one-fixture "r'hello \" world'" t)
-  (test-one-fixture "r'he\\'llo \\'\\'\\' world'" t)
-  (test-one-fixture "r\"he'llo ''' world\"" t)
-  )
+  (test-one-fixture "r'hello \\' world'" t)
+  (test-one-fixture "r\"hello \\' world\"" t)
+  (test-one-fixture "r'hello \\\" world'" t)
+  (test-one-fixture "r\"hello \\\" world\"" t)
+
+  (test-one-fixture "r'\\'hello'" t)
+  (test-one-fixture "r'hello\\''" t)
+  (test-one-fixture "r'\\\"hello'" t)
+  (test-one-fixture "r'hello\\\"'" t)
+
+  ;;; raw docstrings
+  (test-one-fixture "r'''hello world'''" t)
+  (test-one-fixture "r\"\"\"hello world\"\"\"" t)
+
+  (test-one-fixture "r'''hello \\' world'''" t)
+  (test-one-fixture "r'''hello \\\" world'''" t)
+  (test-one-fixture "r\"\"\"hello \\' world\"\"\"" t)
+  (test-one-fixture "r\"\"\"hello \\\" world\"\"\"" t)
+
+  (test-one-fixture "r'''hello world\\''''" t)
+  (test-one-fixture "r'''hello world\\\"'''" t)
+  (test-one-fixture "r\"\"\"hello world\\\"\"\"\"" t)
+  (test-one-fixture "r\"\"\"hello world\\'\"\"\"" t)
+
+  ;;; like a real case
+  (test-one-fixture "'''
+Simple doctest for digits
+
+>>> 2 * 2
+4
+>>> 3 * 3
+9
+'''" t)
+
+  (test-one-fixture "'''
+Strings with backslashes
+
+>>> path = 'C:\\\\\\\\autoexec.bat'
+>>> path
+'C:\\\\\\\\autoexec.bat'
+>>> print(path)
+C:\\\\autoexec.bat
+'''" t)
+
+  (test-one-fixture "r'''
+Strings with backslashes
+
+>>> path = 'C:\\\\autoexec.bat'
+>>> path
+'C:\\\\autoexec.bat'
+>>> print(path)
+C:\\autoexec.bat
+'''" t))

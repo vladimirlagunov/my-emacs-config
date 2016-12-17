@@ -21,6 +21,16 @@
       (goto-char return-back))))
 
 
+(defun python-cycle-quotes--raw-simple (string-start string-end old-quote new-quote)
+  ;;; r"hello world" => r'hello world'
+  (goto-char (1- string-end))
+  (delete-char 1)
+  (insert new-quote)
+  (goto-char string-start)
+  (delete-char 1)
+  (insert new-quote))
+
+
 (defun python-cycle-quotes--docstring (string-start string-end old-quote new-quote)
   ;;; """hello world""" => '''hello world'''
   (goto-char string-start)
@@ -52,6 +62,16 @@
         (save-excursion (insert ?\\))))))
 
 
+(defun python-cycle-quotes--raw-docstring (string-start string-end old-quote new-quote)
+  ;;; r"hello world" => r'hello world'
+  (goto-char (- string-end 3))
+  (delete-char 3)
+  (insert new-quote new-quote new-quote)
+  (goto-char string-start)
+  (delete-char 3)
+  (insert new-quote new-quote new-quote))
+
+
 (defun python-cycle-quotes (&optional pos)
   (interactive)
   (save-excursion
@@ -61,16 +81,16 @@
         (let* ((string-end (scan-sexps string-start 1))
                (old-quote (char-after string-start))
                (new-quote (if (equal old-quote ?\") ?' ?\"))
-               (is-raw (eq ?r (char-before string-start)))
+               (is-raw (memq (char-before string-start) '(?r ?R)))
                (is-docstring (equal (buffer-substring string-start (+ 3 string-start))
                                     (string old-quote old-quote old-quote))))
           (cond
             ((and is-raw is-docstring)
-             (error "not implemented yet"))
+             (python-cycle-quotes--raw-docstring string-start string-end old-quote new-quote))
             (is-docstring
              (python-cycle-quotes--docstring string-start string-end old-quote new-quote))
             (is-raw
-             (error "not implemented yet"))
+             (python-cycle-quotes--raw-simple string-start string-end old-quote new-quote))
             (t
              (python-cycle-quotes--simple string-start string-end old-quote new-quote))))))))
         
