@@ -47,5 +47,11 @@
 (add-hook 'c++-mode-hook 'irony-mode)
 
 
+(use-package cmake-project)
+(defun my-conf--maybe-cmake-project-mode ()
+  (when (file-exists-p "CMakeLists.txt")
+    (cmake-project-mode t)))
+(add-hook 'c-mode-hook 'my-conf--maybe-cmake-project-mode)
+(add-hook 'c++-mode-hook 'my-conf--maybe-cmake-project-mode)
 
 (provide 'config_my_c)
