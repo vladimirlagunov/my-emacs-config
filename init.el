@@ -216,7 +216,7 @@
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
  '(package-selected-packages
    (quote
-    (list-unicode-display google-c-style arduino-mode company-arduino ace-window ace-mc ace-jump-buffer ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
+    (yaml-mode sqlup-mode multi-web-mode cmake-project irony company-c-headers python-switch-quotes company-jedi list-unicode-display google-c-style arduino-mode company-arduino ace-window ace-mc ace-jump-buffer ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
  '(perl-indent-continued-arguments 4)
  '(perl-indent-parens-as-block t)
  '(powerline-color1 "#222912")
@@ -297,7 +297,7 @@
    (quote
     ("TMOUT=0" "LC_CTYPE=''" "TERM=dumb" "EMACS=t" "INSIDE_EMACS='24.5.1,tramp:2.2.11-24.5'" "CDPATH=" "HISTORY=" "MAIL=" "MAILCHECK=" "MAILPATH=" "PAGER=cat" "autocorrect=" "correct=")))
  '(tramp-ssh-controlmaster-options
-   "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+   "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no" t)
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify))
  '(vc-annotate-background nil)
  '(warning-suppress-log-types (quote ((undo discard-info))))
@@ -314,7 +314,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight semi-light :height 113 :width condensed :foundry "XFT" :family "Input Mono Narrow"))))
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Input Mono"))))
  '(Info-quoted ((t (:weight ultra-light))))
  '(ace-jump-face-foreground ((t (:background "black" :foreground "yellow" :underline nil))))
  '(aw-background-face ((t (:distant-foreground "gray90" :foreground "gray90"))))
