@@ -3,4 +3,4 @@
 # ln -s Emacs-osx.sh /Applications/Emacs.app/Contents/MacOS/Emacs
 cd
 source .profile
-exec /Applications/Emacs.app/Contents/MacOS/Emacs.real
+exec /Applications/Emacs.app/Contents/MacOS/Emacs.real "$@"

@@ -31,6 +31,8 @@
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(auto-save-default nil)
  '(auto-save-interval 60)
+ '(avy-keys (quote (102 105 106 110 112 114 118 119 120)))
+ '(avy-style (quote at))
  '(aw-scope (quote visible))
  '(browse-url-browser-function (quote browse-url-default-browser))
  '(browse-url-generic-program "chromium-browser")
@@ -216,11 +218,12 @@
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
  '(package-selected-packages
    (quote
-    (yaml-mode sqlup-mode multi-web-mode cmake-project irony company-c-headers python-switch-quotes company-jedi list-unicode-display google-c-style arduino-mode company-arduino ace-window ace-mc ace-jump-buffer ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
+    (rainbow-mode bln-mode ucs-utils charmap debian-changelog-mode yaml-mode sqlup-mode multi-web-mode cmake-project irony company-c-headers python-switch-quotes company-jedi list-unicode-display google-c-style arduino-mode company-arduino ace-window ace-mc ace-jump-buffer ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
  '(perl-indent-continued-arguments 4)
  '(perl-indent-parens-as-block t)
  '(powerline-color1 "#222912")
  '(powerline-color2 "#09150F")
+ '(powerline-default-separator (quote utf-8))
  '(powerline-gui-use-vcs-glyph t)
  '(powerline-height nil)
  '(powerline-text-scale-factor nil)
@@ -228,14 +231,7 @@
    (quote
     (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" ".ropeproject" ".stack-work")))
  '(projectile-keymap-prefix "")
- '(projectile-mode-line
-   (quote
-    (:eval
-     (if
-         (file-remote-p default-directory)
-         " Projectile"
-       (format " ⊆%s"
-               (projectile-project-name))))))
+ '(projectile-mode-line "⊆")
  '(py-indent-offset 4 t)
  '(python-environment-default-root-name "python27")
  '(python-environment-virtualenv
@@ -314,7 +310,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Input Mono"))))
+ '(default ((t (:inherit nil :stipple nil :background "#ffffff" :foreground "#000000" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "Input Mono"))))
  '(Info-quoted ((t (:weight ultra-light))))
  '(ace-jump-face-foreground ((t (:background "black" :foreground "yellow" :underline nil))))
  '(aw-background-face ((t (:distant-foreground "gray90" :foreground "gray90"))))
@@ -329,7 +325,7 @@
  '(cperl-nonoverridable-face ((t (:foreground "chartreuse4"))))
  '(fancy-narrow-blocked-face ((t (:background "white smoke" :foreground "Grey70"))))
  '(gamegrid-face-*Tetris* ((t (:height 90 :family "Input Mono"))) t)
- '(hl-line ((t (:background "honeydew"))))
+ '(hl-line ((t (:background "ivory1" :distant-foreground "black"))))
  '(indent-guide-face ((t (:foreground "MediumOrchid1"))))
  '(powerline-active1 ((t (:inherit sml/global))))
  '(powerline-active2 ((t (:inherit sml/global))))
@@ -342,7 +338,7 @@
  '(sml/prefix ((t (:inherit sml/global :background "grey" :foreground "black"))))
  '(term ((t (:stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(vc-state-base-face ((t nil)))
- '(yas-field-highlight-face ((t (:background "gtk_selection_bg_color")))))
+ '(yas-field-highlight-face ((t (:background "turquoise1")))))
 
 
 (require 'bind-key (expand-file-name "~/.emacs.d/use-package/bind-key.el"))

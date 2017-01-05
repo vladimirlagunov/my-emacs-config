@@ -205,7 +205,7 @@
 ;;   (:propertize
 ;;    "▶►"
 ;;    face (:foreground "grey60"))
-  
+
 ;;   mode-line-buffer-identification
 ;;   "   "
 ;;   mode-line-position
@@ -221,19 +221,22 @@
 (defengine yandex "https://yandex.ru/search/?text=%s" :keybinding "y")
 
 
-(use-package ace-jump-mode)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-(define-key global-map (kbd "C-.") 'ace-jump-mode)
-;; Почему-то переменные из ace-jump-mode не настраиваются через customize-variable
-(setq ace-jump-mode-submode-list
-      '(ace-jump-char-mode    ;; C-. 
-        ace-jump-word-mode  ;; C-u C-.
-        ace-jump-line-mode))  ;; C-u C-u C-.
-(setq ace-jump-mode-scope 'visible)
-(setq ace-jump-mode-enable-mark-sync t)
-;; Только маленькие ascii
-(setq ace-jump-mode-move-keys
-      (loop for i from ?a to ?z collect i))
+;; (use-package ace-jump-mode)
+;; (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+;; (define-key global-map (kbd "C-.") 'ace-jump-mode)
+;; ;; Почему-то переменные из ace-jump-mode не настраиваются через customize-variable
+;; (setq ace-jump-mode-submode-list
+;;       '(ace-jump-char-mode    ;; C-.
+;;         ace-jump-word-mode  ;; C-u C-.
+;;         ace-jump-line-mode))  ;; C-u C-u C-.
+;; (setq ace-jump-mode-scope 'visible)
+;; (setq ace-jump-mode-enable-mark-sync t)
+;; ;; Только маленькие ascii
+;; (setq ace-jump-mode-move-keys
+;;       (loop for i from ?a to ?z collect i))
+
+(use-package avy)
+(define-key global-map (kbd "C-.") 'avy-goto-char)
 
 
 (use-package ace-window)
@@ -265,6 +268,17 @@
           (lambda ()
             (make-local-variable 'line-move-visual)
             (setq line-move-visual nil)))
+
+
+; В ubuntu unity криво работает интеграция меню в заголовок окна.
+; Меню лучше отключить и вызывать по f10.
+; Под os x меню работает хорошо.
+(menu-bar-mode (not (string-equal system-type "gnu/linux")))
+
+
+(use-package bln-mode)
+(define-key global-map (kbd "s-f") 'bln-forward-half)
+(define-key global-map (kbd "s-b") 'bln-backward-half)
 
 
 (provide 'config_my_usability)

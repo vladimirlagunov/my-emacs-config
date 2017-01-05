@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        ahs-backward
         backward-sexp
         beginning-of-buffer
         browse-kill-ring
