@@ -54,9 +54,9 @@
  '(company-auto-complete nil)
  '(company-backends
    (quote
-    (company-nxml company-css company-semantic company-cmake company-files
-                  (company-c-headers company-irony company-jedi company-gtags company-etags company-keywords company-clang company-dabbrev-code)
-                  company-dabbrev)))
+    (company-irony company-c-headers company-nxml company-css company-semantic company-cmake company-files
+                   (company-elisp company-c-headers company-irony company-jedi company-gtags company-etags company-keywords company-clang company-dabbrev-code)
+                   company-dabbrev)))
  '(company-dabbrev-time-limit 0.3)
  '(company-idle-delay 0.25)
  '(company-irony-ignore-case t)
@@ -218,7 +218,7 @@
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
  '(package-selected-packages
    (quote
-    (rainbow-mode bln-mode ucs-utils charmap debian-changelog-mode yaml-mode sqlup-mode multi-web-mode cmake-project irony company-c-headers python-switch-quotes company-jedi list-unicode-display google-c-style arduino-mode company-arduino ace-window ace-mc ace-jump-buffer ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
+    (kurecolor rainbow-mode bln-mode ucs-utils charmap debian-changelog-mode yaml-mode sqlup-mode multi-web-mode cmake-project irony company-c-headers python-switch-quotes company-jedi list-unicode-display google-c-style arduino-mode company-arduino ace-window ace-mc ace-jump-buffer ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
  '(perl-indent-continued-arguments 4)
  '(perl-indent-parens-as-block t)
  '(powerline-color1 "#222912")

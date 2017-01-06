@@ -63,7 +63,7 @@
          (pcase (or status flycheck-last-status-change)
            (`not-checked '("" . nil))
            (`no-checker '("-" . nil))
-           (`running (cons (ucs-utils-string "hourglass") nil))
+           (`running (cons (ucs-utils-string "hourglass with flowing sand") nil))
            (`errored (cons (ucs-utils-string "negative squared cross mark") nil))
            (`finished
             (let-alist (flycheck-count-errors flycheck-current-errors)
@@ -78,145 +78,151 @@
 (advice-add 'flycheck-mode-line-status-text :override 'my-flycheck-mode-line-status-text)
 
 
-(setq-default
- mode-line-format
- '("%e"
-   (:eval
-    (let* ((active (powerline-selected-window-active))
-           (width (window-total-width))
-           (expance (< 100 width))
-           (tight (> 70 width))
-           (separator-left (intern (format "powerline-%s-%s"
-                                           (powerline-current-separator)
-                                           (car powerline-default-separator-dir))))
-           (separator-right (intern (format "powerline-%s-%s"
-                                            (powerline-current-separator)
-                                            (cdr powerline-default-separator-dir))))
-           (mode-line-face (if active 'mode-line 'mode-line-inactive))
+(defun my-mode-line-format ()
+  (let* ((active (powerline-selected-window-active))
+         (width (window-total-width))
+         (expance (< 100 width))
+         (tight (> 70 width))
+         (separator-left (intern (format "powerline-%s-%s"
+                                         (powerline-current-separator)
+                                         (car powerline-default-separator-dir))))
+         (separator-right (intern (format "powerline-%s-%s"
+                                          (powerline-current-separator)
+                                          (cdr powerline-default-separator-dir))))
+         (mode-line-face (if active 'mode-line 'mode-line-inactive))
 
-           (outer-face
-            (if (powerline-selected-window-active) 'airline-normal-outer 'powerline-inactive1))
+         (outer-face
+          (if (powerline-selected-window-active) 'airline-normal-outer 'powerline-inactive1))
 
-           (inner-face
-            (if (powerline-selected-window-active) 'airline-normal-inner 'powerline-inactive2))
+         (inner-face
+          (if (powerline-selected-window-active) 'airline-normal-inner 'powerline-inactive2))
 
-           (center-face
-            (if (powerline-selected-window-active) 'airline-normal-center 'powerline-inactive2))
+         (center-face
+          (if (powerline-selected-window-active) 'airline-normal-center 'powerline-inactive2))
 
-           ;; Left Hand Side
-           (lhs-mode
-            (list
-             ;; Mule Info
-             (when powerline-display-mule-info
-               (powerline-raw mode-line-mule-info outer-face 'l))
+         ;; Left Hand Side
+         (lhs-mode
+          (list
+           ;; Mule Info
+           (when powerline-display-mule-info
+             (powerline-raw mode-line-mule-info outer-face 'l))
 
-             ;; Modified string
-             (powerline-raw "%*" outer-face 'l)
-             ;; Separator >
-             (when expance (powerline-raw " " outer-face))
-             (funcall separator-left outer-face inner-face)))
+           ;; Modified string
+           (powerline-raw "%*" outer-face 'l)
+           ;; Separator >
+           (when expance (powerline-raw " " outer-face))
+           (funcall separator-left outer-face inner-face)))
 
-           (lhs-rest (list
-                      ;; ;; Separator >
-                      ;; (powerline-raw (char-to-string #x2b81) inner-face 'l)
+         (lhs-rest (list
+                    ;; ;; Separator >
+                    ;; (powerline-raw (char-to-string #x2b81) inner-face 'l)
 
-                      ;; Eyebrowse current tab/window config
-                      (if (featurep 'eyebrowse)
-                          (powerline-raw (concat " " (eyebrowse-mode-line-indicator)) inner-face))
+                    ;; Eyebrowse current tab/window config
+                    (if (featurep 'eyebrowse)
+                        (powerline-raw (concat " " (eyebrowse-mode-line-indicator)) inner-face))
 
-                      ;; LN character, Current Line and % location in file
-                      (powerline-raw
-                       (concat
-                        (if expance (char-to-string airline-utf-glyph-linenumber) "")
-                        "%l:%c")
-                       inner-face 'l)
+                    ;; LN character, Current Line and % location in file
+                    (powerline-raw
+                     (concat
+                      (if expance (char-to-string airline-utf-glyph-linenumber) "")
+                      "%l:%c")
+                     inner-face 'l)
 
-                      ;; % location in file
-                      (when expance (powerline-raw "(%p)" inner-face 'r))
+                    ;; % location in file
+                    (when expance (powerline-raw "(%p)" inner-face 'r))
 
-                      ;; Buffer Size
-                      (when (and expance powerline-display-buffer-size)
-                        (powerline-buffer-size inner-face 'l))
+                    ;; Buffer Size
+                    (when (and expance powerline-display-buffer-size)
+                      (powerline-buffer-size inner-face 'l))
 
-                      ;; Separator >
-                      (when expance (powerline-raw " " inner-face))
-                      (funcall separator-left inner-face center-face)
+                    ;; Separator >
+                    (when expance (powerline-raw " " inner-face))
+                    (funcall separator-left inner-face center-face)
+                    (when expance (powerline-raw " " center-face))
+
+                    ;; Directory
+                    ;; (when (eq airline-display-directory 'airline-directory-shortened)
+                    ;;   (powerline-raw (airline-shorten-directory default-directory airline-shortened-directory-length) center-face 'l))
+                    ;; (when (eq airline-display-directory 'airline-directory-full)
+                    ;;   (powerline-raw default-directory center-face 'l))
+                    ;; (when (eq airline-display-directory nil)
+                    ;;   (powerline-raw " " center-face))
+
+                    ;; Projectile
+                    (when (not (file-remote-p default-directory))
+                      (let ((project (projectile-project-name)))
+                        (when (not (or tight (equal project "-")))
+                          (powerline-raw
+                           (concat (if expance (ucs-utils-string "open file folder") "")
+                                   project
+                                   (if expance " " "")
+                                   (char-to-string airline-utf-glyph-subseparator-left)
+                                   (if expance " " ""))
+                           center-face))))
+
+                    ;; Buffer ID
+                    ;; (powerline-buffer-id center-face)
+                    (powerline-raw "%b" center-face)
+
+                    ;; Narrow if appropriate
+                    (powerline-raw "%n" center-face)
+
+                    ;; ;; Separator >
+                    ;; (powerline-raw " " center-face)
+                    ;; (funcall separator-left mode-line face1)
+
+                    (when (boundp 'erc-modified-channels-object)
+                      (powerline-raw erc-modified-channels-object center-face 'l))
+
+                    ;; ;; Separator <
+                    ;; (powerline-raw " " face1)
+                    ;; (funcall separator-right face1 face2)
+                    ))
+
+         (lhs (append lhs-mode lhs-rest))
+
+         ;; Right Hand Side
+         (rhs (if tight
+                  ;; Separator <
+                  (list (powerline-raw (ucs-utils-string "black scissors") center-face)
+                        (funcall separator-right center-face outer-face))
+
+                (list (powerline-raw global-mode-string center-face 'r)
+
+                      ;; Separator <
                       (when expance (powerline-raw " " center-face))
+                      (funcall separator-right center-face inner-face)
 
-                      ;; Directory
-                      ;; (when (eq airline-display-directory 'airline-directory-shortened)
-                      ;;   (powerline-raw (airline-shorten-directory default-directory airline-shortened-directory-length) center-face 'l))
-                      ;; (when (eq airline-display-directory 'airline-directory-full)
-                      ;;   (powerline-raw default-directory center-face 'l))
-                      ;; (when (eq airline-display-directory nil)
-                      ;;   (powerline-raw " " center-face))
+                      ;; Major Mode
+                      (powerline-major-mode inner-face 'l)
+                      (powerline-process inner-face)
 
-                      ;; Buffer ID
-                      ;; (powerline-buffer-id center-face)
-                      (powerline-raw "%b" center-face)
+                      ;; Subseparator <
+                      (powerline-raw (char-to-string airline-utf-glyph-subseparator-right) inner-face 'l)
 
-                      ;; Narrow if appropriate
-                      (powerline-raw "%n" center-face)
+                      ;; Minor Modes
+                      (powerline-minor-modes inner-face 'l)
+                      ;; (powerline-narrow center-face 'l)
 
-                      ;; ;; Separator >
-                      ;; (powerline-raw " " center-face)
-                      ;; (funcall separator-left mode-line face1)
+                      (powerline-raw " " inner-face)
 
-                      (when (boundp 'erc-modified-channels-object)
-                        (powerline-raw erc-modified-channels-object center-face 'l))
+                      ;; Separator <
+                      (funcall separator-right inner-face outer-face)
 
-                      ;; ;; Separator <
-                      ;; (powerline-raw " " face1)
-                      ;; (funcall separator-right face1 face2)
+                      ;; Git Branch
+                      (when expance (powerline-raw (airline-get-vc) outer-face))
+
+                      (powerline-raw " " outer-face)
                       ))
+              ))
 
-           (lhs (append lhs-mode lhs-rest))
+    ;; Combine Left and Right Hand Sides
+    (concat (powerline-render lhs)
+            (powerline-fill center-face (powerline-width rhs))
+            (powerline-render rhs))))
 
-           ;; Right Hand Side
-           (rhs (if tight
-                    ;; Separator <
-                    (list (powerline-raw (ucs-utils-string "black scissors") center-face)
-                          (funcall separator-right center-face outer-face))
 
-                  (list (powerline-raw global-mode-string center-face 'r)
-
-                        ;; Separator <
-                        (when expance (powerline-raw " " center-face))
-                        (funcall separator-right center-face inner-face)
-
-                        ;; Major Mode
-                        (powerline-major-mode inner-face 'l)
-                        (powerline-process inner-face)
-
-                        ;; Subseparator <
-                        (powerline-raw (char-to-string airline-utf-glyph-subseparator-right) inner-face 'l)
-
-                        ;; Minor Modes
-                        (powerline-minor-modes inner-face 'l)
-                        ;; (powerline-narrow center-face 'l)
-
-                        (powerline-raw " " inner-face)
-
-                        ;; Separator <
-                        (funcall separator-right inner-face outer-face)
-
-                        ;; Projectile
-                        (when (not (file-remote-p default-directory))
-                          (let ((project (projectile-project-name)))
-                            (when (not (equal project "-"))
-                              (powerline-raw (concat (ucs-utils-string "open file folder") project) outer-face))))
-
-                        ;; Git Branch
-                        (when expance (powerline-raw (airline-get-vc) outer-face))
-
-                        (powerline-raw " " outer-face)
-                        ))
-                ))
-
-      ;; Combine Left and Right Hand Sides
-      (concat (powerline-render lhs)
-              (powerline-fill center-face (powerline-width rhs))
-              (powerline-render rhs))))))
+(setq-default mode-line-format '("%e" (:eval (my-mode-line-format))))
 
 
 (require 'mytheme2017)

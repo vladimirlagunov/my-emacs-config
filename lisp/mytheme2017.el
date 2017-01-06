@@ -1,5 +1,9 @@
 ;;; https://emacsfodder.github.io/emacs-theme-editor/ + напильник
 
+(require 'use-package)
+;;; (use-package kurecolor)  ;; https://github.com/emacsfodder/kurecolor
+
+
 
 (deftheme mytheme2017 "DOCSTRING for mytheme2017")
 (custom-theme-set-faces
@@ -13,20 +17,18 @@
  '(font-lock-builtin-face ((t (:foreground "#3500a5" ))))
  '(font-lock-comment-face ((t (:foreground "#71788e" :background "#fbfcff"))))
  '(font-lock-function-name-face ((t (:foreground "#d46700" :background "#fffcfa" :weight regular))))
- '(font-lock-keyword-face ((t (:foreground "#00b5c7" ))))
+ '(font-lock-keyword-face ((t (:foreground "#009DAD" :background "#f9fdff"))))
  '(font-lock-string-face ((t (:foreground "#aeaa00" ))))
  '(font-lock-type-face ((t (:foreground "#71009d" :background "#fcfaff"))))
  '(font-lock-constant-face ((t (:foreground "#65009f" ))))
  '(font-lock-variable-name-face ((t (:foreground "#d4a800" :background "#fffcf6"))))
- '(minibuffer-prompt ((t (:foreground "#000000" :bold t ))))
- '(font-lock-warning-face ((t (:foreground "red" :bold t )))))
+ '(minibuffer-prompt ((t (:foreground "#000000" :bold t )))))
 
 
-(require 'use-package)
 (use-package airline-themes)
-(let ((normal-outer-foreground  "#ffffff") (normal-outer-background  "#225dab")
-      (normal-inner-foreground  "#ffffff") (normal-inner-background  "#008894")
-      (normal-center-foreground "#000000") (normal-center-background "#d3f7a3")
+(let ((normal-outer-foreground  "#000000") (normal-outer-background  "#D8FF2F")
+      (normal-inner-foreground  "#ffffff") (normal-inner-background  "#9FAF18")
+      (normal-center-foreground "#ffffff") (normal-center-background "#5D6336")
 
       (inactive1-foreground  "#f0f0f0") (inactive1-background  "#6885ab")
       (inactive2-foreground  "#404040") (inactive2-background  "#bdcfd0")
