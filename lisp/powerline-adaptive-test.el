@@ -6,8 +6,7 @@
 
 (ert-deftest test-render-adaptive--filter-and-format--one-string ()
   (should (equal (render-adaptive--filter-and-format '(((value . "hello"))) nil)
-                 '((filtered-string . "hello")
-                   (filtered-pairs . (((value . "hello"))))
+                 '((filtered-pairs . (((value . "hello"))))
                    (next-threshold . nil)))))
 
 
@@ -15,8 +14,7 @@
   (should (equal (render-adaptive--filter-and-format '(((value . "hello "))
                                                        ((value . "world")))
                                                      nil)
-                 '((filtered-string . "hello world")
-                   (filtered-pairs . (((value . "hello "))
+                 '((filtered-pairs . (((value . "hello "))
                                       ((value . "world"))))
                    (next-threshold . nil)))))
 
@@ -26,8 +24,7 @@
                                                        ((value . " "))
                                                        ((value . "world") (priority . 8)))
                                                      nil)
-                 '((filtered-string . "hello world")
-                   (filtered-pairs . (((value . "hello") (priority . 5))
+                 '((filtered-pairs . (((value . "hello") (priority . 5))
                                       ((value . " "))
                                       ((value . "world") (priority . 8))))
                    (next-threshold . 5)))))
@@ -38,8 +35,7 @@
                                                        ((value . " "))
                                                        ((value . "world") (priority . 8)))
                                                      5)
-                 '((filtered-string . " world")
-                   (filtered-pairs . (((value . " "))
+                 '((filtered-pairs . (((value . " "))
                                       ((value . "world") (priority . 8))))
                    (next-threshold . 8)))))
 
@@ -49,8 +45,7 @@
                                                        ((value . " "))
                                                        ((value . "world") (priority . 8)))
                                                      8)
-                 '((filtered-string . " ")
-                   (filtered-pairs . (((value . " "))))
+                 '((filtered-pairs . (((value . " "))))
                    (next-threshold . nil)))))
 
 
@@ -58,8 +53,7 @@
   (should (equal (render-adaptive--filter-and-format '(((value . "hello") (priority . 5))
                                                        ((value . "world") (priority . 8)))
                                                      8)
-                 '((filtered-string . "")
-                   (filtered-pairs . ())
+                 '((filtered-pairs . ())
                    (next-threshold . nil)))))
 
 
@@ -69,8 +63,7 @@
                                                         ((value . "[nested2]") (priority . 7)))
                                                        ((value . "world") (priority . 8)))
                                                      6)
-                 '((filtered-string . "[nested2]world")
-                   (filtered-pairs . (((value . "[nested2]") (priority . 7))
+                 '((filtered-pairs . (((value . "[nested2]") (priority . 7))
                                       ((value . "world") (priority . 8))))
                    (next-threshold . 7))))
 
@@ -82,6 +75,16 @@
                                                        ((value . "world") (priority . 8))
                                                        nil)
                                                      6)
-                 '((filtered-string . "world")
-                   (filtered-pairs . (((value . "world") (priority . 8))))
+                 '((filtered-pairs . (((value . "world") (priority . 8))))
                    (next-threshold . 8)))))
+
+
+(ert-deftest test-render-adaptive--filter-and-format--spacer ()
+  (should (equal (render-adaptive--filter-and-format '(((value . "hello") (priority . 5))
+                                                       ((value . spacer))
+                                                       ((value . "world") (priority . 8)))
+                                                     nil)
+                 '((filtered-pairs . (((value . "hello") (priority . 5))
+                                      ((value . spacer))
+                                      ((value . "world") (priority . 8))))
+                   (next-threshold . 5)))))
