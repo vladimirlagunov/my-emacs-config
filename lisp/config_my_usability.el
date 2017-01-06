@@ -281,4 +281,7 @@
 (define-key global-map (kbd "s-b") 'bln-backward-half)
 
 
+(use-package projectile)
+
+
 (provide 'config_my_usability)

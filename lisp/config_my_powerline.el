@@ -1,6 +1,9 @@
 (use-package powerline)
 (use-package airline-themes)
 (use-package dim)
+(use-package ucs-utils)
+
+(require 'config_my_usability)
 
 ;; (powerline-center-theme)
 
@@ -54,23 +57,25 @@
     result))
 (advice-add 'airline-get-vc :around '-airline-get-vc--around)
 
+
 (defun my-flycheck-mode-line-status-text (&optional status)
   (let ((param-tuple
          (pcase (or status flycheck-last-status-change)
            (`not-checked '("" . nil))
            (`no-checker '("-" . nil))
-           (`running '("⌛" . nil))
-           (`errored '("!" . 'compilation-error-face))
+           (`running (cons (ucs-utils-string "hourglass") nil))
+           (`errored (cons (ucs-utils-string "negative squared cross mark") nil))
            (`finished
             (let-alist (flycheck-count-errors flycheck-current-errors)
               (cond
-               ((not (null .error)) '("☹" . 'compilation-mode-line-fail))
-               ((not (null .warning)) '("☹" . 'warning))
-               (t '("☺" . 'compilation-mode-line-exit))))))))
+               ((not (null .error)) (cons (ucs-utils-string "angry face") nil))
+               ((not (null .warning)) (cons (ucs-utils-string "confused face") nil))
+               (t (cons (ucs-utils-string "winking face") nil))))))))
     (let ((text (car param-tuple)) (face (cdr param-tuple)))
       (when (not (null face))
-        (put-text-property 0 (length text)'face face text))
+        (put-text-property 0 (length text) 'face face text))
       text)))
+(advice-add 'flycheck-mode-line-status-text :override 'my-flycheck-mode-line-status-text)
 
 
 (setq-default
@@ -170,7 +175,7 @@
            ;; Right Hand Side
            (rhs (if tight
                     ;; Separator <
-                    (list (powerline-raw "✂" center-face)
+                    (list (powerline-raw (ucs-utils-string "black scissors") center-face)
                           (funcall separator-right center-face outer-face))
 
                   (list (powerline-raw global-mode-string center-face 'r)
@@ -197,7 +202,9 @@
 
                         ;; Projectile
                         (when (not (file-remote-p default-directory))
-                          (powerline-raw (concat "⊆" (projectile-project-name)) outer-face))
+                          (let ((project (projectile-project-name)))
+                            (when (not (equal project "-"))
+                              (powerline-raw (concat (ucs-utils-string "open file folder") project) outer-face))))
 
                         ;; Git Branch
                         (when expance (powerline-raw (airline-get-vc) outer-face))
@@ -214,22 +221,6 @@
 
 (require 'mytheme2017)
 ;; (load-theme 'mytheme2017)
+
 (powerline-reset)
-
-
-(dim-minor-names
- '((projectile-mode "")
-   (auto-revert-mode "")
-   (flycheck-mode (:eval (my-flycheck-mode-line-status-text)))
-   (helm-mode " ♚")
-   (company-mode " C")
-   (ggtags-mode " G")
-   (helm-gtags-mode "")
-   (abbrev-mode " D")
-   (ropemacs-mode "➿")
-   (sphinx-doc-mode "")
-   (smerge-mode "⟗")
-   (auto-highlight-symbol-mode "")))
-
-
 (provide 'config_my_powerline)

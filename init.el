@@ -369,6 +369,24 @@
 ;; (require 'config_my_cedet)
 (require 'config_my_arduino)
 (require 'config_my_modes)
+
+;; should be last
+;; http://apps.timwhitlock.info/emoji/tables/unicode
+(use-package dim)
+(dim-minor-names
+ `((projectile-mode "")
+   (auto-revert-mode "")
+   (helm-mode " ♚")
+   (company-mode ,(ucs-utils-string "memo"))
+   (ggtags-mode ,(ucs-utils-string "globe with meridians"))
+   (helm-gtags-mode "")
+   (abbrev-mode " D")
+   (ropemacs-mode ,(ucs-utils-string "snake"))
+   (sphinx-doc-mode "")
+   (smerge-mode "⟗")
+   (auto-highlight-symbol-mode "")
+   (yasnippet-mode "")))
+
 (let ((local-file (expand-file-name "~/.emacs.d/local.el")))
   (when (file-exists-p local-file)
     (load-file local-file)))
