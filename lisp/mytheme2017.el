@@ -50,7 +50,11 @@
       (emacs-inner-foreground "#00ffaa") (emacs-inner-background "#00aaff")
       (emacs-center-foreground "#aaffaa") (emacs-center-background "#ccaaff"))
 
-  (airline-themes-set-deftheme 'mytheme2017))
+  (airline-themes-set-deftheme 'mytheme2017)
+
+  (custom-theme-set-faces
+   'mytheme2017
+   `(mode-line ((t (:foreground ,normal-outer-foreground :background ,normal-outer-background :box nil :underline nil :overline nil))))))
 
 
 ;;;###autoload
