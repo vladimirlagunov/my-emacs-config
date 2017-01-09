@@ -102,7 +102,7 @@
                         (if (buffer-file-name)
                             (replace-regexp-in-string
                              "^[.]/" ""
-                             (file-name-as-directory
+                             (directory-file-name
                               (file-relative-name (concat (buffer-file-name) "/..")
                                                   (projectile-project-root))))
                           ""))))))
@@ -166,7 +166,7 @@
         (priority . 60))
 
       ;; Buffer Size
-      `((value . ,(powerline-buffer-size inner-face 'l))
+      `((value . ,(powerline-raw "%I" inner-face))
         (priority . 60))
 
       ;; Separator >
@@ -192,8 +192,13 @@
             ,center-space
             ((value . ,(powerline-raw (char-to-string airline-utf-glyph-subseparator-left) center-face))
              (priority . 65))
-            ,center-space
-            ((value . ,(powerline-raw (cdr projectile-info) center-face))))))
+            ,(when (not (or (equal "." (cdr projectile-info)) (equal "" (cdr projectile-info))))
+               `(,center-space
+                 ((value . ,(powerline-raw (cdr projectile-info) center-face)))
+                 ,center-space
+                 ((value . ,(powerline-raw (char-to-string airline-utf-glyph-subseparator-left) center-face))
+                  (priority . 65))))
+            ,center-space)))
 
       ;; Buffer ID
       `((value . ,(powerline-raw "%b" center-face)))

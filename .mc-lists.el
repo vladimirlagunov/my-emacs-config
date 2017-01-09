@@ -74,6 +74,7 @@
         describe-key
         mouse-drag-mode-line
         mouse-minor-mode-menu
+        raise-all-frames
         scroll-right
         tags-loop-continue
         text-scale-adjust
