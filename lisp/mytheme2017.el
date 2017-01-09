@@ -30,9 +30,9 @@
       (normal-inner-foreground  "#ffffff") (normal-inner-background  "#9FAF18")
       (normal-center-foreground "#ffffff") (normal-center-background "#5D6336")
 
-      (inactive1-foreground  "#f0f0f0") (inactive1-background  "#6885ab")
-      (inactive2-foreground  "#404040") (inactive2-background  "#bdcfd0")
-      (inactive3-foreground "#202020") (inactive3-background "#c4d4ae")
+      (inactive1-foreground  "#606060") (inactive1-background  "#D8FF2F")
+      (inactive2-foreground  "#606060") (inactive2-background  "#bdcfd0")
+      (inactive3-foreground "#808080") (inactive3-background "#c4d4ae")
 
       ;; wtf? похоже, используется только в eshell и evil
       (insert-outer-foreground  "#ffffff") (insert-outer-background  "#225dab")

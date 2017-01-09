@@ -116,7 +116,7 @@
       ;; Modified string
       `((value . ,(powerline-raw "%*" outer-face 'l))
         (priority . 100))
-      
+
       ;; Separator >
       outer-space
       `((value . ,(funcall separator-left outer-face inner-face)))
@@ -150,8 +150,15 @@
       ;;   (powerline-raw " " center-face))
 
       ;; Projectile
-      (when (not (file-remote-p default-directory))
-        (let ((project (projectile-project-name)))
+      (when (and (not (file-remote-p default-directory)) (projectile-project-p))
+        (let ((project (projectile-project-name))
+              (dirrelpath
+               (if (buffer-file-name)
+                   (replace-regexp-in-string "^[.]/" ""
+                                             (file-name-as-directory
+                                              (file-relative-name (concat (buffer-file-name) "/..")
+                                                                  (projectile-project-root))))
+                 "")))
           (when (not (equal project "-"))
             `(((value . ,(powerline-raw (ucs-utils-string "open file folder") center-face))
                (priority . 65))
@@ -160,7 +167,8 @@
               ,center-space
               ((value . ,(powerline-raw (char-to-string airline-utf-glyph-subseparator-left) center-face))
                (priority . 65))
-              ,center-space))))
+              ,center-space
+              ((value . ,(powerline-raw dirrelpath center-face)))))))
 
       ;; Buffer ID
       `((value . ,(powerline-raw "%b" center-face)))
@@ -205,13 +213,13 @@
                                     (t mode-line-process))
                                    inner-face))
           (priority . 100)))
-                       
+
       ;; Subseparator <
       inner-space
       `((value . ,(powerline-raw (char-to-string airline-utf-glyph-subseparator-right) inner-face))
         (priority . 75))
       inner-space
-      
+
       ;; Minor Modes
       `((value . ,(powerline-raw (format-mode-line minor-mode-alist) inner-face))
         (priority . 75))
@@ -223,7 +231,7 @@
       ;; Git Branch
       `((value . ,(or (powerline-raw (airline-get-vc) outer-face) ""))
         (priority . 55))))))
-                 
+
 
 (defun my-mode-line-format ()
   (let* ((active (powerline-selected-window-active))
