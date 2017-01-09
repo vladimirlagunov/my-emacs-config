@@ -14,14 +14,14 @@
  '(mode-line ((t (:foreground "#000000" :background "#d0d0d0" ))))
  '(region ((t (:background "#ffdcb5" ))))
  '(secondary-selection ((t (:background "#e3e3e3" ))))
- '(font-lock-builtin-face ((t (:foreground "#3500a5" ))))
- '(font-lock-comment-face ((t (:foreground "#71788e" :background "#fbfcff"))))
+ '(font-lock-builtin-face ((t (:foreground "#300098" ))))
+ '(font-lock-comment-face ((t (:foreground "#71788e" :background "#fcfeff"))))
  '(font-lock-function-name-face ((t (:foreground "#d46700" :background "#fffcfa" :weight regular))))
  '(font-lock-keyword-face ((t (:foreground "#009DAD" :background "#f9fdff"))))
- '(font-lock-string-face ((t (:foreground "#aeaa00" ))))
+ '(font-lock-string-face ((t (:foreground "#7A7600" ))))
  '(font-lock-type-face ((t (:foreground "#71009d" :background "#fcfaff"))))
  '(font-lock-constant-face ((t (:foreground "#65009f" ))))
- '(font-lock-variable-name-face ((t (:foreground "#d4a800" :background "#fffcf6"))))
+ '(font-lock-variable-name-face ((t (:foreground "#BA9200" :background "#fffefc"))))
  '(minibuffer-prompt ((t (:foreground "#000000" :bold t )))))
 
 
@@ -54,7 +54,8 @@
 
   (custom-theme-set-faces
    'mytheme2017
-   `(mode-line ((t (:foreground ,normal-outer-foreground :background ,normal-outer-background :box nil :underline nil :overline nil))))))
+   `(mode-line ((t (:foreground ,normal-outer-foreground :background ,normal-outer-background :box nil :underline nil :overline nil))))
+   `(minibuffer-prompt ((t (:font-weight bold :inherit default))))))
 
 
 ;;;###autoload

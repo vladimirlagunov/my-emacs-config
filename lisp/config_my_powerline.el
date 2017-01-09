@@ -78,6 +78,39 @@
 (advice-add 'flycheck-mode-line-status-text :override 'my-flycheck-mode-line-status-text)
 
 
+(defcustom -projectile-buffer-info--timeout 3.0 "foobar" :type 'float)
+
+(defvar -projectile-buffer-info--cache
+  (make-hash-table :weakness 'key)
+  "buffer -> (<(<projectile-project-name> <relative-dir-path>) or nil> . <expiration unix time>)")
+
+
+(defun -projectile-buffer-info ()
+  (let* ((time (current-time))
+         (unixtime (+ (lsh (car time) 16) (cadr time)))
+         (cache-key (current-buffer))
+         (cache-cell (gethash cache-key -projectile-buffer-info--cache))
+         (result (car cache-cell))
+         (cached-until (cdr cache-cell)))
+    (when (or (null cached-until) (< cached-until unixtime))
+      (setq result
+            (when (and (not (file-remote-p (or (buffer-file-name) default-directory)))
+                       (projectile-project-p))
+              (let ((project (projectile-project-name)))
+                (when (and project (not (equal "-" project)))
+                  (cons project
+                        (if (buffer-file-name)
+                            (replace-regexp-in-string
+                             "^[.]/" ""
+                             (file-name-as-directory
+                              (file-relative-name (concat (buffer-file-name) "/..")
+                                                  (projectile-project-root))))
+                          ""))))))
+      (puthash cache-key (cons result (+ unixtime -projectile-buffer-info--timeout))
+               -projectile-buffer-info--cache))
+    result))
+
+
 (require 'powerline-adaptive)
 (defun my-mode-line-format-adaptive ()
   (render-adaptive
@@ -150,25 +183,17 @@
       ;;   (powerline-raw " " center-face))
 
       ;; Projectile
-      (when (and (not (file-remote-p default-directory)) (projectile-project-p))
-        (let ((project (projectile-project-name))
-              (dirrelpath
-               (if (buffer-file-name)
-                   (replace-regexp-in-string "^[.]/" ""
-                                             (file-name-as-directory
-                                              (file-relative-name (concat (buffer-file-name) "/..")
-                                                                  (projectile-project-root))))
-                 "")))
-          (when (not (equal project "-"))
-            `(((value . ,(powerline-raw (ucs-utils-string "open file folder") center-face))
-               (priority . 65))
-              ((value . ,(powerline-raw project center-face))
-               (priority . 65))
-              ,center-space
-              ((value . ,(powerline-raw (char-to-string airline-utf-glyph-subseparator-left) center-face))
-               (priority . 65))
-              ,center-space
-              ((value . ,(powerline-raw dirrelpath center-face)))))))
+      (let ((projectile-info (-projectile-buffer-info)))
+        (when (and projectile-info (car projectile-info) (cdr projectile-info))
+          `(((value . ,(powerline-raw (ucs-utils-string "open file folder") center-face))
+             (priority . 65))
+            ((value . ,(powerline-raw (car projectile-info) center-face))
+             (priority . 65))
+            ,center-space
+            ((value . ,(powerline-raw (char-to-string airline-utf-glyph-subseparator-left) center-face))
+             (priority . 65))
+            ,center-space
+            ((value . ,(powerline-raw (cdr projectile-info) center-face))))))
 
       ;; Buffer ID
       `((value . ,(powerline-raw "%b" center-face)))
