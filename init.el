@@ -218,7 +218,7 @@
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
  '(package-selected-packages
    (quote
-    (kurecolor rainbow-mode bln-mode ucs-utils charmap debian-changelog-mode yaml-mode sqlup-mode multi-web-mode cmake-project irony company-c-headers python-switch-quotes company-jedi list-unicode-display google-c-style arduino-mode company-arduino ace-window ace-mc ace-jump-buffer ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
+    (clang-format cmake-ide kurecolor rainbow-mode bln-mode ucs-utils charmap debian-changelog-mode yaml-mode sqlup-mode multi-web-mode cmake-project irony company-c-headers python-switch-quotes company-jedi list-unicode-display google-c-style arduino-mode company-arduino ace-window ace-mc ace-jump-buffer ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
  '(perl-indent-continued-arguments 4)
  '(perl-indent-parens-as-block t)
  '(powerline-color1 "#222912")
@@ -310,7 +310,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#ffffff" :foreground "#000000" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "Input Mono"))))
  '(Info-quoted ((t (:weight ultra-light))))
  '(ace-jump-face-foreground ((t (:background "black" :foreground "yellow" :underline nil))))
  '(aw-background-face ((t (:distant-foreground "gray90" :foreground "gray90"))))

@@ -54,4 +54,8 @@
 (add-hook 'c-mode-hook 'my-conf--maybe-cmake-project-mode)
 (add-hook 'c++-mode-hook 'my-conf--maybe-cmake-project-mode)
 
+(use-package clang-format)
+(define-key c-mode-map [C-M-tab] 'clang-format-region)
+(define-key c++-mode-map [C-M-tab] 'clang-format-region)
+
 (provide 'config_my_c)

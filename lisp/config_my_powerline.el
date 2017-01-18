@@ -174,14 +174,6 @@
       `((value . ,(funcall separator-left inner-face center-face)))
       center-space
 
-      ;; Directory
-      ;; (when (eq airline-display-directory 'airline-directory-shortened)
-      ;;   (powerline-raw (airline-shorten-directory default-directory airline-shortened-directory-length) center-face 'l))
-      ;; (when (eq airline-display-directory 'airline-directory-full)
-      ;;   (powerline-raw default-directory center-face 'l))
-      ;; (when (eq airline-display-directory nil)
-      ;;   (powerline-raw " " center-face))
-
       ;; Projectile
       (let ((projectile-info (-projectile-buffer-info)))
         (when (and projectile-info (car projectile-info) (cdr projectile-info))
@@ -194,7 +186,8 @@
              (priority . 65))
             ,(when (not (or (equal "." (cdr projectile-info)) (equal "" (cdr projectile-info))))
                `(,center-space
-                 ((value . ,(powerline-raw (cdr projectile-info) center-face)))
+                 ((value . ,(powerline-raw (cdr projectile-info) center-face))
+                  (priority . 65))
                  ,center-space
                  ((value . ,(powerline-raw (char-to-string airline-utf-glyph-subseparator-left) center-face))
                   (priority . 65))))
