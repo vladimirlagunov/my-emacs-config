@@ -85,29 +85,31 @@
   "buffer -> (<(<projectile-project-name> <relative-dir-path>) or nil> . <expiration unix time>)")
 
 
+;;; Должны быть установлены параметры:
+;;;  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
+;;;  '(uniquify-strip-common-suffix nil)
 (defun -projectile-buffer-info ()
   (let* ((time (current-time))
          (unixtime (+ (lsh (car time) 16) (cadr time)))
          (cache-key (current-buffer))
-         (cache-cell (gethash cache-key -projectile-buffer-info--cache))
+         (cache-cell (gethash cache-key -projectile-buffer-info2--cache))
          (result (car cache-cell))
          (cached-until (cdr cache-cell)))
     (when (or (null cached-until) (< cached-until unixtime))
       (setq result
-            (when (and (not (file-remote-p (or (buffer-file-name) default-directory)))
-                       (projectile-project-p))
-              (let ((project (projectile-project-name)))
-                (when (and project (not (equal "-" project)))
-                  (cons project
-                        (if (buffer-file-name)
-                            (replace-regexp-in-string
-                             "^[.]/" ""
-                             (directory-file-name
-                              (file-relative-name (concat (buffer-file-name) "/..")
-                                                  (projectile-project-root))))
-                          ""))))))
+            (let* ((file-path (buffer-file-name))
+                   (visible-part (buffer-name))
+                   (project-dir (and (not (file-remote-p (or file-path default-directory)))
+                                     (projectile-project-p)))
+                   (result-part (when (and project-dir file-path)
+                                  (concat (projectile-project-name)
+                                          "/" (substring file-path (length project-dir))))))
+              (when result-part
+                (if (< (length visible-part) (length result-part))
+                    (substring result-part 0 (- 0 (length visible-part)))
+                  ""))))
       (puthash cache-key (cons result (+ unixtime -projectile-buffer-info--timeout))
-               -projectile-buffer-info--cache))
+               -projectile-buffer-info2--cache))
     result))
 
 
@@ -176,22 +178,11 @@
 
       ;; Projectile
       (let ((projectile-info (-projectile-buffer-info)))
-        (when (and projectile-info (car projectile-info) (cdr projectile-info))
+        (when projectile-info
           `(((value . ,(powerline-raw (ucs-utils-string "open file folder") center-face))
              (priority . 65))
-            ((value . ,(powerline-raw (car projectile-info) center-face))
-             (priority . 65))
-            ,center-space
-            ((value . ,(powerline-raw (char-to-string airline-utf-glyph-subseparator-left) center-face))
-             (priority . 65))
-            ,(when (not (or (equal "." (cdr projectile-info)) (equal "" (cdr projectile-info))))
-               `(,center-space
-                 ((value . ,(powerline-raw (cdr projectile-info) center-face))
-                  (priority . 65))
-                 ,center-space
-                 ((value . ,(powerline-raw (char-to-string airline-utf-glyph-subseparator-left) center-face))
-                  (priority . 65))))
-            ,center-space)))
+            ((value . ,(powerline-raw projectile-info center-face))
+             (priority . 65)))))
 
       ;; Buffer ID
       `((value . ,(powerline-raw "%b" center-face)))

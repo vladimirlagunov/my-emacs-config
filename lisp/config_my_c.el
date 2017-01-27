@@ -40,11 +40,24 @@
 
 (require 'config_my_company)
 (use-package company-c-headers)
+(use-package company-irony-c-headers)
 (add-to-list 'company-backends 'company-c-headers)
+(add-to-list 'company-backends 'company-irony-c-headers)
 
 
 (use-package irony)
 (add-hook 'c++-mode-hook 'irony-mode)
+
+(defun irony-modern-cpp-hook ()
+  (add-to-list (make-local-variable 'irony-additional-clang-options)
+               "-std=c++1z"))
+(add-hook 'c++-mode-hook 'irony-modern-cpp-hook)
+
+(use-package flycheck-irony)
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+
+(use-package modern-cpp-font-lock)
 
 
 (use-package cmake-project)
@@ -54,8 +67,9 @@
 (add-hook 'c-mode-hook 'my-conf--maybe-cmake-project-mode)
 (add-hook 'c++-mode-hook 'my-conf--maybe-cmake-project-mode)
 
-(use-package clang-format)
-(define-key c-mode-map [C-M-tab] 'clang-format-region)
-(define-key c++-mode-map [C-M-tab] 'clang-format-region)
+;; (require 'c-mode)
+;; (use-package clang-format)
+;; (define-key c-mode-map [C-M-tab] 'clang-format-region)
+;; (define-key c++-mode-map [C-M-tab] 'clang-format-region)
 
 (provide 'config_my_c)

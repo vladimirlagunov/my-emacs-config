@@ -54,9 +54,9 @@
  '(company-auto-complete nil)
  '(company-backends
    (quote
-    (company-irony company-c-headers company-nxml company-css company-semantic company-cmake company-files
-                   (company-elisp company-c-headers company-irony company-jedi company-gtags company-etags company-keywords company-clang company-dabbrev-code)
-                   company-dabbrev)))
+    (company-c-headers company-nxml company-css company-semantic company-cmake company-files
+                       (company-elisp company-c-headers company-irony company-jedi company-gtags company-etags company-keywords company-clang company-dabbrev-code)
+                       company-dabbrev)))
  '(company-dabbrev-time-limit 0.3)
  '(company-idle-delay 0.25)
  '(company-irony-ignore-case t)
@@ -85,10 +85,6 @@
  '(dired-dwim-target t)
  '(dired-recursive-copies (quote always))
  '(dired-recursive-deletes (quote always))
- '(display-buffer-alist
-   (quote
-    (("" display-buffer-reuse-window
-      (reusable-frames . visible)))))
  '(doc-view-continuous t)
  '(dynamic-completion-mode t)
  '(ediff-autostore-merges t)
@@ -133,7 +129,7 @@
  '(global-auto-highlight-symbol-mode t)
  '(global-company-mode nil)
  '(global-highlight-changes-mode nil)
- '(global-hl-line-mode t)
+ '(global-hl-line-mode nil)
  '(global-hl-line-sticky-flag nil)
  '(global-rainbow-delimiters-mode t)
  '(global-semantic-decoration-mode nil)
@@ -218,7 +214,7 @@
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
  '(package-selected-packages
    (quote
-    (clang-format cmake-ide kurecolor rainbow-mode bln-mode ucs-utils charmap debian-changelog-mode yaml-mode sqlup-mode multi-web-mode cmake-project irony company-c-headers python-switch-quotes company-jedi list-unicode-display google-c-style arduino-mode company-arduino ace-window ace-mc ace-jump-buffer ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
+    (stickyfunc-enhance debian-bug clang-format cmake-ide kurecolor rainbow-mode bln-mode ucs-utils charmap debian-changelog-mode yaml-mode sqlup-mode multi-web-mode cmake-project irony company-c-headers python-switch-quotes company-jedi list-unicode-display google-c-style arduino-mode company-arduino ace-window ace-mc ace-jump-buffer ggtags smart-mode-line-powerline-theme smart-mode-line sphinx-doc jedi spacemacs-theme sublimity ein browse-kill-ring+ cmake-mode ecb zencoding-mode yasnippet thrift rust-mode multiple-cursors markdown-mode magit indent-guide highlight-symbol graphviz-dot-mode go-mode flymake-rust flycheck f expand-region epc dockerfile-mode cython-mode clippy auto-highlight-symbol)))
  '(perl-indent-continued-arguments 4)
  '(perl-indent-parens-as-block t)
  '(powerline-color1 "#222912")
@@ -294,7 +290,8 @@
     ("TMOUT=0" "LC_CTYPE=''" "TERM=dumb" "EMACS=t" "INSIDE_EMACS='24.5.1,tramp:2.2.11-24.5'" "CDPATH=" "HISTORY=" "MAIL=" "MAILCHECK=" "MAILPATH=" "PAGER=cat" "autocorrect=" "correct=")))
  '(tramp-ssh-controlmaster-options
    "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no" t)
- '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify))
+ '(uniquify-buffer-name-style (quote forward) nil (uniquify))
+ '(uniquify-strip-common-suffix nil)
  '(vc-annotate-background nil)
  '(warning-suppress-log-types (quote ((undo discard-info))))
  '(warning-suppress-types (quote ((\(undo\ discard-info\)))))
@@ -310,6 +307,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#ffffff" :foreground "#000000" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "Input Mono"))))
  '(Info-quoted ((t (:weight ultra-light))))
  '(ace-jump-face-foreground ((t (:background "black" :foreground "yellow" :underline nil))))
  '(aw-background-face ((t (:distant-foreground "gray90" :foreground "gray90"))))
@@ -335,6 +333,7 @@
  '(sml/global ((t (:inherit ## :background "gray80" :foreground "black" :inverse-video nil :box (:line-width 1 :color "grey" :style released-button)))))
  '(sml/modes ((t (:inherit sml/filename :weight normal))))
  '(sml/prefix ((t (:inherit sml/global :background "grey" :foreground "black"))))
+ '(strike ((t (:strike-through "dark gray"))) t)
  '(term ((t (:stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(vc-state-base-face ((t nil)))
  '(yas-field-highlight-face ((t (:background "turquoise1")))))
@@ -365,7 +364,7 @@
 (require 'config_my_go)
 (require 'config_my_perl)
 (require 'config_my_go)
-;; (require 'config_my_cedet)
+(require 'config_my_cedet)
 (require 'config_my_arduino)
 (require 'config_my_modes)
 
@@ -375,10 +374,10 @@
 (dim-minor-names
  `((projectile-mode "")
    (auto-revert-mode "")
-   (helm-mode " ♚")
+   ;; (helm-mode " ♚")
    (company-mode ,(ucs-utils-string "memo"))
    (ggtags-mode ,(ucs-utils-string "globe with meridians"))
-   (helm-gtags-mode "")
+   ;; (helm-gtags-mode "")
    (abbrev-mode " D")
    (ropemacs-mode ,(ucs-utils-string "snake"))
    (sphinx-doc-mode "")
