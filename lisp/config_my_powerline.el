@@ -86,6 +86,31 @@
   "buffer -> (<(<projectile-project-name> <relative-dir-path>) or nil> . <expiration unix time>)")
 
 
+(defcustom mode-line-renamings
+  (let ((hash (make-hash-table))
+        (renamings `((projectile-mode . "")
+                     (auto-revert-mode . "")
+                     (helm-mode . "♚")
+                     (company-mode . ,(ucs-utils-string "memo"))
+                     (ggtags-mode . ,(ucs-utils-string "globe with meridians"))
+                     (helm-gtags-mode . "")
+                     (abbrev-mode . "D")
+                     (ropemacs-mode . ,(ucs-utils-string "snake"))
+                     (sphinx-doc-mode . "")
+                     (smerge-mode . "⟗")
+                     (auto-highlight-symbol-mode . "")
+                     (yas-minor-mode . ""))))
+    (mapcar (lambda (c) (puthash (car c) (cdr c) hash)) renamings)
+    hash)
+  "mode-symbol -> new text")
+
+(defun -do-mode-line-renamings (minor-mode-alist)
+  (mapcar (lambda (c)
+            (let ((new-name (gethash (car c) mode-line-renamings nil)))
+              (if new-name (list (car c) new-name) c)))
+          minor-mode-alist))
+
+
 ;;; Должны быть установлены параметры:
 ;;;  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
 ;;;  '(uniquify-strip-common-suffix nil)

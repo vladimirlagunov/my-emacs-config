@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         ahs-backward
+        artist-backward-char
         backward-sexp
         beginning-of-buffer
         browse-kill-ring

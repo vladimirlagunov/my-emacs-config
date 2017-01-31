@@ -25,8 +25,79 @@
  '(font-lock-variable-name-face ((t (:foreground "#464D18" ))))
  '(minibuffer-prompt ((t (:foreground "#000000" :bold t ))))
  '(dired-directory ((t (:inherit font-lock-keyword-face))))
- '(minibuffer-prompt ((t (:foreground "#ffffff" :background "#0097ff"))))
- )
+ '(minibuffer-prompt ((t (:foreground "#ffffff" :background "#0097ff")))))
+
+(require 'hi-lock)
+
+(defface my-hl-yellow
+ '((t (:foreground "black" :background "yellow")))
+ ""
+ :group 'hi-lock
+ :group 'faces)
+
+(defface my-hl-pink
+ '((t (:foreground "black" :background "pink")))
+ ""
+ :group 'hi-lock
+ :group 'faces)
+
+(defface my-hl-green
+ '((t (:foreground "black" :background "green")))
+ ""
+ :group 'hi-lock
+ :group 'faces)
+
+(defface my-hl-orange
+ '((t (:foreground "black" :background "orange")))
+ ""
+ :group 'hi-lock
+ :group 'faces)
+
+(defface my-hl-violet
+ '((t (:foreground "black" :background "violet")))
+ ""
+ :group 'hi-lock
+ :group 'faces)
+
+(defface my-hl-cyan
+ '((t (:foreground "black" :background "cyan")))
+ ""
+ :group 'hi-lock
+ :group 'faces)
+
+(defface my-hl-khaki
+ '((t (:foreground "black" :background "khaki")))
+ ""
+ :group 'hi-lock
+ :group 'faces)
+
+(defface my-hl-deep-sky-blue
+ '((t (:foreground "black" :background "deep sky blue")))
+ ""
+ :group 'hi-lock
+ :group 'faces)
+
+(defface my-hl-slate-blue
+ '((t (:foreground "white" :background "slate blue")))
+ ""
+ :group 'hi-lock
+ :group 'faces)
+
+
+
+(setq
+ hi-lock-face-defaults
+ '("my-hl-yellow"
+   "my-hl-pink"
+   "my-hl-green"
+   "my-hl-orange"
+   "my-hl-violet"
+   "my-hl-cyan"
+   "my-hl-khaki"
+   "my-hl-deep-sky-blue"
+   "my-hl-slate-blue"))
+
+
 ;; (custom-theme-set-faces
 ;;  'mytheme2017
 ;;  '(default ((t (:foreground "#000000" :background "#ffffff" ))))

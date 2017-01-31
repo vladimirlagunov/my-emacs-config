@@ -67,4 +67,6 @@ e.g. `HelloWorldString'."
 ;;; Для документации по C-h S. Нужно ставить конфиги для отдельных языков.
 (require 'info-look)
 
+(use-package ascii-art-to-unicode)
+
 (provide 'config_my_fundamental)
