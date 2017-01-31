@@ -1,6 +1,5 @@
 (use-package powerline)
 (use-package airline-themes)
-(use-package dim)
 (use-package ucs-utils)
 
 (require 'config_my_usability)
@@ -58,8 +57,9 @@
 (advice-add 'airline-get-vc :around '-airline-get-vc--around)
 
 
-(defun my-flycheck-mode-line-status-text (&optional status)
-  (let ((param-tuple
+(defun my-flycheck-mode-line-status-text (oldfun &optional status)
+  (let ((text-properties (text-properties-at 0 (apply oldfun status)))
+        (param-tuple
          (pcase (or status flycheck-last-status-change)
            (`not-checked '("" . nil))
            (`no-checker '("-" . nil))
@@ -71,11 +71,12 @@
                ((not (null .error)) (cons (ucs-utils-string "angry face") nil))
                ((not (null .warning)) (cons (ucs-utils-string "confused face") nil))
                (t (cons (ucs-utils-string "winking face") nil))))))))
-    (let ((text (car param-tuple)) (face (cdr param-tuple)))
+    (let ((text (car param-tuple))
+          (face (cdr param-tuple)))
       (when (not (null face))
-        (put-text-property 0 (length text) 'face face text))
+        (setq text (apply propertize text (append text-properties 'face face))))
       text)))
-(advice-add 'flycheck-mode-line-status-text :override 'my-flycheck-mode-line-status-text)
+(advice-add 'flycheck-mode-line-status-text :around 'my-flycheck-mode-line-status-text)
 
 
 (defcustom -projectile-buffer-info--timeout 3.0 "foobar" :type 'float)
@@ -92,7 +93,7 @@
   (let* ((time (current-time))
          (unixtime (+ (lsh (car time) 16) (cadr time)))
          (cache-key (current-buffer))
-         (cache-cell (gethash cache-key -projectile-buffer-info2--cache))
+         (cache-cell (gethash cache-key -projectile-buffer-info--cache))
          (result (car cache-cell))
          (cached-until (cdr cache-cell)))
     (when (or (null cached-until) (< cached-until unixtime))
@@ -109,7 +110,7 @@
                     (substring result-part 0 (- 0 (length visible-part)))
                   ""))))
       (puthash cache-key (cons result (+ unixtime -projectile-buffer-info--timeout))
-               -projectile-buffer-info2--cache))
+               -projectile-buffer-info--cache))
     result))
 
 
@@ -235,7 +236,7 @@
       inner-space
 
       ;; Minor Modes
-      `((value . ,(powerline-raw (format-mode-line minor-mode-alist) inner-face))
+      `((value . ,(powerline-raw (format-mode-line (-do-mode-line-renamings minor-mode-alist)) inner-face))
         (priority . 75))
 
       ;; Separator <
@@ -370,7 +371,8 @@
                       (powerline-raw (char-to-string airline-utf-glyph-subseparator-right) inner-face 'l)
 
                       ;; Minor Modes
-                      (powerline-minor-modes inner-face 'l)
+                      (powerline-raw (format-mode-line mode-line-modes) inner-face)
+                      ;; (powerline-minor-modes inner-face 'l)
                       ;; (powerline-narrow center-face 'l)
 
                       (powerline-raw " " inner-face)
